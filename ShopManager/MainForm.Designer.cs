@@ -49,15 +49,6 @@
             this.AddProductButton = new System.Windows.Forms.Button();
             this.NumberOfProductsLabel = new System.Windows.Forms.Label();
             this.ProductsTable = new System.Windows.Forms.DataGridView();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPurchaseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductCategoryName = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ProductDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Spacer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.ProductsPage = new System.Windows.Forms.TabPage();
             this.SalesPage = new System.Windows.Forms.TabPage();
@@ -68,6 +59,19 @@
             this.SaleDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductCategoriesPage = new System.Windows.Forms.TabPage();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PricePerKg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPurchaseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductCategoryName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ProductDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Spacer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.AppMenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsTable)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -104,7 +108,9 @@
             // FileMenuItem
             // 
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LanugageMenuItem});
+            this.LanugageMenuItem,
+            this.toolStripSeparator1,
+            this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(37, 20);
             this.FileMenuItem.Text = "File";
@@ -115,7 +121,7 @@
             this.RoLangMenuItem,
             this.EnLangMenuItem});
             this.LanugageMenuItem.Name = "LanugageMenuItem";
-            this.LanugageMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.LanugageMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LanugageMenuItem.Text = "Language";
             // 
             // RoLangMenuItem
@@ -188,11 +194,13 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ProductsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.ProductsTable.ColumnHeadersHeight = 30;
+            this.ProductsTable.ColumnHeadersHeight = 40;
             this.ProductsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductID,
             this.ProductDisplayName,
             this.ProductDescription,
+            this.Price,
+            this.PricePerKg,
             this.ProductPurchaseDate,
             this.ProductExpiryDate,
             this.ProductQuantity,
@@ -229,6 +237,150 @@
             this.ProductsTable.Size = new System.Drawing.Size(876, 395);
             this.ProductsTable.TabIndex = 4;
             // 
+            // TabControl
+            // 
+            this.TabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.TabControl.Controls.Add(this.ProductsPage);
+            this.TabControl.Controls.Add(this.SalesPage);
+            this.TabControl.Controls.Add(this.ProductCategoriesPage);
+            this.TabControl.Location = new System.Drawing.Point(0, 89);
+            this.TabControl.Margin = new System.Windows.Forms.Padding(0);
+            this.TabControl.Name = "TabControl";
+            this.TabControl.SelectedIndex = 0;
+            this.TabControl.Size = new System.Drawing.Size(884, 424);
+            this.TabControl.TabIndex = 5;
+            // 
+            // ProductsPage
+            // 
+            this.ProductsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.ProductsPage.Controls.Add(this.ProductsTable);
+            this.ProductsPage.Location = new System.Drawing.Point(4, 25);
+            this.ProductsPage.Margin = new System.Windows.Forms.Padding(0);
+            this.ProductsPage.Name = "ProductsPage";
+            this.ProductsPage.Size = new System.Drawing.Size(876, 395);
+            this.ProductsPage.TabIndex = 0;
+            this.ProductsPage.Text = "Products";
+            // 
+            // SalesPage
+            // 
+            this.SalesPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.SalesPage.Controls.Add(this.SalesTable);
+            this.SalesPage.Location = new System.Drawing.Point(4, 25);
+            this.SalesPage.Margin = new System.Windows.Forms.Padding(0);
+            this.SalesPage.Name = "SalesPage";
+            this.SalesPage.Size = new System.Drawing.Size(876, 395);
+            this.SalesPage.TabIndex = 1;
+            this.SalesPage.Text = "Sales";
+            // 
+            // SalesTable
+            // 
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.SalesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.SalesTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SalesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.SalesTable.ColumnHeadersHeight = 30;
+            this.SalesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SaleID,
+            this.SoldProduct,
+            this.SaleQuantity,
+            this.SaleDeleteRow,
+            this.dataGridViewTextBoxColumn7});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SalesTable.DefaultCellStyle = dataGridViewCellStyle8;
+            this.SalesTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SalesTable.EnableHeadersVisualStyles = false;
+            this.SalesTable.GridColor = System.Drawing.Color.White;
+            this.SalesTable.Location = new System.Drawing.Point(0, 0);
+            this.SalesTable.Name = "SalesTable";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SalesTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.SalesTable.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.SalesTable.Size = new System.Drawing.Size(876, 395);
+            this.SalesTable.TabIndex = 5;
+            // 
+            // SaleID
+            // 
+            this.SaleID.HeaderText = "ID";
+            this.SaleID.MinimumWidth = 20;
+            this.SaleID.Name = "SaleID";
+            this.SaleID.ReadOnly = true;
+            this.SaleID.Width = 52;
+            // 
+            // SoldProduct
+            // 
+            this.SoldProduct.HeaderText = "Product";
+            this.SoldProduct.MaxInputLength = 255;
+            this.SoldProduct.MinimumWidth = 20;
+            this.SoldProduct.Name = "SoldProduct";
+            this.SoldProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoldProduct.Width = 80;
+            // 
+            // SaleQuantity
+            // 
+            this.SaleQuantity.HeaderText = "Quantity";
+            this.SaleQuantity.MinimumWidth = 20;
+            this.SaleQuantity.Name = "SaleQuantity";
+            this.SaleQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SaleQuantity.Width = 90;
+            // 
+            // SaleDeleteRow
+            // 
+            this.SaleDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaleDeleteRow.HeaderText = "";
+            this.SaleDeleteRow.MinimumWidth = 25;
+            this.SaleDeleteRow.Name = "SaleDeleteRow";
+            this.SaleDeleteRow.ReadOnly = true;
+            this.SaleDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SaleDeleteRow.Text = "";
+            this.SaleDeleteRow.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn7.HeaderText = "";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // ProductCategoriesPage
+            // 
+            this.ProductCategoriesPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.ProductCategoriesPage.Location = new System.Drawing.Point(4, 25);
+            this.ProductCategoriesPage.Margin = new System.Windows.Forms.Padding(0);
+            this.ProductCategoriesPage.Name = "ProductCategoriesPage";
+            this.ProductCategoriesPage.Size = new System.Drawing.Size(876, 395);
+            this.ProductCategoriesPage.TabIndex = 2;
+            this.ProductCategoriesPage.Text = "Product categories";
+            // 
             // ProductID
             // 
             this.ProductID.HeaderText = "ID";
@@ -254,6 +406,20 @@
             this.ProductDescription.Name = "ProductDescription";
             this.ProductDescription.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ProductDescription.Width = 130;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 45;
+            this.Price.Name = "Price";
+            this.Price.Width = 45;
+            // 
+            // PricePerKg
+            // 
+            this.PricePerKg.HeaderText = "Price per KG";
+            this.PricePerKg.MinimumWidth = 70;
+            this.PricePerKg.Name = "PricePerKg";
+            this.PricePerKg.Width = 70;
             // 
             // ProductPurchaseDate
             // 
@@ -310,148 +476,17 @@
             this.Spacer.Name = "Spacer";
             this.Spacer.ReadOnly = true;
             // 
-            // TabControl
+            // ExitMenuItem
             // 
-            this.TabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.TabControl.Controls.Add(this.ProductsPage);
-            this.TabControl.Controls.Add(this.SalesPage);
-            this.TabControl.Controls.Add(this.ProductCategoriesPage);
-            this.TabControl.Location = new System.Drawing.Point(0, 89);
-            this.TabControl.Margin = new System.Windows.Forms.Padding(0);
-            this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(884, 424);
-            this.TabControl.TabIndex = 5;
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Text = "Exit";
             // 
-            // ProductsPage
+            // toolStripSeparator1
             // 
-            this.ProductsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            this.ProductsPage.Controls.Add(this.ProductsTable);
-            this.ProductsPage.Location = new System.Drawing.Point(4, 25);
-            this.ProductsPage.Margin = new System.Windows.Forms.Padding(0);
-            this.ProductsPage.Name = "ProductsPage";
-            this.ProductsPage.Size = new System.Drawing.Size(876, 395);
-            this.ProductsPage.TabIndex = 0;
-            this.ProductsPage.Text = "Products";
-            // 
-            // SalesPage
-            // 
-            this.SalesPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            this.SalesPage.Controls.Add(this.SalesTable);
-            this.SalesPage.Location = new System.Drawing.Point(4, 25);
-            this.SalesPage.Margin = new System.Windows.Forms.Padding(0);
-            this.SalesPage.Name = "SalesPage";
-            this.SalesPage.Size = new System.Drawing.Size(876, 408);
-            this.SalesPage.TabIndex = 1;
-            this.SalesPage.Text = "Sales";
-            // 
-            // SalesTable
-            // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.SalesTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.SalesTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SalesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.SalesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SaleID,
-            this.SoldProduct,
-            this.SaleQuantity,
-            this.SaleDeleteRow,
-            this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SalesTable.DefaultCellStyle = dataGridViewCellStyle8;
-            this.SalesTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SalesTable.EnableHeadersVisualStyles = false;
-            this.SalesTable.GridColor = System.Drawing.Color.White;
-            this.SalesTable.Location = new System.Drawing.Point(0, 0);
-            this.SalesTable.Name = "SalesTable";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SalesTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            this.SalesTable.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.SalesTable.Size = new System.Drawing.Size(876, 408);
-            this.SalesTable.TabIndex = 5;
-            // 
-            // SaleID
-            // 
-            this.SaleID.HeaderText = "ID";
-            this.SaleID.MinimumWidth = 20;
-            this.SaleID.Name = "SaleID";
-            this.SaleID.ReadOnly = true;
-            this.SaleID.Width = 52;
-            // 
-            // SoldProduct
-            // 
-            this.SoldProduct.HeaderText = "Product";
-            this.SoldProduct.MaxInputLength = 255;
-            this.SoldProduct.MinimumWidth = 20;
-            this.SoldProduct.Name = "SoldProduct";
-            this.SoldProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SoldProduct.Width = 80;
-            // 
-            // SaleQuantity
-            // 
-            this.SaleQuantity.HeaderText = "Quantity";
-            this.SaleQuantity.MinimumWidth = 20;
-            this.SaleQuantity.Name = "SaleQuantity";
-            this.SaleQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SaleQuantity.Width = 90;
-            // 
-            // SaleDeleteRow
-            // 
-            this.SaleDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaleDeleteRow.HeaderText = "";
-            this.SaleDeleteRow.MinimumWidth = 25;
-            this.SaleDeleteRow.Name = "SaleDeleteRow";
-            this.SaleDeleteRow.ReadOnly = true;
-            this.SaleDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SaleDeleteRow.Text = "";
-            this.SaleDeleteRow.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn7.HeaderText = "";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // ProductCategoriesPage
-            // 
-            this.ProductCategoriesPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            this.ProductCategoriesPage.Location = new System.Drawing.Point(4, 25);
-            this.ProductCategoriesPage.Margin = new System.Windows.Forms.Padding(0);
-            this.ProductCategoriesPage.Name = "ProductCategoriesPage";
-            this.ProductCategoriesPage.Size = new System.Drawing.Size(876, 408);
-            this.ProductCategoriesPage.TabIndex = 2;
-            this.ProductCategoriesPage.Text = "Product categories";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // MainForm
             // 
@@ -505,16 +540,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleQuantity;
         private System.Windows.Forms.DataGridViewButtonColumn SaleDeleteRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.TabPage ProductCategoriesPage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductDisplayName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PricePerKg;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductPurchaseDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductExpiryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductQuantity;
         private System.Windows.Forms.DataGridViewComboBoxColumn ProductCategoryName;
         private System.Windows.Forms.DataGridViewButtonColumn ProductDeleteRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Spacer;
-        private System.Windows.Forms.TabPage ProductCategoriesPage;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
     }
 }
 

@@ -91,9 +91,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ShopManager.Model\ShopManager.Model.csproj">
       <Project>{7fc37a48-a2de-4ceb-94f4-e91220a88c3d}</Project>
       <Name>ShopManager.Model</Name>

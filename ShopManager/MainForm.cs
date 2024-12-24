@@ -32,7 +32,11 @@ namespace ShopManager
         {
             foreach (object subMenu in higherLevelMenu.DropDownItems)
             {
-                ToolStripMenuItem menu = (ToolStripMenuItem)subMenu;
+                if (!(subMenu is ToolStripMenuItem menu))
+                {
+                    continue;
+                }
+
                 menu.ForeColor = Color.White;
                 menu.Text = Strings.ResourceManager.GetString(menu.Text) ?? menu.Text;
                 SetupMenu(menu);
@@ -41,7 +45,7 @@ namespace ShopManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _ = MasterDBController.InitializeDBAsync();
+            _ = MasterDBManager.InitializeDBAsync();
         }
 
         private void Translate()

@@ -26,5 +26,7 @@ namespace ShopManager.Model.DBManager
         { }
 
         internal DbSet<Product> Products { get; set; }
+        internal DbSet<ProductCategory> Categories { get; set; }
+        internal DbSet<Sale> Sales { get; set; }
     }
 }

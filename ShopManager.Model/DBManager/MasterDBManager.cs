@@ -4,7 +4,7 @@ using ShopManager.Model.DBManager;
 
 namespace ShopManager.Controller.DBManager
 {
-    public static class MasterDBController
+    public static class MasterDBManager
     {
         public static async Task InitializeDBAsync()
         {
@@ -20,6 +20,8 @@ namespace ShopManager.Controller.DBManager
                             ctx.Database.ExecuteSqlCommand("CREATE TABLE IF NOT EXISTS \"Products\" (" +
                                 "\"ID\" INTEGER NOT NULL UNIQUE," +
                                 "\"Name\" TEXT NOT NULL," +
+                                "\"Price\" REAL NOT NULL," +
+                                "\"PricePerKg\" REAL," +
                                 "\"Description\" TEXT NOT NULL," +
                                 "\"PurchaseDate\" INTEGER NOT NULL," +
                                 "\"ExpiryDate\" INTEGER NOT NULL," +
