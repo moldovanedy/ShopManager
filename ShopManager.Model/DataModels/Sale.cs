@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopManager.Model.DataModels
 {
@@ -6,7 +7,10 @@ namespace ShopManager.Model.DataModels
     public class Sale
     {
         public int ID { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Product))]
         public int ProductID { get; set; }
-        public int Quantity { get; set; }
+        public uint Quantity { get; set; }
     }
 }

@@ -14,9 +14,14 @@ namespace ShopManager.Model.DataModels
 
         [MaxLength(65535, ErrorMessage = "The description can't have more than 65 535 characters")]
         public string Description { get; set; }
+        public double Price { get; set; }
+        public double PricePerKg { get; set; }
         public DateTime PurchaseDate { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public int Quantity { get; set; }
+        public uint Quantity { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(ProductCategory))]
         public int CategoryID { get; set; }
     }
 }

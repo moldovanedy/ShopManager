@@ -132,6 +132,9 @@
   <data name="Description" xml:space="preserve">
     <value>Descriere</value>
   </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
   <data name="Expiry date" xml:space="preserve">
     <value>Dată expirare</value>
   </data>

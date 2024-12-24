@@ -64,8 +64,14 @@
     <Compile Include="DataModels\Product.cs" />
     <Compile Include="DataModels\ProductCategory.cs" />
     <Compile Include="DataModels\Sale.cs" />
-    <Compile Include="DBManager\MasterDBController.cs" />
+    <Compile Include="DBManager\MasterDBManager.cs" />
+    <Compile Include="DBManager\CategoriesManager.cs" />
+    <Compile Include="DBManager\SalesManager.cs" />
+    <Compile Include="DBManager\ProductsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultHandler\Error.cs" />
+    <Compile Include="ResultHandler\Result.cs" />
+    <Compile Include="ResultHandler\ValueResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
