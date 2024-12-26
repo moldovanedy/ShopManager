@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using ShopManager.Controller.ResultHandler;
@@ -33,9 +34,10 @@ namespace ShopManager.Controller.DBManager
                     {
                         await ctx.SaveChangesAsync();
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
+                        Logger.LogError(ex.ToString());
                     }
                 });
 
@@ -61,9 +63,10 @@ namespace ShopManager.Controller.DBManager
                     {
                         await ctx.SaveChangesAsync();
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
+                        Logger.LogError(ex.ToString());
                     }
                 });
 
@@ -98,9 +101,10 @@ namespace ShopManager.Controller.DBManager
                         updatedSale = storedSale;
                         await ctx.SaveChangesAsync();
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
+                        Logger.LogError(ex.ToString());
                     }
                 });
 
