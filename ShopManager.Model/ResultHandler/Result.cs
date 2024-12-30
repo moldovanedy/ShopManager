@@ -5,7 +5,10 @@ namespace ShopManager.Controller.ResultHandler
     public class Result
     {
         public bool IsSuccess { get; }
-        public Error ResultingError { get; }
+        /// <summary>
+        /// Returns the error or null if no error occurred.
+        /// </summary>
+        public Error ResultingError { get; } = null;
 
         protected Result()
         {
@@ -18,7 +21,7 @@ namespace ShopManager.Controller.ResultHandler
             ResultingError = error;
         }
 
-        public static Result Succesful()
+        public static Result Successful()
         {
             return new Result();
         }
