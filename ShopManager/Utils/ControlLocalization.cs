@@ -9,6 +9,7 @@ namespace ShopManager.Utils
         {
             parentControl.Text =
                 Strings.ResourceManager.GetString(parentControl.Text) ?? parentControl.Text;
+
             foreach (Control child in parentControl.Controls)
             {
                 child.Text = Strings.ResourceManager.GetString(child.Text) ?? child.Text;

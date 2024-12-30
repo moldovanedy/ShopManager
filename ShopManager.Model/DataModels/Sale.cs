@@ -6,11 +6,15 @@ namespace ShopManager.Model.DataModels
     [Table("Sales")]
     public class Sale
     {
-        public int ID { get; set; }
+        [Required]
+        [Key]
+        public long ID { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Product))]
+        //[ForeignKey(nameof(Product))]
         public int ProductID { get; set; }
-        public uint Quantity { get; set; }
+
+        [Required]
+        public double Quantity { get; set; }
     }
 }

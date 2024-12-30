@@ -13,7 +13,7 @@ namespace ShopManager.Controller.DBManager
         public static async Task<List<ProductCategory>> GetAllCategoriesAsync()
         {
             List<ProductCategory> products = new List<ProductCategory>();
-            using (AppDBContext ctx = AppDBContext.Instance)
+            using (AppDBContext ctx = new AppDBContext())
             {
                 products = await ctx.Categories.ToListAsync();
             }
@@ -22,14 +22,14 @@ namespace ShopManager.Controller.DBManager
 
         public static async Task<ValueResult<ProductCategory>> AddCategoryAsync(ProductCategory category)
         {
-            ProductCategory insertedCategory;
-            using (AppDBContext ctx = AppDBContext.Instance)
+            ProductCategory insertedCategory = null;
+            Error saveError = null;
+            await Task.Run(async () =>
             {
-                insertedCategory = ctx.Categories.Add(category);
-
-                Error saveError = null;
-                await Task.Run(async () =>
+                using (AppDBContext ctx = new AppDBContext())
                 {
+                    insertedCategory = ctx.Categories.Add(category);
+
                     try
                     {
                         await ctx.SaveChangesAsync();
@@ -39,12 +39,12 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return ValueResult<ProductCategory>.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return ValueResult<ProductCategory>.Failed(saveError);
             }
 
             return ValueResult<ProductCategory>.Successful(insertedCategory);
@@ -52,13 +52,13 @@ namespace ShopManager.Controller.DBManager
 
         public static async Task<Result> RemoveProductAsync(ProductCategory category)
         {
-            using (AppDBContext ctx = AppDBContext.Instance)
-            {
-                ctx.Categories.Remove(category);
 
-                Error saveError = null;
-                await Task.Run(async () =>
+            Error saveError = null;
+            await Task.Run(async () =>
+            {
+                using (AppDBContext ctx = new AppDBContext())
                 {
+                    ctx.Categories.Remove(category);
                     try
                     {
                         await ctx.SaveChangesAsync();
@@ -68,24 +68,24 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return Result.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return Result.Failed(saveError);
             }
 
-            return Result.Succesful();
+            return Result.Successful();
         }
 
         public static async Task<ValueResult<ProductCategory>> UpdateProductAsync(ProductCategory category)
         {
             ProductCategory updatedCategory = null;
-            using (AppDBContext ctx = AppDBContext.Instance)
+            Error saveError = null;
+            await Task.Run(async () =>
             {
-                Error saveError = null;
-                await Task.Run(async () =>
+                using (AppDBContext ctx = new AppDBContext())
                 {
                     try
                     {
@@ -106,12 +106,12 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return ValueResult<ProductCategory>.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return ValueResult<ProductCategory>.Failed(saveError);
             }
 
             return ValueResult<ProductCategory>.Successful(updatedCategory);

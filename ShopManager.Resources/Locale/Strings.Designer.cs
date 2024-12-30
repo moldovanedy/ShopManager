@@ -106,6 +106,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discard all the changes made from the last save.
+        /// </summary>
+        public static string Discard_all_the_changes_made_from_the_last_save {
+            get {
+                return ResourceManager.GetString("Discard all the changes made from the last save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard changes.
+        /// </summary>
+        public static string Discard_changes {
+            get {
+                return ResourceManager.GetString("Discard changes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -210,6 +228,24 @@ namespace ShopManager.Resources.Locale {
         public static string Sales {
             get {
                 return ResourceManager.GetString("Sales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes.
+        /// </summary>
+        public static string Save_changes {
+            get {
+                return ResourceManager.GetString("Save changes", resourceCulture);
             }
         }
     }

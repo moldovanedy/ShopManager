@@ -55,5 +55,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Locale\Strings.ro.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\discard_icon.png" />
+    <Content Include="Icons\refresh_icon.png" />
+    <Content Include="Icons\save_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

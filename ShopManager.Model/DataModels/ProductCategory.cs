@@ -6,7 +6,9 @@ namespace ShopManager.Model.DataModels
     [Table("ProductCategories")]
     public class ProductCategory
     {
-        public int ID { get; set; }
+        [Required]
+        [Key]
+        public long ID { get; set; }
 
         [Required]
         [MaxLength(255, ErrorMessage = "The category name can't have more than 255 characters")]

@@ -13,7 +13,7 @@ namespace ShopManager.Controller.DBManager
         public static async Task<List<Sale>> GetAllSalesAsync()
         {
             List<Sale> sales = new List<Sale>();
-            using (AppDBContext ctx = AppDBContext.Instance)
+            using (AppDBContext ctx = new AppDBContext())
             {
                 sales = await ctx.Sales.ToListAsync();
             }
@@ -22,14 +22,15 @@ namespace ShopManager.Controller.DBManager
 
         public static async Task<ValueResult<Sale>> AddSaleAsync(Sale sale)
         {
-            Sale insertedSale;
-            using (AppDBContext ctx = AppDBContext.Instance)
-            {
-                insertedSale = ctx.Sales.Add(sale);
+            Sale insertedSale = null;
 
-                Error saveError = null;
-                await Task.Run(async () =>
+            Error saveError = null;
+            await Task.Run(async () =>
+            {
+                using (AppDBContext ctx = new AppDBContext())
                 {
+                    insertedSale = ctx.Sales.Add(sale);
+
                     try
                     {
                         await ctx.SaveChangesAsync();
@@ -39,12 +40,12 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return ValueResult<Sale>.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return ValueResult<Sale>.Failed(saveError);
             }
 
             return ValueResult<Sale>.Successful(insertedSale);
@@ -52,13 +53,13 @@ namespace ShopManager.Controller.DBManager
 
         public static async Task<Result> RemoveSaleAsync(Sale sale)
         {
-            using (AppDBContext ctx = AppDBContext.Instance)
+            Error saveError = null;
+            await Task.Run(async () =>
             {
-                ctx.Sales.Remove(sale);
-
-                Error saveError = null;
-                await Task.Run(async () =>
+                using (AppDBContext ctx = new AppDBContext())
                 {
+                    ctx.Sales.Remove(sale);
+
                     try
                     {
                         await ctx.SaveChangesAsync();
@@ -68,24 +69,24 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return Result.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return Result.Failed(saveError);
             }
 
-            return Result.Succesful();
+            return Result.Successful();
         }
 
         public static async Task<ValueResult<Sale>> UpdateSaleAsync(Sale sale)
         {
             Sale updatedSale = null;
-            using (AppDBContext ctx = AppDBContext.Instance)
+            Error saveError = null;
+            await Task.Run(async () =>
             {
-                Error saveError = null;
-                await Task.Run(async () =>
+                using (AppDBContext ctx = new AppDBContext())
                 {
                     try
                     {
@@ -106,12 +107,12 @@ namespace ShopManager.Controller.DBManager
                         saveError = new Error(Error.ErrorType.Database, "An unknown database error occurred.");
                         Logger.LogError(ex.ToString());
                     }
-                });
-
-                if (saveError != null)
-                {
-                    return ValueResult<Sale>.Failed(saveError);
                 }
+            });
+
+            if (saveError != null)
+            {
+                return ValueResult<Sale>.Failed(saveError);
             }
 
             return ValueResult<Sale>.Successful(updatedSale);
