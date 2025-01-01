@@ -38,6 +38,7 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.CreateButton = new System.Windows.Forms.Button();
             this.DebounceTimer = new System.Windows.Forms.Timer(this.components);
+            this.UpdateProdQuantityCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -96,11 +97,18 @@
             // 
             this.DebounceTimer.Interval = 1500;
             // 
+            // UpdateProdQuantityCheckBox
+            // 
+            resources.ApplyResources(this.UpdateProdQuantityCheckBox, "UpdateProdQuantityCheckBox");
+            this.UpdateProdQuantityCheckBox.Name = "UpdateProdQuantityCheckBox";
+            this.UpdateProdQuantityCheckBox.UseVisualStyleBackColor = true;
+            // 
             // CreateSaleWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.Controls.Add(this.UpdateProdQuantityCheckBox);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.QuantityTextBox);
@@ -130,5 +138,6 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.Timer DebounceTimer;
+        private System.Windows.Forms.CheckBox UpdateProdQuantityCheckBox;
     }
 }
