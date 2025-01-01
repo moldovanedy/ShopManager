@@ -12,7 +12,7 @@ namespace ShopManager.Model.DataModels
 
         [Required]
         //[ForeignKey(nameof(Product))]
-        public int ProductID { get; set; }
+        public long ProductID { get; set; }
 
         [Required]
         public double Quantity { get; set; }

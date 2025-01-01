@@ -161,20 +161,83 @@ namespace ShopManager.Controller.CacheManager
         }
 
         /// <summary>
+        /// Search the products and returns the one that has the given name if it exists, a failed result if not.
+        /// </summary>
+        /// <param name="productName">The name to search for.</param>
+        /// <returns>A successful result containing the product if it is found, a failed result otherwise.</returns>
+        /// <exception cref="ArgumentException">If the given string is null or empty.</exception>
+        public static ValueResult<Product> SearchSingleProduct(string productName)
+        {
+            if (string.IsNullOrEmpty(productName))
+            {
+                throw new ArgumentException("Parameter is null or empty", nameof(productName));
+            }
+
+            Product foundProduct = null;
+            foreach (KeyValuePair<long, Product> productPair in _pageCache)
+            {
+                if (productPair.Value.Name.Equals(productName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    foundProduct = productPair.Value;
+                    break;
+                }
+            }
+
+            //it means it hasn't found a product
+            if (foundProduct == null)
+            {
+                return ValueResult<Product>.Failed(new Error());
+            }
+
+            return ValueResult<Product>.Successful(foundProduct);
+        }
+
+        /// <summary>
+        /// Search the products and returns a list of products that contain the search string in their name,
+        /// a failed result if not.
+        /// </summary>
+        /// <param name="searchString">The name to search for.</param>
+        /// <returns>
+        /// A successful result containing the list of products if any are found, a failed result otherwise.
+        /// </returns>
+        /// <exception cref="ArgumentException">If the given string is null or empty.</exception>
+        public static ValueResult<List<Product>> SearchProducts(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            {
+                throw new ArgumentException("Parameter is null or empty", nameof(searchString));
+            }
+
+            List<Product> products =
+                _pageCache
+                    .Where((prodPair) =>
+                    {
+                        return prodPair.Value.Name.Contains(searchString);
+                    })
+                    .Select((pair) => pair.Value)
+                    .ToList();
+
+            if (products.Count == 0)
+            {
+                return ValueResult<List<Product>>.Failed(new Error());
+            }
+            else
+            {
+                return ValueResult<List<Product>>.Successful(products);
+            }
+        }
+
+        /// <summary>
         /// Adds a product to the cache so it can later be written to the DB.
         /// </summary>
         /// <param name="product">The product to add.</param>
-        /// <param name="ignoreDuplicateWarning">
-        /// If true, will store the value even if there is at least one with the same name.
-        /// If false, will return an error (that should be handled as a warning).
-        /// </param>
         /// <param name="isIncomplete">
         /// If true, will NOT validate all the product fields, important when the product is added from the table directly.
         /// If false, will validate all the fields of the product, returning an error if something is wrong.
         /// </param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">Thrown if the product is null.</exception>
-        public static Result AddProduct(Product product, bool ignoreDuplicateWarning = false, bool isIncomplete = false)
+        public static Result AddProduct(Product product, bool isIncomplete = false)
         {
             if (product == null)
             {
@@ -186,11 +249,7 @@ namespace ShopManager.Controller.CacheManager
                 return Result.Failed(new Error());
             }
 
-            //if we don't ignore the duplicate name and we have a duplicate, return an error
-            //which MUST be presented as a warning to the user
-            if (
-                !ignoreDuplicateWarning &&
-                _pageCache.Where(prod => prod.Value.Name == product.Name).Any())
+            if (_pageCache.Where(prod => prod.Value.Name == product.Name).Any())
             {
                 return Result.Failed(new Error());
             }
@@ -222,11 +281,28 @@ namespace ShopManager.Controller.CacheManager
         {
             if (_pageCache.ContainsKey(id))
             {
-                //_pageCache.Remove(id);
-
                 if (!_deletedProductIds.Contains(id))
                 {
-                    _deletedProductIds.Add(id);
+                    if (_modifiedProductIds.Contains(id))
+                    {
+                        //if it was a just added product (not yet saved), just remove it from adding and from the list;
+                        //but if it is an updated one, we need to delete it, so add it to the delete list
+                        if (id < long.MaxValue - 1000)
+                        {
+                            _deletedProductIds.Add(id);
+                        }
+                        else
+                        {
+                            //the added product is in the cache, delete it
+                            _pageCache.Remove(id);
+                        }
+
+                        _modifiedProductIds.Remove(id);
+                    }
+                    else
+                    {
+                        _deletedProductIds.Add(id);
+                    }
                 }
                 return Result.Successful();
             }
@@ -236,7 +312,7 @@ namespace ShopManager.Controller.CacheManager
             }
         }
 
-        public static Result UpdateProduct(Product product, bool ignoreDuplicateWarning = false, bool isIncomplete = false)
+        public static Result UpdateProduct(Product product, bool isIncomplete = false)
         {
             if (product == null)
             {
@@ -248,11 +324,13 @@ namespace ShopManager.Controller.CacheManager
                 return Result.Failed(new Error());
             }
 
-            //if we don't ignore the duplicate name and we will a duplicate, return an error
-            //which MUST be presented as a warning to the user
-            if (
-                !ignoreDuplicateWarning &&
-                _pageCache.Where(prod => prod.Value.Name == product.Name).Any())
+            //if there is a product that has the same name, but a different ID it is a duplicate and it's not allowed
+            if (_pageCache
+                .Where(
+                    prod =>
+                        prod.Value.Name == product.Name &&
+                        prod.Value.ID != product.ID)
+                .Any())
             {
                 return Result.Failed(new Error());
             }

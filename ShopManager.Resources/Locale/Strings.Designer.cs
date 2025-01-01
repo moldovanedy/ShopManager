@@ -88,6 +88,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new sale.
+        /// </summary>
+        public static string Create_a_new_sale {
+            get {
+                return ResourceManager.GetString("Create a new sale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create sale.
         /// </summary>
         public static string Create_sale {
@@ -165,6 +174,24 @@ namespace ShopManager.Resources.Locale {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify an existing sale.
+        /// </summary>
+        public static string Modify_an_existing_sale {
+            get {
+                return ResourceManager.GetString("Modify an existing sale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify sale.
+        /// </summary>
+        public static string Modify_sale {
+            get {
+                return ResourceManager.GetString("Modify sale", resourceCulture);
             }
         }
         

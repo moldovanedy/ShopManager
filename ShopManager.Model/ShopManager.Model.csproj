@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheManager\SalesCache.cs" />
     <Compile Include="CacheManager\ProductCache.cs" />
     <Compile Include="DBManager\AppDBContext.cs" />
     <Compile Include="DataModels\Product.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="ResultHandler\Error.cs" />
     <Compile Include="ResultHandler\Result.cs" />
     <Compile Include="ResultHandler\ValueResult.cs" />
+    <Compile Include="Validation\SaleValidations.cs" />
     <Compile Include="Validation\ProductValidations.cs" />
   </ItemGroup>
   <ItemGroup>

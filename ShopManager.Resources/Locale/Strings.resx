@@ -126,6 +126,9 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="Create a new sale" xml:space="preserve">
+    <value>Create a new sale</value>
+  </data>
   <data name="Create sale" xml:space="preserve">
     <value>Create sale</value>
   </data>
@@ -152,6 +155,12 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="Modify an existing sale" xml:space="preserve">
+    <value>Modify an existing sale</value>
+  </data>
+  <data name="Modify sale" xml:space="preserve">
+    <value>Modify sale</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

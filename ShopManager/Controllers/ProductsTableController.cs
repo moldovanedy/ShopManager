@@ -52,12 +52,12 @@ namespace ShopManager.Controllers
                 ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
                 ModifyProductProperty(existingProduct.Value, e.ColumnIndex, correctValue);
 
-                actionResult = ProductCache.UpdateProduct(existingProduct.Value, true, true);
+                actionResult = ProductCache.UpdateProduct(existingProduct.Value, true);
             }
             else
             {
                 Product newProduct = new Product();
-                actionResult = ProductCache.AddProduct(newProduct, true, true);
+                actionResult = ProductCache.AddProduct(newProduct, true);
                 _rowToIDMapper[e.RowIndex] = newProduct.ID;
 
                 ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);

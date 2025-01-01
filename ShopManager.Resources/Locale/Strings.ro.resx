@@ -126,8 +126,11 @@
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
   </data>
+  <data name="Create a new sale" xml:space="preserve">
+    <value>Creează o nouă vânzare</value>
+  </data>
   <data name="Create sale" xml:space="preserve">
-    <value>Crează o vânzare</value>
+    <value>Creează o vânzare</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descriere</value>
@@ -152,6 +155,12 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Limbă</value>
+  </data>
+  <data name="Modify an existing sale" xml:space="preserve">
+    <value>Modifică o vânzare existentă</value>
+  </data>
+  <data name="Modify sale" xml:space="preserve">
+    <value>Modifică o vânzare</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nume</value>
