@@ -81,6 +81,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ProductsTableController.cs" />
+    <Compile Include="Controllers\SalesTableController.cs" />
+    <Compile Include="CreateSaleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateSaleWindow.Designer.cs">
+      <DependentUpon>CreateSaleWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\CustomMenuBarRenderer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +103,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\ControlLocalization.cs" />
+    <EmbeddedResource Include="CreateSaleWindow.resx">
+      <DependentUpon>CreateSaleWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

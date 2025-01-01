@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using ShopManager.Controller.CacheManager;
+using ShopManager.Controller.ResultHandler;
 using ShopManager.Controllers;
 using ShopManager.Extensions;
 using ShopManager.Model.DBManager;
@@ -64,7 +64,9 @@ namespace ShopManager
             await MasterDBManager.InitializeDBAsync();
             //await Task.Delay(500);
             await ProductCache.RegenerateCacheFromDBAsync(0);
-            ProductsTableController.RepopulateTable();
+            await SalesCache.RegenerateCacheFromDBAsync(0);
+
+            RefreshTables();
         }
 
         internal DataGridView GetProductsTableUI()
@@ -75,6 +77,12 @@ namespace ShopManager
         internal DataGridView GetSalesTableUI()
         {
             return this.SalesTable;
+        }
+
+        internal void RefreshTables()
+        {
+            ProductsTableController.RepopulateTable();
+            SalesTableController.RepopulateTable();
         }
 
         #region Dynamically added
@@ -146,10 +154,36 @@ namespace ShopManager
         {
             e.Response = this.ProductsTable.IsCurrentCellDirty;
         }
+        #endregion
 
-        private void ProductsTable_CancelRowEdit(object sender, QuestionEventArgs e)
+
+        #region Sales table
+        private void SalesTable_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            Debug.WriteLine("Row editing cancelled!");
+            SalesTableController.RowAdded();
+        }
+
+        private void SalesTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            SalesTableController.RecordDeletionRequested(e);
+        }
+
+        private void SalesTable_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
+        {
+            SalesTableController.CellValueRequested(e);
+        }
+
+        private void SalesTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            e.Cancel = true;
+            CreateSaleWindow wnd = new CreateSaleWindow();
+
+            //if it's NOT the last row
+            if (e.RowIndex != this.SalesTable.Rows.Count - 1)
+            {
+                wnd.SaleIdToModify = (long)this.SalesTable.Rows[e.RowIndex].Cells[0].Value;
+            }
+            wnd.ShowDialog();
         }
         #endregion
 
@@ -157,9 +191,41 @@ namespace ShopManager
         #region Tools
         private async void SaveButton_Click(object sender, EventArgs e)
         {
-            await ProductCache.FlushCacheToDBAsync();
+            Result saveResult;
+            saveResult = await ProductCache.FlushCacheToDBAsync();
+            if (!saveResult.IsSuccess)
+            {
+                MessageBox.Show("Error on products save");
+            }
+
+            saveResult = await SalesCache.FlushCacheToDBAsync();
+            if (!saveResult.IsSuccess)
+            {
+                MessageBox.Show("Error on sales save");
+            }
+
             ProductsTableController.RepopulateTable();
+            SalesTableController.RepopulateTable();
         }
         #endregion
+
+        private void CreateSaleButton_Click(object sender, EventArgs e)
+        {
+            CreateSaleWindow wnd = new CreateSaleWindow();
+            wnd.ShowDialog();
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.TabControl.SelectedIndex)
+            {
+                case 0:
+                    ProductsTableController.RepopulateTable();
+                    break;
+                case 1:
+                    SalesTableController.RepopulateTable();
+                    break;
+            }
+        }
     }
 }

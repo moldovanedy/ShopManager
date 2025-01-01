@@ -11,3 +11,7 @@ This is a coding exercise for a desktop WinForms project. Uses WinForms for the 
 - CRUD for products and product categories
 - CRUD for sales
 - Settings
+
+## Assets
+
+All the icons used are taken from [iconshock.com](www.iconshock.com)
