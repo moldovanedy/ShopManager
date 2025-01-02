@@ -129,8 +129,14 @@
   <data name="Add product" xml:space="preserve">
     <value>Add product</value>
   </data>
+  <data name="Also update product stock" xml:space="preserve">
+    <value>Also update product stock (quantity)</value>
+  </data>
   <data name="Can only update a single category simultaneously!" xml:space="preserve">
     <value>Can only update a single category simultaneously!</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
@@ -188,6 +194,15 @@
   </data>
   <data name="Number of products" xml:space="preserve">
     <value>Number of products</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Price per KG" xml:space="preserve">
+    <value>Price per KG</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
   </data>
   <data name="Product categories" xml:space="preserve">
     <value>Product categories</value>

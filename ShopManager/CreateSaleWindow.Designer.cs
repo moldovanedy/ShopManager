@@ -39,6 +39,8 @@
             this.CreateButton = new System.Windows.Forms.Button();
             this.DebounceTimer = new System.Windows.Forms.Timer(this.components);
             this.UpdateProdQuantityCheckBox = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -103,14 +105,20 @@
             this.UpdateProdQuantityCheckBox.Name = "UpdateProdQuantityCheckBox";
             this.UpdateProdQuantityCheckBox.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.CancelButton);
+            this.flowLayoutPanel1.Controls.Add(this.CreateButton);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
             // CreateSaleWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.UpdateProdQuantityCheckBox);
-            this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.QuantityTextBox);
             this.Controls.Add(this.QuantityLabel);
             this.Controls.Add(this.ProductDropDown);
@@ -123,6 +131,8 @@
             this.Name = "CreateSaleWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Shown += new System.EventHandler(this.CreateSaleWindow_Shown);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,5 +149,6 @@
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.Timer DebounceTimer;
         private System.Windows.Forms.CheckBox UpdateProdQuantityCheckBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
