@@ -135,4 +135,10 @@
   <data name="UNEXPECTED_ERROR_TEXT" xml:space="preserve">
     <value>A apărut o eroare neașteptată.</value>
   </data>
+  <data name="ABOUT_APP_DESCRIPTION" xml:space="preserve">
+    <value>Un manager simplu pentru magazine fizice. Gestionează informații despre produse și istoricul vânzărilor.</value>
+  </data>
+  <data name="ABOUT_APP_TITLE" xml:space="preserve">
+    <value>Manager magazin</value>
+  </data>
 </root>
