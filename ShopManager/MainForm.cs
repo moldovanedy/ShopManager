@@ -165,6 +165,19 @@ namespace ShopManager
             this.FileMenuItem.Text = Strings.File;
             this.HelpMenuItem.Text = Strings.Help;
 
+            //table headers
+            this.ProductsTable.Columns[1].HeaderText = Strings.Name;
+            this.ProductsTable.Columns[2].HeaderText = Strings.Description;
+            this.ProductsTable.Columns[3].HeaderText = Strings.Price;
+            this.ProductsTable.Columns[4].HeaderText = Strings.Price_per_KG;
+            this.ProductsTable.Columns[5].HeaderText = Strings.Purchase_date;
+            this.ProductsTable.Columns[6].HeaderText = Strings.Expiry_date;
+            this.ProductsTable.Columns[7].HeaderText = Strings.Quantity;
+            this.ProductsTable.Columns[8].HeaderText = Strings.Category;
+
+            this.SalesTable.Columns[1].HeaderText = Strings.Product;
+            this.SalesTable.Columns[2].HeaderText = Strings.Quantity;
+
             //tools
             this.SaveButton.Text = Strings.Save;
             this.SaveButton.ToolTipText = Strings.Save_changes;

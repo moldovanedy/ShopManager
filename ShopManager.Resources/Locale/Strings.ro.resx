@@ -129,8 +129,14 @@
   <data name="Add product" xml:space="preserve">
     <value>Adaugă produs</value>
   </data>
+  <data name="Also update product stock" xml:space="preserve">
+    <value>Actualizează și cantitatea produselor (stoc)</value>
+  </data>
   <data name="Can only update a single category simultaneously!" xml:space="preserve">
     <value>Se poate modifica o singură categorie simultan!</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anulează</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
@@ -188,6 +194,15 @@
   </data>
   <data name="Number of products" xml:space="preserve">
     <value>Număr de produse</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Preț</value>
+  </data>
+  <data name="Price per KG" xml:space="preserve">
+    <value>Preț per KG</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Produs</value>
   </data>
   <data name="Product categories" xml:space="preserve">
     <value>Categorii de produse</value>

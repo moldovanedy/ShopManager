@@ -97,11 +97,29 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also update product stock (quantity).
+        /// </summary>
+        public static string Also_update_product_stock {
+            get {
+                return ResourceManager.GetString("Also update product stock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only update a single category simultaneously!.
         /// </summary>
         public static string Can_only_update_a_single_category_simultaneously_ {
             get {
                 return ResourceManager.GetString("Can only update a single category simultaneously!", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -273,6 +291,33 @@ namespace ShopManager.Resources.Locale {
         public static string Number_of_products {
             get {
                 return ResourceManager.GetString("Number of products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price per KG.
+        /// </summary>
+        public static string Price_per_KG {
+            get {
+                return ResourceManager.GetString("Price per KG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
             }
         }
         

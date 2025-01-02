@@ -36,6 +36,11 @@ namespace ShopManager
 
         private void Translate()
         {
+            this.ProductLabel.Text = Strings.Product;
+            this.QuantityLabel.Text = Strings.Quantity;
+            this.CancelButton.Text = Strings.Cancel;
+            this.UpdateProdQuantityCheckBox.Text = Strings.Also_update_product_stock;
+
             if (SaleIdToModify >= 0)
             {
                 this.Text = Strings.Modify_sale;
