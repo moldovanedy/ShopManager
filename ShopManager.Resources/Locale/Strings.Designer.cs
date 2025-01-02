@@ -338,5 +338,14 @@ namespace ShopManager.Resources.Locale {
                 return ResourceManager.GetString("Save changes", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shop manager.
+        /// </summary>
+        public static string Shop_manager {
+            get {
+                return ResourceManager.GetString("Shop manager", resourceCulture);
+            }
+        }
     }
 }

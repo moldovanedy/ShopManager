@@ -11,14 +11,14 @@ namespace ShopManager.Controllers
     internal static class ProductsTableController
     {
         /// <summary>
+        /// This will be set only when the table data is refreshed, as this action shouldn't update the products.
+        /// </summary>
+        internal static bool IsAddingFromCode { get; set; } = false;
+
+        /// <summary>
         /// The key is the table's row index, the value is the product ID.
         /// </summary>
         private static readonly List<long> _rowToIDMapper = new List<long>() { 0 };
-
-        /// <summary>
-        /// This will be set only when the table data is refreshed, as this action shouldn't update the products.
-        /// </summary>
-        private static bool _isAddingFromCode = false;
 
         /// <summary>
         /// Will be called when the user confirmed that it wants to delete the row.
@@ -39,7 +39,7 @@ namespace ShopManager.Controllers
 
         internal static Result CellValueSubmitted(DataGridViewCellValueEventArgs e)
         {
-            if (_isAddingFromCode)
+            if (IsAddingFromCode)
             {
                 return Result.Successful();
             }
@@ -109,7 +109,7 @@ namespace ShopManager.Controllers
 
             uiTable.Rows.Clear();
 
-            _isAddingFromCode = true;
+            IsAddingFromCode = true;
             for (int i = 0; i < products.Count; i++)
             {
                 if (i >= _rowToIDMapper.Count)
@@ -130,7 +130,7 @@ namespace ShopManager.Controllers
 
                 uiTable.Rows.Add();
             }
-            _isAddingFromCode = false;
+            IsAddingFromCode = false;
 
             uiTable.Refresh();
         }

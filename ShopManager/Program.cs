@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ShopManager.Controller;
+using ShopManager.Resources.Locale;
 
 namespace ShopManager
 {
@@ -20,8 +21,16 @@ namespace ShopManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unrecoverable error!");
+                MessageBox.Show(
+                    Messages.FATAL_ERROR_TEXT,
+                    Messages.FATAL_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
                 Logger.LogError($"Unhandled exception at top-level: {ex.Message}, {ex.StackTrace}");
+            }
+            finally
+            {
+                Logger.Flush();
             }
         }
     }

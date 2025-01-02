@@ -18,6 +18,8 @@ namespace ShopManager
     {
         public static MainForm Instance { get; private set; }
 
+        public static bool PendingSavesExist { get; private set; } = false;
+
         private readonly Color NormalColor = Color.FromArgb(0xff, 0x42, 0x42, 0x42);
         private readonly Color LighterColor1 = Color.FromArgb(0xff, 0x51, 0x51, 0x51);
 
@@ -74,6 +76,31 @@ namespace ShopManager
             RefreshData();
         }
 
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!PendingSavesExist)
+            {
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                Messages.SAVE_CHANGES_QUESTION_TEXT,
+                Messages.SAVE_CHANGES_QUESTION_TITLE,
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                e.Cancel = true;
+                await SaveChangesAsync();
+                this.Close();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+
         internal DataGridView GetProductsTableUI()
         {
             return this.ProductsTable;
@@ -90,6 +117,13 @@ namespace ShopManager
             SalesTableController.RepopulateTable();
             RepopulateCategoriesListBox();
         }
+
+        internal void TogglePendingSaveVisibility(bool pendingSavesExist)
+        {
+            PendingSavesExist = pendingSavesExist;
+            Text = Strings.Shop_manager + (pendingSavesExist ? " *" : "");
+        }
+
 
         #region Dynamically added
         private void ToolButtonMouseEnter(object sender, EventArgs e)
@@ -125,6 +159,8 @@ namespace ShopManager
 
         private void Translate()
         {
+            Text = Strings.Shop_manager;
+
             ControlLocalization.Translate(this);
             this.FileMenuItem.Text = Strings.File;
             this.HelpMenuItem.Text = Strings.Help;
@@ -154,11 +190,17 @@ namespace ShopManager
         private void ProductsTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             ProductsTableController.RecordDeletionRequested(e);
+            TogglePendingSaveVisibility(true);
         }
 
         private void ProductsTable_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
         {
             ProductsTableController.CellValueSubmitted(e);
+
+            if (!ProductsTableController.IsAddingFromCode)
+            {
+                TogglePendingSaveVisibility(true);
+            }
         }
 
         private void ProductsTable_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
@@ -182,6 +224,7 @@ namespace ShopManager
         private void SalesTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             SalesTableController.RecordDeletionRequested(e);
+            TogglePendingSaveVisibility(true);
         }
 
         private void SalesTable_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
@@ -199,7 +242,12 @@ namespace ShopManager
             {
                 wnd.SaleIdToModify = (long)this.SalesTable.Rows[e.RowIndex].Cells[0].Value;
             }
-            wnd.ShowDialog();
+
+            DialogResult result = wnd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                TogglePendingSaveVisibility(true);
+            }
         }
         #endregion
 
@@ -226,6 +274,7 @@ namespace ShopManager
 
             this.CategoriesListBox.ClearSelected();
             RepopulateCategoriesListBox();
+            TogglePendingSaveVisibility(true);
         }
 
         private void AddOrUpdateCategoryButton_Click(object sender, EventArgs e)
@@ -281,6 +330,7 @@ namespace ShopManager
             this.CategoriesListBox.ClearSelected();
             RepopulateCategoriesListBox();
             this.AddCategoryTextBox.Text = "";
+            TogglePendingSaveVisibility(true);
         }
 
         private void CategoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,6 +369,16 @@ namespace ShopManager
             this.CategoriesListBox.ClearSelected();
         }
 
+        private void AddCategoryTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddOrUpdateCategoryButton_Click(null, null);
+            }
+            e.Handled = true;
+            TogglePendingSaveVisibility(true);
+        }
+
         private void RepopulateCategoriesListBox()
         {
             this.CategoriesListBox.Items.Clear();
@@ -333,6 +393,11 @@ namespace ShopManager
 
         #region Tools
         private async void SaveButton_Click(object sender, EventArgs e)
+        {
+            await SaveChangesAsync();
+        }
+
+        private async Task SaveChangesAsync()
         {
             Result saveResult;
             saveResult = await ProductCache.FlushCacheToDBAsync();
@@ -355,13 +420,18 @@ namespace ShopManager
 
             ProductsTableController.RepopulateTable();
             SalesTableController.RepopulateTable();
+            TogglePendingSaveVisibility(false);
         }
         #endregion
 
         private void CreateSaleButton_Click(object sender, EventArgs e)
         {
             CreateSaleWindow wnd = new CreateSaleWindow();
-            wnd.ShowDialog();
+            DialogResult result = wnd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                TogglePendingSaveVisibility(true);
+            }
         }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -378,15 +448,6 @@ namespace ShopManager
                     RepopulateCategoriesListBox();
                     break;
             }
-        }
-
-        private void AddCategoryTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AddOrUpdateCategoryButton_Click(null, null);
-            }
-            e.Handled = true;
         }
     }
 }
