@@ -14,7 +14,7 @@ namespace ShopManager.Controller.CacheManager
         private static uint _currentPage = 0;
         private static readonly Dictionary<long, Product> _pageCache = new Dictionary<long, Product>();
         private static readonly List<long> _modifiedProductIds = new List<long>();
-        private static readonly List<long> _deletedProductIds = new List<long>();
+        private static readonly List<long> _deletedProductsIds = new List<long>();
 
         /// <summary>
         /// Regenerates (or creates) the cache from the underlying DB at the given page (a page has max. 100 records).
@@ -89,7 +89,7 @@ namespace ShopManager.Controller.CacheManager
 
             List<Task<Result>> deleteOperations = new List<Task<Result>>();
 
-            foreach (long modID in _deletedProductIds)
+            foreach (long modID in _deletedProductsIds)
             {
                 //if one is invalid, wait for all pending updates, then return the error
                 if (!_pageCache.ContainsKey(modID))
@@ -115,9 +115,9 @@ namespace ShopManager.Controller.CacheManager
                     break;
                 }
 
-                _pageCache.Remove(_deletedProductIds[i]);
+                _pageCache.Remove(_deletedProductsIds[i]);
             }
-            _deletedProductIds.Clear();
+            _deletedProductsIds.Clear();
 
             return allDeletionsSuccessful ? Result.Successful() : Result.Failed(new Error());
         }
@@ -141,6 +141,11 @@ namespace ShopManager.Controller.CacheManager
             List<Product> products = new List<Product>();
             foreach (KeyValuePair<long, Product> pair in _pageCache)
             {
+                if (_deletedProductsIds.Contains(pair.Key))
+                {
+                    continue;
+                }
+
                 pair.Value.ID = pair.Key;
                 products.Add(pair.Value);
             }
@@ -150,6 +155,11 @@ namespace ShopManager.Controller.CacheManager
 
         public static ValueResult<Product> GetProduct(long id)
         {
+            if (_deletedProductsIds.Contains(id))
+            {
+                return ValueResult<Product>.Failed(new Error());
+            }
+
             if (_pageCache.TryGetValue(id, out Product product))
             {
                 return ValueResult<Product>.Successful(product);
@@ -176,7 +186,8 @@ namespace ShopManager.Controller.CacheManager
             Product foundProduct = null;
             foreach (KeyValuePair<long, Product> productPair in _pageCache)
             {
-                if (productPair.Value.Name.Equals(productName, StringComparison.InvariantCultureIgnoreCase))
+                if (productPair.Value.Name.Equals(productName, StringComparison.InvariantCultureIgnoreCase) &&
+                    !_deletedProductsIds.Contains(productPair.Key))
                 {
                     foundProduct = productPair.Value;
                     break;
@@ -212,7 +223,9 @@ namespace ShopManager.Controller.CacheManager
                 _pageCache
                     .Where((prodPair) =>
                     {
-                        return prodPair.Value.Name.Contains(searchString);
+                        return
+                            prodPair.Value.Name.Contains(searchString) &&
+                            !_deletedProductsIds.Contains(prodPair.Key);
                     })
                     .Select((pair) => pair.Value)
                     .ToList();
@@ -281,7 +294,7 @@ namespace ShopManager.Controller.CacheManager
         {
             if (_pageCache.ContainsKey(id))
             {
-                if (!_deletedProductIds.Contains(id))
+                if (!_deletedProductsIds.Contains(id))
                 {
                     if (_modifiedProductIds.Contains(id))
                     {
@@ -289,7 +302,7 @@ namespace ShopManager.Controller.CacheManager
                         //but if it is an updated one, we need to delete it, so add it to the delete list
                         if (id < long.MaxValue - 1000)
                         {
-                            _deletedProductIds.Add(id);
+                            _deletedProductsIds.Add(id);
                         }
                         else
                         {
@@ -301,7 +314,7 @@ namespace ShopManager.Controller.CacheManager
                     }
                     else
                     {
-                        _deletedProductIds.Add(id);
+                        _deletedProductsIds.Add(id);
                     }
                 }
                 return Result.Successful();

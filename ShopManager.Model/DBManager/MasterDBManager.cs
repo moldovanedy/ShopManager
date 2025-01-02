@@ -44,15 +44,6 @@ namespace ShopManager.Model.DBManager
                             await ctx.SaveChangesAsync();
                         }
 
-                        //ctx.Products.Add(new Product()
-                        //{
-                        //    Name = "Fasole",
-                        //    Description = "smdm amf somd m omvo a",
-                        //    ExpiryDate = new DateTime(2025, 11, 10),
-                        //    PurchaseDate = DateTime.Now,
-                        //    Quantity = 34
-                        //});
-
                         await ctx.SaveChangesAsync();
                     }
                 });

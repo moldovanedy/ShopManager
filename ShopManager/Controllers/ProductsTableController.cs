@@ -43,6 +43,10 @@ namespace ShopManager.Controllers
             {
                 return Result.Successful();
             }
+            if (e.Value == null)
+            {
+                e.Value = "";
+            }
 
             Result actionResult;
             ValueResult<Product> existingProduct = ProductCache.GetProduct(_rowToIDMapper[e.RowIndex]);

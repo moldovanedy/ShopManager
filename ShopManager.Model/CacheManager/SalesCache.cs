@@ -140,6 +140,11 @@ namespace ShopManager.Controller.CacheManager
             List<Sale> sales = new List<Sale>();
             foreach (KeyValuePair<long, Sale> pair in _pageCache)
             {
+                if (_deletedSalesIds.Contains(pair.Key))
+                {
+                    continue;
+                }
+
                 pair.Value.ID = pair.Key;
                 sales.Add(pair.Value);
             }
@@ -149,6 +154,11 @@ namespace ShopManager.Controller.CacheManager
 
         public static ValueResult<Sale> GetSale(long id)
         {
+            if (_deletedSalesIds.Contains(id))
+            {
+                return ValueResult<Sale>.Failed(new Error());
+            }
+
             if (_pageCache.TryGetValue(id, out Sale sale))
             {
                 return ValueResult<Sale>.Successful(sale);

@@ -82,7 +82,8 @@ namespace ShopManager.Controller.Validation
             quantity = 0;
             if (string.IsNullOrEmpty(unverifiedValue))
             {
-                return ValueResult<string>.Failed(new Error());
+                quantity = 0.0;
+                return ValueResult<string>.Successful("");
             }
 
             if (double.TryParse(unverifiedValue, out quantity))

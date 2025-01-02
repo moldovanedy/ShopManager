@@ -196,7 +196,7 @@ namespace ShopManager
                 }
             }
 
-            MainForm.Instance.RefreshTables();
+            MainForm.Instance.RefreshData();
             this.Close();
         }
 
