@@ -117,100 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Despre</value>
+  <data name="FATAL_ERROR_TITLE" xml:space="preserve">
+    <value>Eroare fatală!</value>
   </data>
-  <data name="Add" xml:space="preserve">
-    <value>Adaugă</value>
+  <data name="FATAL_ERROR_TEXT" xml:space="preserve">
+    <value>Eroare fatală. Toate modificările nesalvate au fost pierdute.</value>
   </data>
-  <data name="Add a new category" xml:space="preserve">
-    <value>Adaugă o nouă categorie</value>
+  <data name="SAVE_CHANGES_QUESTION_TEXT" xml:space="preserve">
+    <value>Există modificări nesalvate. Dorești să salvezi modificările?</value>
   </data>
-  <data name="Add product" xml:space="preserve">
-    <value>Adaugă produs</value>
+  <data name="SAVE_CHANGES_QUESTION_TITLE" xml:space="preserve">
+    <value>Salvezi modificările?</value>
   </data>
-  <data name="Can only update a single category simultaneously!" xml:space="preserve">
-    <value>Se poate modifica o singură categorie simultan!</value>
+  <data name="UNEXPECTED_ERROR_TITLE" xml:space="preserve">
+    <value>Eroare neașteptată</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Categorie</value>
-  </data>
-  <data name="Create a new sale" xml:space="preserve">
-    <value>Creează o nouă vânzare</value>
-  </data>
-  <data name="Create sale" xml:space="preserve">
-    <value>Creează o vânzare</value>
-  </data>
-  <data name="Delete selected" xml:space="preserve">
-    <value>Șterge cele selectate</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Descriere</value>
-  </data>
-  <data name="Deselect" xml:space="preserve">
-    <value>Deselectare</value>
-  </data>
-  <data name="Discard all the changes made from the last save" xml:space="preserve">
-    <value>Renunță la toate modificările făcute de la ultima salvare</value>
-  </data>
-  <data name="Discard changes" xml:space="preserve">
-    <value>Renunță la modificări</value>
-  </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Ieșire</value>
-  </data>
-  <data name="Expiry date" xml:space="preserve">
-    <value>Dată expirare</value>
-  </data>
-  <data name="File" xml:space="preserve">
-    <value>Fișier</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Ajutor</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Limbă</value>
-  </data>
-  <data name="Modify" xml:space="preserve">
-    <value>Modifică</value>
-  </data>
-  <data name="Modify an existing sale" xml:space="preserve">
-    <value>Modifică o vânzare existentă</value>
-  </data>
-  <data name="Modify sale" xml:space="preserve">
-    <value>Modifică o vânzare</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nume</value>
-  </data>
-  <data name="New name for the selected category" xml:space="preserve">
-    <value>Noul nume pentru categoria selectată</value>
-  </data>
-  <data name="Number of products" xml:space="preserve">
-    <value>Număr de produse</value>
-  </data>
-  <data name="Product categories" xml:space="preserve">
-    <value>Categorii de produse</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produse</value>
-  </data>
-  <data name="Purchase date" xml:space="preserve">
-    <value>Dată cumpărare</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Cantitate</value>
-  </data>
-  <data name="Sales" xml:space="preserve">
-    <value>Vânzări</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Salvare</value>
-  </data>
-  <data name="Save changes" xml:space="preserve">
-    <value>Salvează modificările</value>
-  </data>
-  <data name="Shop manager" xml:space="preserve">
-    <value>Manager magazin</value>
+  <data name="UNEXPECTED_ERROR_TEXT" xml:space="preserve">
+    <value>A apărut o eroare neașteptată.</value>
   </data>
 </root>

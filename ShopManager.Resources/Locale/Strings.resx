@@ -210,4 +210,7 @@
   <data name="Save changes" xml:space="preserve">
     <value>Save changes</value>
   </data>
+  <data name="Shop manager" xml:space="preserve">
+    <value>Shop manager</value>
+  </data>
 </root>
