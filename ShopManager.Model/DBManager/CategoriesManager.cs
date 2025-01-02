@@ -28,10 +28,9 @@ namespace ShopManager.Controller.DBManager
             {
                 using (AppDBContext ctx = new AppDBContext())
                 {
-                    insertedCategory = ctx.Categories.Add(category);
-
                     try
                     {
+                        insertedCategory = ctx.Categories.Add(category);
                         await ctx.SaveChangesAsync();
                     }
                     catch (Exception ex)
@@ -50,17 +49,18 @@ namespace ShopManager.Controller.DBManager
             return ValueResult<ProductCategory>.Successful(insertedCategory);
         }
 
-        public static async Task<Result> RemoveProductAsync(ProductCategory category)
+        public static async Task<Result> DeleteCategoryAsync(ProductCategory category)
         {
-
             Error saveError = null;
             await Task.Run(async () =>
             {
                 using (AppDBContext ctx = new AppDBContext())
                 {
-                    ctx.Categories.Remove(category);
                     try
                     {
+                        ctx.Categories.Attach(category);
+
+                        ctx.Categories.Remove(category);
                         await ctx.SaveChangesAsync();
                     }
                     catch (Exception ex)
@@ -79,9 +79,8 @@ namespace ShopManager.Controller.DBManager
             return Result.Successful();
         }
 
-        public static async Task<ValueResult<ProductCategory>> UpdateProductAsync(ProductCategory category)
+        public static async Task<Result> AddOrUpdateCategoryAsync(ProductCategory category)
         {
-            ProductCategory updatedCategory = null;
             Error saveError = null;
             await Task.Run(async () =>
             {
@@ -89,16 +88,15 @@ namespace ShopManager.Controller.DBManager
                 {
                     try
                     {
-                        ProductCategory storedCategory = ctx.Categories.Find(category.ID);
+                        ProductCategory storedCategory = await ctx.Categories.FindAsync(category.ID);
                         if (storedCategory == null)
                         {
-                            updatedCategory = category;
+                            Result addResult = await AddCategoryAsync(category);
+                            saveError = addResult.ResultingError;
                             return;
                         }
 
                         ctx.Entry(storedCategory).CurrentValues.SetValues(category);
-
-                        updatedCategory = storedCategory;
                         await ctx.SaveChangesAsync();
                     }
                     catch (Exception ex)
@@ -111,10 +109,10 @@ namespace ShopManager.Controller.DBManager
 
             if (saveError != null)
             {
-                return ValueResult<ProductCategory>.Failed(saveError);
+                return Result.Failed(saveError);
             }
 
-            return ValueResult<ProductCategory>.Successful(updatedCategory);
+            return Result.Successful();
         }
     }
 }

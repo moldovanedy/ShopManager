@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Controllers;
 using ShopManager.Extensions;
+using ShopManager.Model.DataModels;
 using ShopManager.Model.DBManager;
 using ShopManager.Resources.Locale;
 using ShopManager.Utils;
@@ -62,11 +64,14 @@ namespace ShopManager
         private async void MainForm_Load(object sender, EventArgs e)
         {
             await MasterDBManager.InitializeDBAsync();
-            //await Task.Delay(500);
-            await ProductCache.RegenerateCacheFromDBAsync(0);
-            await SalesCache.RegenerateCacheFromDBAsync(0);
 
-            RefreshTables();
+            Task[] loadTasks = new Task[3];
+            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
+            await Task.WhenAll(loadTasks);
+
+            RefreshData();
         }
 
         internal DataGridView GetProductsTableUI()
@@ -79,10 +84,11 @@ namespace ShopManager
             return this.SalesTable;
         }
 
-        internal void RefreshTables()
+        internal void RefreshData()
         {
             ProductsTableController.RepopulateTable();
             SalesTableController.RepopulateTable();
+            RepopulateCategoriesListBox();
         }
 
         #region Dynamically added
@@ -123,10 +129,20 @@ namespace ShopManager
             this.FileMenuItem.Text = Strings.File;
             this.HelpMenuItem.Text = Strings.Help;
 
+            //tools
             this.SaveButton.Text = Strings.Save;
             this.SaveButton.ToolTipText = Strings.Save_changes;
             this.DiscardChangesButton.Text = Strings.Discard_changes;
             this.DiscardChangesButton.ToolTipText = Strings.Discard_all_the_changes_made_from_the_last_save;
+
+            //categories
+            this.DeleteCategoriesButton.Text = Strings.Delete_selected;
+            this.DeselectButton.Text = Strings.Deselect;
+            //this is just to trigger the SelectedIndexChanged, that in turn will translate some controls
+            this.CategoriesListBox.Items.Add("A");
+            this.CategoriesListBox.SelectedIndex = 0;
+            this.CategoriesListBox.SelectedItems.Clear();
+            this.CategoriesListBox.Items.Clear();
         }
 
         #region Products table
@@ -188,6 +204,133 @@ namespace ShopManager
         #endregion
 
 
+        #region Categories
+        private void DeleteCategoriesButton_Click(object sender, EventArgs e)
+        {
+            foreach (object category in this.CategoriesListBox.SelectedItems)
+            {
+                ValueResult<ProductCategory> categoryResult =
+                    CategoriesCache.SearchSingleCategory(category.ToString());
+                if (!categoryResult.IsSuccess)
+                {
+                    //ERROR (continue after)
+                    continue;
+                }
+
+                Result deleteResult = CategoriesCache.DeleteCategory(categoryResult.Value.ID);
+                if (!deleteResult.IsSuccess)
+                {
+                    //ERROR (continue after)
+                }
+            }
+
+            this.CategoriesListBox.ClearSelected();
+            RepopulateCategoriesListBox();
+        }
+
+        private void AddOrUpdateCategoryButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.AddCategoryTextBox.Text))
+            {
+                //ERROR
+                return;
+            }
+
+            if (this.CategoriesListBox.SelectedItems.Count == 0)
+            {
+                Result addResult =
+                    CategoriesCache.AddCategory(
+                        new ProductCategory()
+                        {
+                            Name = this.AddCategoryTextBox.Text
+                        });
+
+                if (!addResult.IsSuccess)
+                {
+                    //ERROR
+                }
+            }
+            else if (this.CategoriesListBox.SelectedItems.Count == 1)
+            {
+                ValueResult<ProductCategory> previousValueResult =
+                    CategoriesCache.SearchSingleCategory(this.CategoriesListBox.SelectedItems[0].ToString());
+                if (!previousValueResult.IsSuccess)
+                {
+                    //ERROR
+                    return;
+                }
+
+                Result updateResult =
+                    CategoriesCache.UpdateCategory(
+                        new ProductCategory()
+                        {
+                            ID = previousValueResult.Value.ID,
+                            Name = this.AddCategoryTextBox.Text
+                        });
+
+                if (!updateResult.IsSuccess)
+                {
+                    //ERROR
+                }
+            }
+            else
+            {
+                //ERROR
+            }
+
+            this.CategoriesListBox.ClearSelected();
+            RepopulateCategoriesListBox();
+            this.AddCategoryTextBox.Text = "";
+        }
+
+        private void CategoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.CategoriesListBox.SelectedItems.Count == 0)
+            {
+                this.AddOrUpdateCategoryLabel.Text = Strings.Add_a_new_category;
+                this.AddOrUpdateCategoryButton.Text = Strings.Add;
+
+                this.AddCategoryTextBox.Enabled = true;
+                this.AddOrUpdateCategoryButton.Enabled = true;
+                this.DeleteCategoriesButton.Enabled = false;
+            }
+            else if (this.CategoriesListBox.SelectedItems.Count == 1)
+            {
+                this.AddOrUpdateCategoryLabel.Text = Strings.New_name_for_the_selected_category;
+                this.AddOrUpdateCategoryButton.Text = Strings.Modify;
+
+                this.AddCategoryTextBox.Enabled = true;
+                this.AddOrUpdateCategoryButton.Enabled = true;
+                this.DeleteCategoriesButton.Enabled = true;
+            }
+            else
+            {
+                this.AddOrUpdateCategoryLabel.Text = Strings.Can_only_update_a_single_category_simultaneously_;
+                this.AddOrUpdateCategoryButton.Text = Strings.Modify;
+
+                this.AddCategoryTextBox.Enabled = false;
+                this.AddOrUpdateCategoryButton.Enabled = false;
+                this.DeleteCategoriesButton.Enabled = true;
+            }
+        }
+
+        private void DeselectButton_Click(object sender, EventArgs e)
+        {
+            this.CategoriesListBox.ClearSelected();
+        }
+
+        private void RepopulateCategoriesListBox()
+        {
+            this.CategoriesListBox.Items.Clear();
+
+            CategoriesCache.GetAllCategories().ForEach((category) =>
+            {
+                this.CategoriesListBox.Items.Add(category.Name);
+            });
+        }
+        #endregion
+
+
         #region Tools
         private async void SaveButton_Click(object sender, EventArgs e)
         {
@@ -202,6 +345,12 @@ namespace ShopManager
             if (!saveResult.IsSuccess)
             {
                 MessageBox.Show("Error on sales save");
+            }
+
+            saveResult = await CategoriesCache.FlushCacheToDBAsync();
+            if (!saveResult.IsSuccess)
+            {
+                MessageBox.Show("Error on categories save");
             }
 
             ProductsTableController.RepopulateTable();
@@ -225,7 +374,19 @@ namespace ShopManager
                 case 1:
                     SalesTableController.RepopulateTable();
                     break;
+                case 2:
+                    RepopulateCategoriesListBox();
+                    break;
             }
+        }
+
+        private void AddCategoryTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddOrUpdateCategoryButton_Click(null, null);
+            }
+            e.Handled = true;
         }
     }
 }

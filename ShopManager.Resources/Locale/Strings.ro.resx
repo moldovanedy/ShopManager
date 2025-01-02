@@ -120,8 +120,17 @@
   <data name="About" xml:space="preserve">
     <value>Despre</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Adaugă</value>
+  </data>
+  <data name="Add a new category" xml:space="preserve">
+    <value>Adaugă o nouă categorie</value>
+  </data>
   <data name="Add product" xml:space="preserve">
     <value>Adaugă produs</value>
+  </data>
+  <data name="Can only update a single category simultaneously!" xml:space="preserve">
+    <value>Se poate modifica o singură categorie simultan!</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
@@ -132,8 +141,14 @@
   <data name="Create sale" xml:space="preserve">
     <value>Creează o vânzare</value>
   </data>
+  <data name="Delete selected" xml:space="preserve">
+    <value>Șterge cele selectate</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descriere</value>
+  </data>
+  <data name="Deselect" xml:space="preserve">
+    <value>Deselectare</value>
   </data>
   <data name="Discard all the changes made from the last save" xml:space="preserve">
     <value>Renunță la toate modificările făcute de la ultima salvare</value>
@@ -156,6 +171,9 @@
   <data name="Language" xml:space="preserve">
     <value>Limbă</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modifică</value>
+  </data>
   <data name="Modify an existing sale" xml:space="preserve">
     <value>Modifică o vânzare existentă</value>
   </data>
@@ -164,6 +182,9 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nume</value>
+  </data>
+  <data name="New name for the selected category" xml:space="preserve">
+    <value>Noul nume pentru categoria selectată</value>
   </data>
   <data name="Number of products" xml:space="preserve">
     <value>Număr de produse</value>

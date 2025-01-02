@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheManager\CategoriesCache.cs" />
     <Compile Include="CacheManager\SalesCache.cs" />
     <Compile Include="CacheManager\ProductCache.cs" />
     <Compile Include="DBManager\AppDBContext.cs" />

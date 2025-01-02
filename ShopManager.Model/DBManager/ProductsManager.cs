@@ -21,7 +21,7 @@ namespace ShopManager.Controller.DBManager
                     skip = Math.Max(0, Math.Min(100, skip));
                     limit = Math.Max(0, Math.Min(100, limit));
 
-                    int noOfProducts = ctx.Products.Count();
+                    int noOfProducts = await ctx.Products.CountAsync();
                     if (noOfProducts < (skip * 100))
                     {
                         skip = noOfProducts - (noOfProducts % 100);

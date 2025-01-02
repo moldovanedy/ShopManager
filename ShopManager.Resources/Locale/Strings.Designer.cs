@@ -70,11 +70,38 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new category.
+        /// </summary>
+        public static string Add_a_new_category {
+            get {
+                return ResourceManager.GetString("Add a new category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add product.
         /// </summary>
         public static string Add_product {
             get {
                 return ResourceManager.GetString("Add product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can only update a single category simultaneously!.
+        /// </summary>
+        public static string Can_only_update_a_single_category_simultaneously_ {
+            get {
+                return ResourceManager.GetString("Can only update a single category simultaneously!", resourceCulture);
             }
         }
         
@@ -106,11 +133,29 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete selected.
+        /// </summary>
+        public static string Delete_selected {
+            get {
+                return ResourceManager.GetString("Delete selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string Deselect {
+            get {
+                return ResourceManager.GetString("Deselect", resourceCulture);
             }
         }
         
@@ -178,6 +223,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify an existing sale.
         /// </summary>
         public static string Modify_an_existing_sale {
@@ -201,6 +255,15 @@ namespace ShopManager.Resources.Locale {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New name for the selected category.
+        /// </summary>
+        public static string New_name_for_the_selected_category {
+            get {
+                return ResourceManager.GetString("New name for the selected category", resourceCulture);
             }
         }
         

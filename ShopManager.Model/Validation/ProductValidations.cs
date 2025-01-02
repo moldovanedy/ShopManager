@@ -87,7 +87,8 @@ namespace ShopManager.Controller.Validation
             resultingPrice = double.NaN;
             if (string.IsNullOrEmpty(unverifiedValue))
             {
-                return ValueResult<string>.Failed(new Error());
+                resultingPrice = 0.0;
+                return ValueResult<string>.Successful("");
             }
 
             //handle differences between locales (decimal separator being "." or ","
@@ -163,10 +164,10 @@ namespace ShopManager.Controller.Validation
 
         public static ValueResult<string> ValidateQuantity(string unverifiedValue, out double quantity)
         {
-            quantity = 0;
             if (string.IsNullOrEmpty(unverifiedValue))
             {
-                return ValueResult<string>.Failed(new Error());
+                quantity = 0.0;
+                return ValueResult<string>.Successful("");
             }
 
             if (double.TryParse(unverifiedValue, out quantity))
