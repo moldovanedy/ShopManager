@@ -135,4 +135,10 @@
   <data name="UNEXPECTED_ERROR_TEXT" xml:space="preserve">
     <value>An unexpected error occurred.</value>
   </data>
+  <data name="ABOUT_APP_DESCRIPTION" xml:space="preserve">
+    <value>A simple manager for a physical shop/store. Handles product information and sales history.</value>
+  </data>
+  <data name="ABOUT_APP_TITLE" xml:space="preserve">
+    <value>Shop manager</value>
+  </data>
 </root>

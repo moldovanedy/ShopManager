@@ -228,4 +228,7 @@
   <data name="Shop manager" xml:space="preserve">
     <value>Shop manager</value>
   </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

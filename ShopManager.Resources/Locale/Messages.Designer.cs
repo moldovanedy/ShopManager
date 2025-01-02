@@ -61,6 +61,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A simple manager for a physical shop/store. Handles product information and sales history..
+        /// </summary>
+        public static string ABOUT_APP_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("ABOUT_APP_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shop manager.
+        /// </summary>
+        public static string ABOUT_APP_TITLE {
+            get {
+                return ResourceManager.GetString("ABOUT_APP_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fatal error. Any unsaved changes are lost..
         /// </summary>
         public static string FATAL_ERROR_TEXT {

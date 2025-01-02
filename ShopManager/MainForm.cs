@@ -10,7 +10,6 @@ using ShopManager.Extensions;
 using ShopManager.Model.DataModels;
 using ShopManager.Model.DBManager;
 using ShopManager.Resources.Locale;
-using ShopManager.Utils;
 
 namespace ShopManager
 {
@@ -36,7 +35,7 @@ namespace ShopManager
             }
 
             InitializeComponent();
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ro");
+            RoLangMenuItem_Click(null, null);
 
             Translate();
             this.AppMenuBar.Renderer = new CustomMenuBarRenderer();
@@ -159,11 +158,22 @@ namespace ShopManager
 
         private void Translate()
         {
-            Text = Strings.Shop_manager;
+            TogglePendingSaveVisibility(false);
 
-            ControlLocalization.Translate(this);
+            //top-level
+            this.NumberOfProductsLabel.Text = Strings.Number_of_products;
+            this.CreateSaleButton.Text = Strings.Create_sale;
+            this.TabControl.TabPages[0].Text = Strings.Products;
+            this.TabControl.TabPages[1].Text = Strings.Sales;
+            this.TabControl.TabPages[2].Text = Strings.Product_categories;
+
+            //menu bar
             this.FileMenuItem.Text = Strings.File;
+            this.LanugageMenuItem.Text = Strings.Language;
+            this.ExitMenuItem.Text = Strings.Exit;
+
             this.HelpMenuItem.Text = Strings.Help;
+            this.AboutMenuItem.Text = Strings.About;
 
             //table headers
             this.ProductsTable.Columns[1].HeaderText = Strings.Name;
@@ -191,7 +201,7 @@ namespace ShopManager
             this.CategoriesListBox.Items.Add("A");
             this.CategoriesListBox.SelectedIndex = 0;
             this.CategoriesListBox.SelectedItems.Clear();
-            this.CategoriesListBox.Items.Clear();
+            RepopulateCategoriesListBox();
         }
 
         #region Products table
@@ -434,6 +444,45 @@ namespace ShopManager
             ProductsTableController.RepopulateTable();
             SalesTableController.RepopulateTable();
             TogglePendingSaveVisibility(false);
+        }
+        #endregion
+
+        #region Menu
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void RoLangMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ro")
+            {
+                return;
+            }
+
+            this.RoLangMenuItem.Checked = true;
+            this.EnLangMenuItem.Checked = false;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ro");
+            Translate();
+        }
+
+        private void EnLangMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "en")
+            {
+                return;
+            }
+
+            this.RoLangMenuItem.Checked = false;
+            this.EnLangMenuItem.Checked = true;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            Translate();
+        }
+
+        private void AboutMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Show();
         }
         #endregion
 
