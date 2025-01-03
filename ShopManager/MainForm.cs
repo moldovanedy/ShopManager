@@ -420,6 +420,29 @@ namespace ShopManager
             await SaveChangesAsync();
         }
 
+
+        private async void DiscardChangesButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                Messages.DISCARD_CHANGES_TEXT,
+                Messages.DISCARD_CHANGES_TITLE,
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            Task[] loadTasks = new Task[3];
+            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
+            await Task.WhenAll(loadTasks);
+
+            RefreshData();
+            TogglePendingSaveVisibility(false);
+        }
+
         private async Task SaveChangesAsync()
         {
             Result saveResult;

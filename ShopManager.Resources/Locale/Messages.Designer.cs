@@ -79,6 +79,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any unsaved changes will be lost if you discard the changes..
+        /// </summary>
+        public static string DISCARD_CHANGES_TEXT {
+            get {
+                return ResourceManager.GetString("DISCARD_CHANGES_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard all unsaved changes?.
+        /// </summary>
+        public static string DISCARD_CHANGES_TITLE {
+            get {
+                return ResourceManager.GetString("DISCARD_CHANGES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fatal error. Any unsaved changes are lost..
         /// </summary>
         public static string FATAL_ERROR_TEXT {

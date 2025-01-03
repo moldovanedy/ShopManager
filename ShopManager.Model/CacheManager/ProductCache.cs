@@ -25,6 +25,9 @@ namespace ShopManager.Controller.CacheManager
         {
             _pageCache.Clear();
             _currentPage = (uint)page;
+            _modifiedProductIds.Clear();
+            _deletedProductsIds.Clear();
+
             List<Product> products = await ProductsManager.GetAllProductsAsync(page * 100, (page * 100) + 100);
 
             foreach (Product product in products)

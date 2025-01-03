@@ -17,6 +17,9 @@ namespace ShopManager.Controller.CacheManager
         public static async Task RegenerateCacheFromDBAsync()
         {
             _pageCache.Clear();
+            _modifiedCategoriesIds.Clear();
+            _deletedCategoriesIds.Clear();
+
             List<ProductCategory> categories = await CategoriesManager.GetAllCategoriesAsync();
 
             foreach (ProductCategory category in categories)

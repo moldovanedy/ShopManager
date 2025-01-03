@@ -24,6 +24,9 @@ namespace ShopManager.Controller.CacheManager
         {
             _pageCache.Clear();
             _currentPage = (uint)page;
+            _modifiedSalesIds.Clear();
+            _deletedSalesIds.Clear();
+
             List<Sale> sales = await SalesManager.GetAllSalesAsync(page * 100, (page * 100) + 100);
 
             foreach (Sale sale in sales)
