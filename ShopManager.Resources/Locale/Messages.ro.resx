@@ -141,4 +141,10 @@
   <data name="ABOUT_APP_TITLE" xml:space="preserve">
     <value>Manager magazin</value>
   </data>
+  <data name="DISCARD_CHANGES_TEXT" xml:space="preserve">
+    <value>Toate modificările nesalvate se vor pierde dacă renunți la ele.</value>
+  </data>
+  <data name="DISCARD_CHANGES_TITLE" xml:space="preserve">
+    <value>Renunți la toate modificările nesalvate?</value>
+  </data>
 </root>

@@ -141,4 +141,10 @@
   <data name="ABOUT_APP_TITLE" xml:space="preserve">
     <value>Shop manager</value>
   </data>
+  <data name="DISCARD_CHANGES_TEXT" xml:space="preserve">
+    <value>Any unsaved changes will be lost if you discard the changes.</value>
+  </data>
+  <data name="DISCARD_CHANGES_TITLE" xml:space="preserve">
+    <value>Discard all unsaved changes?</value>
+  </data>
 </root>
