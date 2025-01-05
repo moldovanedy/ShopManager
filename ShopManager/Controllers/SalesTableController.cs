@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Model.DataModels;
+using ShopManager.Resources.Locale;
 
 namespace ShopManager.Controllers
 {
@@ -13,6 +15,9 @@ namespace ShopManager.Controllers
         /// The key is the table's row index, the value is the product ID.
         /// </summary>
         private static readonly List<long> _rowToIDMapper = new List<long>() { 0 };
+        private static bool _isDeletingMultipleRows = false;
+        private static bool _hasAskedAboutStockUpdate = false;
+        private static DialogResult _stockUpdateAnswer = DialogResult.Yes;
 
         /// <summary>
         /// Will be called when the user confirmed that it wants to delete the row.
@@ -21,9 +26,51 @@ namespace ShopManager.Controllers
         /// <returns></returns>
         internal static Result RecordDeletionRequested(DataGridViewRowCancelEventArgs e)
         {
+            _isDeletingMultipleRows = MainForm.Instance.GetSalesTableUI().SelectedRows.Count > 1;
+            if (!_isDeletingMultipleRows || !_hasAskedAboutStockUpdate)
+            {
+                _stockUpdateAnswer = MessageBox.Show(
+                    Messages.UPDATE_STOCK_QUESTION_TEXT,
+                    Messages.UPDATE_STOCK_QUESTION_TITLE,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                _hasAskedAboutStockUpdate = true;
+            }
+
+            if (_stockUpdateAnswer == DialogResult.Yes)
+            {
+                ValueResult<Product> prodResult =
+                    ProductCache.SearchSingleProduct(e.Row.Cells[1].Value.ToString());
+                if (!prodResult.IsSuccess)
+                {
+                    MessageBox.Show("Error on stock update");
+                    Logger.LogError(prodResult.ResultingError.Description);
+                }
+
+                double quantity = (double)e.Row.Cells[2].Value;
+                prodResult.Value.Quantity += quantity;
+
+                Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
+                if (!updateQuantityResult.IsSuccess)
+                {
+                    MessageBox.Show("Error on stock update");
+                    Logger.LogError(updateQuantityResult.ResultingError.Description);
+                }
+            }
+
             Result uiDeletionResult = SalesCache.DeleteSale(_rowToIDMapper[e.Row.Index]);
             _rowToIDMapper.RemoveAt(e.Row.Index);
             return uiDeletionResult;
+        }
+
+        internal static void SelectionChanged()
+        {
+            //because selection will change when a row is deleted
+            if (!_isDeletingMultipleRows)
+            {
+                _hasAskedAboutStockUpdate = false;
+            }
         }
 
         internal static void RowAdded()

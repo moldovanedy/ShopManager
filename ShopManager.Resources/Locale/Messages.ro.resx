@@ -147,4 +147,16 @@
   <data name="DISCARD_CHANGES_TITLE" xml:space="preserve">
     <value>Renunți la toate modificările nesalvate?</value>
   </data>
+  <data name="UPDATE_STOCK_QUESTION_TEXT" xml:space="preserve">
+    <value>Ai vrea să modifici, de asemenea, stocul produsului (Cantitate) pentru a reflecta schimbările din vânzări?</value>
+  </data>
+  <data name="UPDATE_STOCK_QUESTION_TITLE" xml:space="preserve">
+    <value>Modifici și stocul?</value>
+  </data>
+  <data name="WARN_SALE_OUT_OF_STOCK_TEXT" xml:space="preserve">
+    <value>Cantitatea dată este mai mare decât stocul produsului selectat. Asta va rezulta în cantitate (stoc) negativă, ceea ce nu are sens. Asigură-te că aceasta este cantitatea corectă. Vrei totuși să actualizezi stocul în aceste condiții?</value>
+  </data>
+  <data name="WARN_SALE_OUT_OF_STOCK_TITLE" xml:space="preserve">
+    <value>Cantitate mai mare decât stocul existent</value>
+  </data>
 </root>

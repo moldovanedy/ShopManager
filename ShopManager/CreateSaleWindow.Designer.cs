@@ -102,8 +102,11 @@
             // UpdateProdQuantityCheckBox
             // 
             resources.ApplyResources(this.UpdateProdQuantityCheckBox, "UpdateProdQuantityCheckBox");
+            this.UpdateProdQuantityCheckBox.Checked = true;
+            this.UpdateProdQuantityCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UpdateProdQuantityCheckBox.Name = "UpdateProdQuantityCheckBox";
             this.UpdateProdQuantityCheckBox.UseVisualStyleBackColor = true;
+            this.UpdateProdQuantityCheckBox.CheckStateChanged += new System.EventHandler(this.UpdateProdQuantityCheckBox_CheckStateChanged);
             // 
             // flowLayoutPanel1
             // 

@@ -79,12 +79,14 @@ namespace ShopManager.Controller.Validation
 
         public static ValueResult<string> ValidateQuantity(string unverifiedValue, out double quantity)
         {
-            quantity = 0;
             if (string.IsNullOrEmpty(unverifiedValue))
             {
                 quantity = 0.0;
                 return ValueResult<string>.Successful("");
             }
+
+            //handle differences between locales (decimal separator being "." or ","
+            unverifiedValue = NumberGlobalizationHandler.GlobalizeNumericString(unverifiedValue);
 
             if (double.TryParse(unverifiedValue, out quantity))
             {

@@ -250,6 +250,11 @@ namespace ShopManager
             TogglePendingSaveVisibility(true);
         }
 
+        private void SalesTable_SelectionChanged(object sender, EventArgs e)
+        {
+            SalesTableController.SelectionChanged();
+        }
+
         private void SalesTable_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
         {
             SalesTableController.CellValueRequested(e);
@@ -423,6 +428,11 @@ namespace ShopManager
 
         private async void DiscardChangesButton_Click(object sender, EventArgs e)
         {
+            if (!PendingSavesExist)
+            {
+                return;
+            }
+
             DialogResult result = MessageBox.Show(
                 Messages.DISCARD_CHANGES_TEXT,
                 Messages.DISCARD_CHANGES_TITLE,

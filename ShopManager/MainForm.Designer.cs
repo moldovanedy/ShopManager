@@ -479,6 +479,7 @@
             this.SalesTable.VirtualMode = true;
             this.SalesTable.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.SalesTable_CellBeginEdit);
             this.SalesTable.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.SalesTable_CellValueNeeded);
+            this.SalesTable.SelectionChanged += new System.EventHandler(this.SalesTable_SelectionChanged);
             this.SalesTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.SalesTable_UserAddedRow);
             this.SalesTable.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.SalesTable_UserDeletingRow);
             // 
@@ -638,7 +639,7 @@
             // ToolsContainer.ContentPanel
             // 
             this.ToolsContainer.ContentPanel.Controls.Add(this.Tools);
-            this.ToolsContainer.ContentPanel.Size = new System.Drawing.Size(884, 30);
+            this.ToolsContainer.ContentPanel.Size = new System.Drawing.Size(884, 5);
             this.ToolsContainer.Location = new System.Drawing.Point(0, 90);
             this.ToolsContainer.Name = "ToolsContainer";
             this.ToolsContainer.Size = new System.Drawing.Size(884, 30);
@@ -653,7 +654,7 @@
             this.DiscardChangesButton});
             this.Tools.Location = new System.Drawing.Point(0, 0);
             this.Tools.Name = "Tools";
-            this.Tools.Size = new System.Drawing.Size(884, 30);
+            this.Tools.Size = new System.Drawing.Size(884, 5);
             this.Tools.TabIndex = 0;
             this.Tools.Text = "toolStrip1";
             // 
@@ -665,7 +666,7 @@
             this.SaveButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveButton.Image")));
             this.SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(51, 27);
+            this.SaveButton.Size = new System.Drawing.Size(51, 2);
             this.SaveButton.Text = "Save";
             this.SaveButton.ToolTipText = "Save changes";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -675,7 +676,7 @@
             this.DiscardChangesButton.Image = ((System.Drawing.Image)(resources.GetObject("DiscardChangesButton.Image")));
             this.DiscardChangesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DiscardChangesButton.Name = "DiscardChangesButton";
-            this.DiscardChangesButton.Size = new System.Drawing.Size(113, 27);
+            this.DiscardChangesButton.Size = new System.Drawing.Size(113, 2);
             this.DiscardChangesButton.Text = "Discard changes";
             this.DiscardChangesButton.ToolTipText = "Discard all the changes made from the last save";
             this.DiscardChangesButton.Click += new System.EventHandler(this.DiscardChangesButton_Click);
