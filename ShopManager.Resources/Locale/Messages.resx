@@ -147,4 +147,16 @@
   <data name="DISCARD_CHANGES_TITLE" xml:space="preserve">
     <value>Discard all unsaved changes?</value>
   </data>
+  <data name="UPDATE_STOCK_QUESTION_TEXT" xml:space="preserve">
+    <value>Would you like to update the product stock (Quantity) as well to reflect the sales changes?</value>
+  </data>
+  <data name="UPDATE_STOCK_QUESTION_TITLE" xml:space="preserve">
+    <value>Update stock as well?</value>
+  </data>
+  <data name="WARN_SALE_OUT_OF_STOCK_TEXT" xml:space="preserve">
+    <value>The given quantity is larger than the selected product's stock (Quantity). This will result in a negative stock, which is nonsensical. Make sure this is the right quantity. Do you still want to update the stock?</value>
+  </data>
+  <data name="WARN_SALE_OUT_OF_STOCK_TITLE" xml:space="preserve">
+    <value>Quantity larger than stock!</value>
+  </data>
 </root>

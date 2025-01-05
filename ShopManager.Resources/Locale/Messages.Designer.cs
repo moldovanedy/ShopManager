@@ -149,5 +149,41 @@ namespace ShopManager.Resources.Locale {
                 return ResourceManager.GetString("UNEXPECTED_ERROR_TITLE", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to update the product stock (Quantity) as well to reflect the sales changes?.
+        /// </summary>
+        public static string UPDATE_STOCK_QUESTION_TEXT {
+            get {
+                return ResourceManager.GetString("UPDATE_STOCK_QUESTION_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update stock as well?.
+        /// </summary>
+        public static string UPDATE_STOCK_QUESTION_TITLE {
+            get {
+                return ResourceManager.GetString("UPDATE_STOCK_QUESTION_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given quantity is larger than the selected product&apos;s stock (Quantity). This will result in a negative stock, which is nonsensical. Make sure this is the right quantity. Do you still want to update the stock?.
+        /// </summary>
+        public static string WARN_SALE_OUT_OF_STOCK_TEXT {
+            get {
+                return ResourceManager.GetString("WARN_SALE_OUT_OF_STOCK_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity larger than stock!.
+        /// </summary>
+        public static string WARN_SALE_OUT_OF_STOCK_TITLE {
+            get {
+                return ResourceManager.GetString("WARN_SALE_OUT_OF_STOCK_TITLE", resourceCulture);
+            }
+        }
     }
 }

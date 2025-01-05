@@ -21,6 +21,10 @@ namespace ShopManager
         private bool _needsUpdate = false;
         private bool _isUpdatingFromDataSource = false;
 
+
+        private bool _isCheckBoxUpdatedFromCode = false;
+        private CheckState _previousCheckState = CheckState.Checked;
+
         public CreateSaleWindow()
         {
             InitializeComponent();
@@ -162,15 +166,30 @@ namespace ShopManager
             {
                 MessageBox.Show("Error");
                 Logger.LogError(prodResult.ResultingError.Description);
-                return;
+                goto Cleanup;
             }
 
-            if (!double.TryParse(this.QuantityTextBox.Text, out double quantity))
+            //handle differences between locales (decimal separator being "." or ","
+            string quantityString =
+                NumberGlobalizationHandler.GlobalizeNumericString(this.QuantityTextBox.Text);
+
+            if (!double.TryParse(quantityString, out double quantity))
             {
                 MessageBox.Show("Error on quantity");
-                return;
+                goto Cleanup;
             }
 
+            //check before any modifications
+            if (this.UpdateProdQuantityCheckBox.CheckState == CheckState.Checked && WillMakeNegativeStock())
+            {
+                ShowNegativeStockWarning(out DialogResult dialogResult);
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    goto Cleanup;
+                }
+            }
+
+            ValueResult<Sale> previousSaleResult = SalesCache.GetSale(SaleIdToModify);
             Sale newObject = new Sale()
             {
                 ProductID = prodResult.Value.ID,
@@ -185,7 +204,7 @@ namespace ShopManager
                 {
                     MessageBox.Show("Error on store");
                     Logger.LogError(addResult.ResultingError.Description);
-                    return;
+                    goto Cleanup;
                 }
             }
             else
@@ -197,10 +216,35 @@ namespace ShopManager
                 {
                     MessageBox.Show("Error on update store");
                     Logger.LogError(updateResult.ResultingError.Description);
-                    return;
+                    goto Cleanup;
                 }
             }
 
+            if (this.UpdateProdQuantityCheckBox.CheckState == CheckState.Checked)
+            {
+                //if it updates the sale, only consider the difference between the previous value and this value
+                if (SaleIdToModify >= 0)
+                {
+                    if (!previousSaleResult.IsSuccess)
+                    {
+                        MessageBox.Show("Couldn't update the stock.");
+                        Logger.LogError(previousSaleResult.ResultingError.Description);
+                        goto Cleanup;
+                    }
+
+                    quantity -= previousSaleResult.Value.Quantity;
+                }
+
+                prodResult.Value.Quantity -= quantity;
+                Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
+                if (!updateQuantityResult.IsSuccess)
+                {
+                    MessageBox.Show("Error on update quantity");
+                    Logger.LogError(updateQuantityResult.ResultingError.Description);
+                }
+            }
+
+        Cleanup:
             MainForm.Instance.RefreshData();
             this.Close();
         }
@@ -238,6 +282,74 @@ namespace ShopManager
             {
                 CreateButton_Click(sender, e);
             }
+        }
+
+        private void UpdateProdQuantityCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (_isCheckBoxUpdatedFromCode)
+            {
+                return;
+            }
+
+            if (this.UpdateProdQuantityCheckBox.CheckState == CheckState.Checked && WillMakeNegativeStock())
+            {
+                ShowNegativeStockWarning(out _);
+                return;
+            }
+
+            _previousCheckState = this.UpdateProdQuantityCheckBox.CheckState;
+        }
+
+        private void ShowNegativeStockWarning(out DialogResult dialogResult)
+        {
+            dialogResult = MessageBox.Show(
+                    Messages.WARN_SALE_OUT_OF_STOCK_TEXT,
+                    Messages.WARN_SALE_OUT_OF_STOCK_TITLE,
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning);
+
+            if (dialogResult != DialogResult.Yes)
+            {
+                _isCheckBoxUpdatedFromCode = true;
+                this.UpdateProdQuantityCheckBox.CheckState = CheckState.Unchecked;
+                _isCheckBoxUpdatedFromCode = false;
+            }
+
+            _previousCheckState = this.UpdateProdQuantityCheckBox.CheckState;
+        }
+
+        private bool WillMakeNegativeStock()
+        {
+            ValueResult<Product> prodResult = ProductCache.SearchSingleProduct(this.ProductDropDown.Text);
+            if (!prodResult.IsSuccess)
+            {
+                Logger.LogError(prodResult.ResultingError.Description);
+                return false;
+            }
+
+            string unverifiedValue = this.QuantityTextBox.Text;
+            //handle differences between locales (decimal separator being "." or ","
+            unverifiedValue = NumberGlobalizationHandler.GlobalizeNumericString(unverifiedValue);
+
+            if (!double.TryParse(unverifiedValue, out double requestedQuantity))
+            {
+                return false;
+            }
+
+            //if it updates the sale, only consider the difference between the previous value and this value
+            if (SaleIdToModify >= 0)
+            {
+                ValueResult<Sale> saleResult = SalesCache.GetSale(SaleIdToModify);
+                if (!saleResult.IsSuccess)
+                {
+                    Logger.LogError(saleResult.ResultingError.Description);
+                    return false;
+                }
+
+                requestedQuantity -= saleResult.Value.Quantity;
+            }
+
+            return prodResult.Value.Quantity - requestedQuantity < 0;
         }
     }
 }
