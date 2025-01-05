@@ -79,7 +79,7 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Any unsaved changes will be lost if you discard the changes..
+        ///   Looks up a localized string similar to Disacrd all unsaved changes? Any unsaved changes will be lost if you discard the changes..
         /// </summary>
         public static string DISCARD_CHANGES_TEXT {
             get {

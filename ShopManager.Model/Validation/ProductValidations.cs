@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Model.DataModels;
 
@@ -41,7 +42,12 @@ namespace ShopManager.Controller.Validation
                         valueResult = ValidateQuantity(product.Quantity.ToString(), out _);
                         break;
                     case 8:
-                        valueResult = ValueResult<string>.Successful("Fructe");
+                        ValueResult<ProductCategory> categoryResult =
+                            CategoriesCache.GetCategory(product.CategoryID);
+                        valueResult =
+                            categoryResult.IsSuccess ?
+                                ValueResult<string>.Successful(categoryResult.Value.Name) :
+                                ValueResult<string>.Failed(new Error());
                         break;
                     default:
                         break;

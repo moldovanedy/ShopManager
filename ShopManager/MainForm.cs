@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Controllers;
@@ -236,6 +237,29 @@ namespace ShopManager
         {
             e.Response = this.ProductsTable.IsCurrentCellDirty;
         }
+
+        //this forces any change in the drop down to fire a CellValueSubmitted event
+        private void ProductsTable_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (this.ProductsTable.CurrentCell.ColumnIndex != 8)
+            {
+                return;
+            }
+
+            this.ProductsTable.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void ProductsTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            Logger.LogError(e.Exception.Message);
+
+            MessageBox.Show(
+                Messages.UNEXPECTED_ERROR_TEXT,
+                Messages.UNEXPECTED_ERROR_TITLE,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            e.Cancel = true;
+        }
         #endregion
 
 
@@ -414,6 +438,12 @@ namespace ShopManager
 
             CategoriesCache.GetAllCategories().ForEach((category) =>
             {
+                //the default category ("") can not be edited
+                if (category.Name == "")
+                {
+                    return;
+                }
+
                 this.CategoriesListBox.Items.Add(category.Name);
             });
         }
@@ -480,6 +510,7 @@ namespace ShopManager
             TogglePendingSaveVisibility(false);
         }
         #endregion
+
 
         #region Menu
         private void ExitMenuItem_Click(object sender, EventArgs e)
