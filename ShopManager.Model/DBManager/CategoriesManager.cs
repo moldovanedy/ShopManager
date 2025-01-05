@@ -15,7 +15,18 @@ namespace ShopManager.Controller.DBManager
             List<ProductCategory> products = new List<ProductCategory>();
             using (AppDBContext ctx = new AppDBContext())
             {
-                products = await ctx.Categories.ToListAsync();
+                products = await ctx.Categories.AsNoTracking().ToListAsync();
+                if (products.Count == 0)
+                {
+                    ProductCategory defaultCategory = new ProductCategory()
+                    {
+                        Name = ""
+                    };
+                    ctx.Categories.Add(defaultCategory);
+                    await ctx.SaveChangesAsync();
+
+                    products.Add(defaultCategory);
+                }
             }
             return products;
         }

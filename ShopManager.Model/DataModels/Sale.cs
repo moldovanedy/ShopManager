@@ -11,7 +11,6 @@ namespace ShopManager.Model.DataModels
         public long ID { get; set; }
 
         [Required]
-        //[ForeignKey(nameof(Product))]
         public long ProductID { get; set; }
 
         [Required]

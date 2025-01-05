@@ -34,7 +34,6 @@ namespace ShopManager.Model.DataModels
         public double Quantity { get; set; }
 
         [Required]
-        //[ForeignKey(nameof(ProductCategory))]
-        public int CategoryID { get; set; }
+        public long CategoryID { get; set; }
     }
 }

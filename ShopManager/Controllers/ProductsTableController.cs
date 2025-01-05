@@ -51,6 +51,7 @@ namespace ShopManager.Controllers
             Result actionResult;
             ValueResult<Product> existingProduct = ProductCache.GetProduct(_rowToIDMapper[e.RowIndex]);
 
+            //it means "update"
             if (existingProduct.IsSuccess)
             {
                 ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
@@ -58,9 +59,14 @@ namespace ShopManager.Controllers
 
                 actionResult = ProductCache.UpdateProduct(existingProduct.Value, true);
             }
+            //it means "add"
             else
             {
-                Product newProduct = new Product();
+                Product newProduct = new Product()
+                {
+                    //this MUST exist, no check for error here
+                    CategoryID = CategoriesCache.SearchSingleCategory("").Value.ID
+                };
                 actionResult = ProductCache.AddProduct(newProduct, true);
                 _rowToIDMapper[e.RowIndex] = newProduct.ID;
 
@@ -90,10 +96,11 @@ namespace ShopManager.Controllers
             if (e.ColumnIndex == 0)
             {
                 e.Value = valueResult.Value.ID;
-                return;
             }
-
-            e.Value = GetProductProperty(valueResult.Value, e.ColumnIndex);
+            else
+            {
+                e.Value = GetProductProperty(valueResult.Value, e.ColumnIndex);
+            }
         }
 
         internal static void RepopulateTable()
@@ -108,6 +115,13 @@ namespace ShopManager.Controllers
             });
 
             uiTable.Rows.Clear();
+
+            //set the combo box values
+            ((DataGridViewComboBoxColumn)uiTable.Columns[8]).Items.Clear();
+            foreach (ProductCategory category in CategoriesCache.GetAllCategories())
+            {
+                ((DataGridViewComboBoxColumn)uiTable.Columns[8]).Items.Add(category.Name);
+            }
 
             IsAddingFromCode = true;
             for (int i = 0; i < products.Count; i++)
@@ -126,7 +140,10 @@ namespace ShopManager.Controllers
                 uiTable.Rows[i].Cells[5].Value = products[i].PurchaseDate;
                 uiTable.Rows[i].Cells[6].Value = products[i].ExpiryDate;
                 uiTable.Rows[i].Cells[7].Value = products[i].Quantity;
-                uiTable.Rows[i].Cells[8].Value = "Fructe";
+
+                ValueResult<ProductCategory> categoryResult =
+                    CategoriesCache.GetCategory(products[i].CategoryID);
+                uiTable.Rows[i].Cells[8].Value = categoryResult.IsSuccess ? categoryResult.Value.Name : "???";
 
                 uiTable.Rows.Add();
             }
@@ -171,8 +188,18 @@ namespace ShopManager.Controllers
                     correctValue = quantity;
                     break;
                 case 8:
-                    validationResult = ValueResult<string>.Successful("Fructe");
-                    correctValue = "Fructe";
+                    ValueResult<ProductCategory> categoryResult =
+                        CategoriesCache.SearchSingleCategory(value);
+                    if (categoryResult.IsSuccess)
+                    {
+                        validationResult = ValueResult<string>.Successful(categoryResult.Value.Name);
+                        correctValue = categoryResult.Value.Name;
+                    }
+                    else
+                    {
+                        validationResult = ValueResult<string>.Failed(new Error());
+                        correctValue = "???";
+                    }
                     break;
                 default:
                     //ERROR
@@ -222,7 +249,12 @@ namespace ShopManager.Controllers
                         product.Quantity = (double)newValue;
                         break;
                     case 8:
-                        product.CategoryID = (int)newValue;
+                        ValueResult<ProductCategory> categoryResult =
+                            CategoriesCache.SearchSingleCategory((string)newValue);
+                        product.CategoryID =
+                            categoryResult.IsSuccess ?
+                                (int)categoryResult.Value.ID :
+                                throw new ApplicationException($"Invalid category name: {(string)newValue}");
                         break;
                     default:
                         break;
@@ -260,7 +292,9 @@ namespace ShopManager.Controllers
                 case 7:
                     return product.Quantity;
                 case 8:
-                    return "Fructe";
+                    ValueResult<ProductCategory> categoryResult =
+                        CategoriesCache.GetCategory(product.CategoryID);
+                    return categoryResult.IsSuccess ? categoryResult.Value.Name : "???";
                 default:
                     return null;
             }

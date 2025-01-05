@@ -10,13 +10,13 @@ namespace ShopManager.Controller.CacheManager
 {
     public static class CategoriesCache
     {
-        private static readonly Dictionary<long, ProductCategory> _pageCache = new Dictionary<long, ProductCategory>();
+        private static readonly Dictionary<long, ProductCategory> _cache = new Dictionary<long, ProductCategory>();
         private static readonly List<long> _modifiedCategoriesIds = new List<long>();
         private static readonly List<long> _deletedCategoriesIds = new List<long>();
 
         public static async Task RegenerateCacheFromDBAsync()
         {
-            _pageCache.Clear();
+            _cache.Clear();
             _modifiedCategoriesIds.Clear();
             _deletedCategoriesIds.Clear();
 
@@ -24,7 +24,7 @@ namespace ShopManager.Controller.CacheManager
 
             foreach (ProductCategory category in categories)
             {
-                _pageCache.Add(category.ID, category);
+                _cache.Add(category.ID, category);
             }
         }
 
@@ -40,7 +40,7 @@ namespace ShopManager.Controller.CacheManager
             foreach (long modID in _modifiedCategoriesIds)
             {
                 //if one is invalid, wait for all pending updates, then return the error
-                if (!_pageCache.ContainsKey(modID))
+                if (!_cache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as modifiable product.");
 
@@ -48,7 +48,7 @@ namespace ShopManager.Controller.CacheManager
                     return Result.Failed(new Error());
                 }
 
-                updateOperations.Add(CategoriesManager.AddOrUpdateCategoryAsync(_pageCache[modID]));
+                updateOperations.Add(CategoriesManager.AddOrUpdateCategoryAsync(_cache[modID]));
             }
 
             //wait all pending add or update
@@ -63,15 +63,15 @@ namespace ShopManager.Controller.CacheManager
                     break;
                 }
 
-                long updatedID = _pageCache[_modifiedCategoriesIds[i]].ID;
-                if (_pageCache.ContainsKey(updatedID))
+                long updatedID = _cache[_modifiedCategoriesIds[i]].ID;
+                if (_cache.ContainsKey(updatedID))
                 {
-                    _pageCache[updatedID] = _pageCache[_modifiedCategoriesIds[i]];
+                    _cache[updatedID] = _cache[_modifiedCategoriesIds[i]];
                 }
                 else
                 {
-                    _pageCache.Add(updatedID, _pageCache[_modifiedCategoriesIds[i]]);
-                    _pageCache.Remove(_modifiedCategoriesIds[i]);
+                    _cache.Add(updatedID, _cache[_modifiedCategoriesIds[i]]);
+                    _cache.Remove(_modifiedCategoriesIds[i]);
                 }
             }
             _modifiedCategoriesIds.Clear();
@@ -87,7 +87,7 @@ namespace ShopManager.Controller.CacheManager
             foreach (long modID in _deletedCategoriesIds)
             {
                 //if one is invalid, wait for all pending updates, then return the error
-                if (!_pageCache.ContainsKey(modID))
+                if (!_cache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as deletable product.");
 
@@ -95,7 +95,7 @@ namespace ShopManager.Controller.CacheManager
                     return Result.Failed(new Error());
                 }
 
-                deleteOperations.Add(CategoriesManager.DeleteCategoryAsync(_pageCache[modID]));
+                deleteOperations.Add(CategoriesManager.DeleteCategoryAsync(_cache[modID]));
             }
 
             //wait all pending delete
@@ -110,7 +110,7 @@ namespace ShopManager.Controller.CacheManager
                     break;
                 }
 
-                _pageCache.Remove(_deletedCategoriesIds[i]);
+                _cache.Remove(_deletedCategoriesIds[i]);
             }
             _deletedCategoriesIds.Clear();
 
@@ -120,7 +120,7 @@ namespace ShopManager.Controller.CacheManager
         public static List<ProductCategory> GetAllCategories()
         {
             List<ProductCategory> categories = new List<ProductCategory>();
-            foreach (KeyValuePair<long, ProductCategory> pair in _pageCache)
+            foreach (KeyValuePair<long, ProductCategory> pair in _cache)
             {
                 if (_deletedCategoriesIds.Contains(pair.Key))
                 {
@@ -136,7 +136,7 @@ namespace ShopManager.Controller.CacheManager
 
         public static ValueResult<ProductCategory> GetCategory(long id)
         {
-            if (_pageCache.TryGetValue(id, out ProductCategory product))
+            if (_cache.TryGetValue(id, out ProductCategory product))
             {
                 return ValueResult<ProductCategory>.Successful(product);
             }
@@ -151,16 +151,16 @@ namespace ShopManager.Controller.CacheManager
         /// </summary>
         /// <param name="categoryName">The name to search for.</param>
         /// <returns>A successful result containing the category if it is found, a failed result otherwise.</returns>
-        /// <exception cref="ArgumentException">If the given string is null or empty.</exception>
+        /// <exception cref="ArgumentException">If the given string is null.</exception>
         public static ValueResult<ProductCategory> SearchSingleCategory(string categoryName)
         {
-            if (string.IsNullOrEmpty(categoryName))
+            if (categoryName == null)
             {
-                throw new ArgumentException("Parameter is null or empty", nameof(categoryName));
+                throw new ArgumentException("Parameter is null", nameof(categoryName));
             }
 
             ProductCategory foundCategory = null;
-            foreach (KeyValuePair<long, ProductCategory> categoryPair in _pageCache)
+            foreach (KeyValuePair<long, ProductCategory> categoryPair in _cache)
             {
                 if (categoryPair.Value.Name.Equals(categoryName, StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -186,16 +186,16 @@ namespace ShopManager.Controller.CacheManager
         /// <returns>
         /// A successful result containing the list of categories if any are found, a failed result otherwise.
         /// </returns>
-        /// <exception cref="ArgumentException">If the given string is null or empty.</exception>
+        /// <exception cref="ArgumentException">If the given string is null.</exception>
         public static ValueResult<List<ProductCategory>> SearchCategories(string searchString)
         {
-            if (string.IsNullOrEmpty(searchString))
+            if (searchString == null)
             {
-                throw new ArgumentException("Parameter is null or empty", nameof(searchString));
+                throw new ArgumentException("Parameter is null", nameof(searchString));
             }
 
             List<ProductCategory> categories =
-                _pageCache
+                _cache
                     .Where((categoryPair) =>
                     {
                         return categoryPair.Value.Name.Contains(searchString);
@@ -226,12 +226,12 @@ namespace ShopManager.Controller.CacheManager
                 throw new ArgumentNullException(nameof(category));
             }
 
-            if (_pageCache.ContainsKey(category.ID))
+            if (_cache.ContainsKey(category.ID))
             {
                 return Result.Failed(new Error());
             }
 
-            if (_pageCache.Where(prod => prod.Value.Name == category.Name).Any())
+            if (_cache.Where(prod => prod.Value.Name == category.Name).Any())
             {
                 return Result.Failed(new Error());
             }
@@ -247,7 +247,7 @@ namespace ShopManager.Controller.CacheManager
             //    return Result.Failed(validationResult.ResultingError);
             //}
 
-            _pageCache.Add(category.ID, category);
+            _cache.Add(category.ID, category);
 
             if (!_modifiedCategoriesIds.Contains(category.ID))
             {
@@ -258,7 +258,7 @@ namespace ShopManager.Controller.CacheManager
 
         public static Result DeleteCategory(long id)
         {
-            if (_pageCache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
                 if (!_deletedCategoriesIds.Contains(id))
                 {
@@ -273,7 +273,7 @@ namespace ShopManager.Controller.CacheManager
                         else
                         {
                             //the added category is in the cache, delete it
-                            _pageCache.Remove(id);
+                            _cache.Remove(id);
                         }
 
                         _modifiedCategoriesIds.Remove(id);
@@ -298,13 +298,13 @@ namespace ShopManager.Controller.CacheManager
                 return Result.Failed(new Error());
             }
 
-            if (!_pageCache.ContainsKey(category.ID))
+            if (!_cache.ContainsKey(category.ID))
             {
                 return Result.Failed(new Error());
             }
 
             //if there is a category that has the same name, but a different ID it is a duplicate and it's not allowed
-            if (_pageCache
+            if (_cache
                 .Where(
                     prod =>
                         prod.Value.Name == category.Name &&
@@ -325,7 +325,7 @@ namespace ShopManager.Controller.CacheManager
             //    return Result.Failed(validationResult.ResultingError);
             //}
 
-            _pageCache[category.ID] = category;
+            _cache[category.ID] = category;
 
             if (!_modifiedCategoriesIds.Contains(category.ID))
             {
