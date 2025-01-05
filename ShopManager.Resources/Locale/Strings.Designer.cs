@@ -331,6 +331,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product category.
+        /// </summary>
+        public static string Product_category {
+            get {
+                return ResourceManager.GetString("Product category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products.
         /// </summary>
         public static string Products {
