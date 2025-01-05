@@ -124,8 +124,9 @@ namespace ShopManager.Controllers
                 //dummy values that will be overwritten
                 uiTable.Rows[i].Cells[0].Value = "???";
                 uiTable.Rows[i].Cells[1].Value = "???";
-                uiTable.Rows[i].Cells[2].Value = "0";
+                uiTable.Rows[i].Cells[2].Value = "???";
                 uiTable.Rows[i].Cells[3].Value = "0";
+                uiTable.Rows[i].Cells[4].Value = "0";
 
                 uiTable.Rows.Add();
             }
@@ -135,7 +136,7 @@ namespace ShopManager.Controllers
 
         private static object GetSaleProperty(Sale sale, int columnIndex)
         {
-            if (columnIndex < 1 || columnIndex > 3)
+            if (columnIndex < 1 || columnIndex > 4)
             {
                 return null;
             }
@@ -158,8 +159,12 @@ namespace ShopManager.Controllers
                 case 1:
                     return prodResult.Value.Name;
                 case 2:
-                    return sale.Quantity;
+                    ValueResult<ProductCategory> categoryResult =
+                        CategoriesCache.GetCategory(prodResult.Value.CategoryID);
+                    return categoryResult.IsSuccess ? categoryResult.Value.Name : "???";
                 case 3:
+                    return sale.Quantity;
+                case 4:
                     return Math.Round(prodResult.Value.Price * sale.Quantity, 2);
                 default:
                     return null;

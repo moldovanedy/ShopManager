@@ -68,12 +68,6 @@
             this.SalesPage = new System.Windows.Forms.TabPage();
             this.SalesPaginationHandler = new System.Windows.Forms.ToolStrip();
             this.SalesTable = new System.Windows.Forms.DataGridView();
-            this.SaleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoldProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductCategoriesPage = new System.Windows.Forms.TabPage();
             this.DeselectButton = new System.Windows.Forms.Button();
             this.AddOrUpdateCategoryLabel = new System.Windows.Forms.Label();
@@ -86,6 +80,13 @@
             this.SaveButton = new System.Windows.Forms.ToolStripButton();
             this.DiscardChangesButton = new System.Windows.Forms.ToolStripButton();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.SaleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoldProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsTable)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -440,10 +441,11 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.SalesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.SalesTable.ColumnHeadersHeight = 30;
+            this.SalesTable.ColumnHeadersHeight = 40;
             this.SalesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SaleID,
             this.SoldProduct,
+            this.ProductCategory,
             this.SaleQuantity,
             this.Total,
             this.SaleDeleteRow,
@@ -482,57 +484,6 @@
             this.SalesTable.SelectionChanged += new System.EventHandler(this.SalesTable_SelectionChanged);
             this.SalesTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.SalesTable_UserAddedRow);
             this.SalesTable.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.SalesTable_UserDeletingRow);
-            // 
-            // SaleID
-            // 
-            this.SaleID.HeaderText = "ID";
-            this.SaleID.MinimumWidth = 20;
-            this.SaleID.Name = "SaleID";
-            this.SaleID.ReadOnly = true;
-            this.SaleID.Width = 52;
-            // 
-            // SoldProduct
-            // 
-            this.SoldProduct.HeaderText = "Product";
-            this.SoldProduct.MaxInputLength = 255;
-            this.SoldProduct.MinimumWidth = 20;
-            this.SoldProduct.Name = "SoldProduct";
-            this.SoldProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SoldProduct.Width = 160;
-            // 
-            // SaleQuantity
-            // 
-            this.SaleQuantity.HeaderText = "Quantity";
-            this.SaleQuantity.MinimumWidth = 20;
-            this.SaleQuantity.Name = "SaleQuantity";
-            this.SaleQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SaleQuantity.Width = 90;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 20;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 80;
-            // 
-            // SaleDeleteRow
-            // 
-            this.SaleDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaleDeleteRow.HeaderText = "";
-            this.SaleDeleteRow.MinimumWidth = 25;
-            this.SaleDeleteRow.Name = "SaleDeleteRow";
-            this.SaleDeleteRow.ReadOnly = true;
-            this.SaleDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SaleDeleteRow.Text = "";
-            this.SaleDeleteRow.Width = 25;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn7.HeaderText = "";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // ProductCategoriesPage
             // 
@@ -689,6 +640,64 @@
             this.StatusBar.TabIndex = 7;
             this.StatusBar.Text = "Status";
             // 
+            // SaleID
+            // 
+            this.SaleID.HeaderText = "ID";
+            this.SaleID.MinimumWidth = 20;
+            this.SaleID.Name = "SaleID";
+            this.SaleID.ReadOnly = true;
+            this.SaleID.Width = 52;
+            // 
+            // SoldProduct
+            // 
+            this.SoldProduct.HeaderText = "Product";
+            this.SoldProduct.MaxInputLength = 255;
+            this.SoldProduct.MinimumWidth = 20;
+            this.SoldProduct.Name = "SoldProduct";
+            this.SoldProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoldProduct.Width = 160;
+            // 
+            // ProductCategory
+            // 
+            this.ProductCategory.HeaderText = "Product category";
+            this.ProductCategory.MinimumWidth = 20;
+            this.ProductCategory.Name = "ProductCategory";
+            this.ProductCategory.ReadOnly = true;
+            // 
+            // SaleQuantity
+            // 
+            this.SaleQuantity.HeaderText = "Quantity";
+            this.SaleQuantity.MinimumWidth = 20;
+            this.SaleQuantity.Name = "SaleQuantity";
+            this.SaleQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SaleQuantity.Width = 90;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 20;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 80;
+            // 
+            // SaleDeleteRow
+            // 
+            this.SaleDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaleDeleteRow.HeaderText = "";
+            this.SaleDeleteRow.MinimumWidth = 25;
+            this.SaleDeleteRow.Name = "SaleDeleteRow";
+            this.SaleDeleteRow.ReadOnly = true;
+            this.SaleDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SaleDeleteRow.Text = "";
+            this.SaleDeleteRow.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn7.HeaderText = "";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,12 +766,6 @@
         private System.Windows.Forms.ToolStrip ProductPaginationHandler;
         private System.Windows.Forms.ToolStrip SalesPaginationHandler;
         private System.Windows.Forms.ToolStripButton DiscardChangesButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoldProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewButtonColumn SaleDeleteRow;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.ListBox CategoriesListBox;
         private System.Windows.Forms.Button DeleteCategoriesButton;
         private System.Windows.Forms.Button AddOrUpdateCategoryButton;
@@ -780,6 +783,13 @@
         private System.Windows.Forms.DataGridViewButtonColumn ProductDeleteRow;
         private System.Windows.Forms.DataGridViewTextBoxColumn Spacer;
         private System.Windows.Forms.Button DeselectButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoldProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewButtonColumn SaleDeleteRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }
 

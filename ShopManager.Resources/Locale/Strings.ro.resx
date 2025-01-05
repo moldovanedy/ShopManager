@@ -207,6 +207,9 @@
   <data name="Product categories" xml:space="preserve">
     <value>Categorii de produse</value>
   </data>
+  <data name="Product category" xml:space="preserve">
+    <value>Categorie produs</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Produse</value>
   </data>

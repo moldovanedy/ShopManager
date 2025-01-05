@@ -186,7 +186,8 @@ namespace ShopManager
             this.ProductsTable.Columns[8].HeaderText = Strings.Category;
 
             this.SalesTable.Columns[1].HeaderText = Strings.Product;
-            this.SalesTable.Columns[2].HeaderText = Strings.Quantity;
+            this.SalesTable.Columns[2].HeaderText = Strings.Product_category;
+            this.SalesTable.Columns[3].HeaderText = Strings.Quantity;
 
             //tools
             this.SaveButton.Text = Strings.Save;
