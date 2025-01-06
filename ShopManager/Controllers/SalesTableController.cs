@@ -48,7 +48,7 @@ namespace ShopManager.Controllers
                     Logger.LogError(prodResult.ResultingError.Description);
                 }
 
-                double quantity = (double)e.Row.Cells[2].Value;
+                double quantity = (double)e.Row.Cells[3].Value;
                 prodResult.Value.Quantity += quantity;
 
                 Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
