@@ -156,6 +156,7 @@ namespace ShopManager
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -245,6 +246,7 @@ namespace ShopManager
             }
 
         Cleanup:
+            this.DialogResult = DialogResult.OK;
             MainForm.Instance.RefreshData();
             this.Close();
         }

@@ -10,6 +10,7 @@ namespace ShopManager.Model.DataModels
         [Key]
         public long ID { get; set; }
 
+        //foreign key
         [Required]
         public long ProductID { get; set; }
 

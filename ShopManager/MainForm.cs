@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -158,7 +159,6 @@ namespace ShopManager
             }
         }
 
-
         private void Translate()
         {
             TogglePendingSaveVisibility(false);
@@ -216,8 +216,8 @@ namespace ShopManager
 
         private void ProductsTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            ProductsTableController.RecordDeletionRequested(e);
-            TogglePendingSaveVisibility(true);
+            Result deleteResult = ProductsTableController.RecordDeletionRequested(e);
+            TogglePendingSaveVisibility(PendingSavesExist || deleteResult.IsSuccess);
         }
 
         private void ProductsTable_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
@@ -285,10 +285,15 @@ namespace ShopManager
                 return;
             }
 
-            ProductsTable_UserDeletingRow(
-                sender,
-                new DataGridViewRowCancelEventArgs(this.ProductsTable.Rows[e.RowIndex]));
-            this.ProductsTable.Rows.RemoveAt(e.RowIndex);
+            Result deleteResult =
+                ProductsTableController.RecordDeletionRequested(
+                    new DataGridViewRowCancelEventArgs(this.ProductsTable.Rows[e.RowIndex]));
+
+            if (deleteResult.IsSuccess)
+            {
+                this.ProductsTable.Rows.RemoveAt(e.RowIndex);
+                TogglePendingSaveVisibility(true);
+            }
         }
         #endregion
 
@@ -368,6 +373,8 @@ namespace ShopManager
         #region Categories
         private void DeleteCategoriesButton_Click(object sender, EventArgs e)
         {
+            bool hasModifiedCategories = false;
+
             foreach (object category in this.CategoriesListBox.SelectedItems)
             {
                 ValueResult<ProductCategory> categoryResult =
@@ -378,16 +385,30 @@ namespace ShopManager
                     continue;
                 }
 
+                bool hasDependentProducts = ProductCache.GetAllProductsFromCurrentPage()
+                    .Where((product) => product.CategoryID == categoryResult.Value.ID).Any();
+                if (hasDependentProducts)
+                {
+                    MessageBox.Show(
+                        string.Format(Messages.DEPENDENT_PRODUCTS_ERROR_TEXT, categoryResult.Value.Name),
+                        Messages.DEPENDENT_PRODUCTS_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    continue;
+                }
+
                 Result deleteResult = CategoriesCache.DeleteCategory(categoryResult.Value.ID);
                 if (!deleteResult.IsSuccess)
                 {
                     //ERROR (continue after)
                 }
+
+                hasModifiedCategories = true;
             }
 
             this.CategoriesListBox.ClearSelected();
             RepopulateCategoriesListBox();
-            TogglePendingSaveVisibility(true);
+            TogglePendingSaveVisibility(PendingSavesExist || hasModifiedCategories);
         }
 
         private void AddOrUpdateCategoryButton_Click(object sender, EventArgs e)
@@ -409,6 +430,8 @@ namespace ShopManager
 
                 if (!addResult.IsSuccess)
                 {
+                    //TODO: explain that if they tried to add a category that previously existed,
+                    //they must save changes before trying to add a category with the same name
                     //ERROR
                 }
             }
@@ -487,9 +510,9 @@ namespace ShopManager
             if (e.KeyCode == Keys.Enter)
             {
                 AddOrUpdateCategoryButton_Click(null, null);
+                e.Handled = true;
+                TogglePendingSaveVisibility(true);
             }
-            e.Handled = true;
-            TogglePendingSaveVisibility(true);
         }
 
         private void RepopulateCategoriesListBox()
@@ -545,7 +568,14 @@ namespace ShopManager
 
         private async Task SaveChangesAsync()
         {
+            //ORDER IS IMPORTANT!!! categories, then products, then sales
             Result saveResult;
+            saveResult = await CategoriesCache.FlushCacheToDBAsync();
+            if (!saveResult.IsSuccess)
+            {
+                MessageBox.Show("Error on categories save");
+            }
+
             saveResult = await ProductCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
@@ -556,12 +586,6 @@ namespace ShopManager
             if (!saveResult.IsSuccess)
             {
                 MessageBox.Show("Error on sales save");
-            }
-
-            saveResult = await CategoriesCache.FlushCacheToDBAsync();
-            if (!saveResult.IsSuccess)
-            {
-                MessageBox.Show("Error on categories save");
             }
 
             ProductsTableController.RepopulateTable();

@@ -159,4 +159,16 @@
   <data name="WARN_SALE_OUT_OF_STOCK_TITLE" xml:space="preserve">
     <value>Quantity larger than stock!</value>
   </data>
+  <data name="DEPENDENT_PRODUCTS_ERROR_TEXT" xml:space="preserve">
+    <value>There are products that belong in the category named "{0}". You can not delete the category until there are no more products using this category.</value>
+  </data>
+  <data name="DEPENDENT_PRODUCTS_ERROR_TITLE" xml:space="preserve">
+    <value>Dependent products found!</value>
+  </data>
+  <data name="DEPENDENT_SALES_ERROR_TEXT" xml:space="preserve">
+    <value>There are sales that are bound to the product named "{0}". You can not delete the product until there are no more sales bound to this product.</value>
+  </data>
+  <data name="DEPENDENT_SALES_ERROR_TITLE" xml:space="preserve">
+    <value>Dependent sales found!</value>
+  </data>
 </root>
