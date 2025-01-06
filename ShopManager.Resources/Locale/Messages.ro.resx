@@ -159,4 +159,16 @@
   <data name="WARN_SALE_OUT_OF_STOCK_TITLE" xml:space="preserve">
     <value>Cantitate mai mare decât stocul existent</value>
   </data>
+  <data name="DEPENDENT_PRODUCTS_ERROR_TEXT" xml:space="preserve">
+    <value>Există produse care aparțin categoriei "{0}". Nu poți șterge categoria până când nu mai există nici un produs care să aparțină acestei categorii.</value>
+  </data>
+  <data name="DEPENDENT_PRODUCTS_ERROR_TITLE" xml:space="preserve">
+    <value>S-au găsit produse dependente!</value>
+  </data>
+  <data name="DEPENDENT_SALES_ERROR_TEXT" xml:space="preserve">
+    <value>Există vânzări care sunt legate de produsul "{0}". Nu poți șterge produsul până când nu mai există nici o vânzare care să fie legată de acest produs.</value>
+  </data>
+  <data name="DEPENDENT_SALES_ERROR_TITLE" xml:space="preserve">
+    <value>S-au găsit vânzări dependente!</value>
+  </data>
 </root>

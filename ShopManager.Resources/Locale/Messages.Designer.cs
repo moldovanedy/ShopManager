@@ -79,6 +79,42 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are products that belong in the category named &quot;{0}&quot;. You can not delete the category until there are no more products using this category..
+        /// </summary>
+        public static string DEPENDENT_PRODUCTS_ERROR_TEXT {
+            get {
+                return ResourceManager.GetString("DEPENDENT_PRODUCTS_ERROR_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependent products found!.
+        /// </summary>
+        public static string DEPENDENT_PRODUCTS_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("DEPENDENT_PRODUCTS_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are sales that are bound to the product named &quot;{0}&quot;. You can not delete the product until there are no more sales bound to this product..
+        /// </summary>
+        public static string DEPENDENT_SALES_ERROR_TEXT {
+            get {
+                return ResourceManager.GetString("DEPENDENT_SALES_ERROR_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependent sales found!.
+        /// </summary>
+        public static string DEPENDENT_SALES_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("DEPENDENT_SALES_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disacrd all unsaved changes? Any unsaved changes will be lost if you discard the changes..
         /// </summary>
         public static string DISCARD_CHANGES_TEXT {

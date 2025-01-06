@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Controller.Validation;
 using ShopManager.Model.DataModels;
+using ShopManager.Resources.Locale;
 
 namespace ShopManager.Controllers
 {
@@ -27,6 +29,24 @@ namespace ShopManager.Controllers
         /// <returns></returns>
         internal static Result RecordDeletionRequested(DataGridViewRowCancelEventArgs e)
         {
+            //dependent sales
+            if (SalesCache.GetAllSalesFromCurrentPage()
+                .Where((sale) => sale.ProductID == _rowToIDMapper[e.Row.Index])
+                .Any())
+            {
+                ValueResult<Product> productResult = ProductCache.GetProduct(_rowToIDMapper[e.Row.Index]);
+
+                MessageBox.Show(
+                    string.Format(
+                        Messages.DEPENDENT_SALES_ERROR_TEXT,
+                        productResult.IsSuccess ? productResult.Value.Name : ""),
+                    Messages.DEPENDENT_SALES_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                e.Cancel = true;
+                return Result.Failed(new Error());
+            }
+
             Result uiDeletionResult = ProductCache.DeleteProduct(_rowToIDMapper[e.Row.Index]);
             _rowToIDMapper.RemoveAt(e.Row.Index);
             return uiDeletionResult;
@@ -253,7 +273,7 @@ namespace ShopManager.Controllers
                             CategoriesCache.SearchSingleCategory((string)newValue);
                         product.CategoryID =
                             categoryResult.IsSuccess ?
-                                (int)categoryResult.Value.ID :
+                                (long)categoryResult.Value.ID :
                                 throw new ApplicationException($"Invalid category name: {(string)newValue}");
                         break;
                     default:

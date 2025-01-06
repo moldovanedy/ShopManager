@@ -241,12 +241,6 @@ namespace ShopManager.Controller.CacheManager
                 category.ID = DummyIDGenerator.GetDummyID();
             }
 
-            //Result validationResult = ProductValidations.ValidateEntireProduct(product);
-            //if (!validationResult.IsSuccess)
-            //{
-            //    return Result.Failed(validationResult.ResultingError);
-            //}
-
             _cache.Add(category.ID, category);
 
             if (!_modifiedCategoriesIds.Contains(category.ID))

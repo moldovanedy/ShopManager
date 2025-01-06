@@ -33,6 +33,7 @@ namespace ShopManager.Model.DataModels
         [Required]
         public double Quantity { get; set; }
 
+        //foreign key
         [Required]
         public long CategoryID { get; set; }
     }
