@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -260,6 +262,34 @@ namespace ShopManager
                 MessageBoxIcon.Error);
             e.Cancel = true;
         }
+
+        private void ProductsTable_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //this also takes the column headers into account
+            if (e.ColumnIndex != 9 || e.RowIndex == -1)
+            {
+                return;
+            }
+
+            RepaintDeleteButton(e, this.ProductsTable);
+        }
+
+        //the delete row functionality
+        private void ProductsTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (
+                !(this.ProductsTable.Columns[e.ColumnIndex] is DataGridViewButtonColumn) ||
+                e.RowIndex < 0 ||
+                e.RowIndex >= this.ProductsTable.Rows.Count - 1)
+            {
+                return;
+            }
+
+            ProductsTable_UserDeletingRow(
+                sender,
+                new DataGridViewRowCancelEventArgs(this.ProductsTable.Rows[e.RowIndex]));
+            this.ProductsTable.Rows.RemoveAt(e.RowIndex);
+        }
         #endregion
 
 
@@ -301,6 +331,36 @@ namespace ShopManager
             {
                 TogglePendingSaveVisibility(true);
             }
+        }
+
+
+        private void SalesTable_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            //this also takes the column headers into account
+            if (e.ColumnIndex != 5 || e.RowIndex == -1)
+            {
+                return;
+            }
+
+            RepaintDeleteButton(e, this.SalesTable);
+        }
+
+
+        //the delete row functionality
+        private void SalesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (
+                !(this.SalesTable.Columns[e.ColumnIndex] is DataGridViewButtonColumn) ||
+                e.RowIndex < 0 ||
+                e.RowIndex >= this.SalesTable.Rows.Count - 1)
+            {
+                return;
+            }
+
+            SalesTable_UserDeletingRow(
+                sender,
+                new DataGridViewRowCancelEventArgs(this.SalesTable.Rows[e.RowIndex]));
+            this.SalesTable.Rows.RemoveAt(e.RowIndex);
         }
         #endregion
 
@@ -456,7 +516,6 @@ namespace ShopManager
             await SaveChangesAsync();
         }
 
-
         private async void DiscardChangesButton_Click(object sender, EventArgs e)
         {
             if (!PendingSavesExist)
@@ -575,6 +634,30 @@ namespace ShopManager
                     RepopulateCategoriesListBox();
                     break;
             }
+        }
+
+        private void RepaintDeleteButton(DataGridViewCellPaintingEventArgs e, DataGridView table)
+        {
+            if (e.RowIndex >= table.Rows.Count - 1)
+            {
+                return;
+            }
+
+            //apparently WinForms doesn't like the Image to be cached, so we really need to recreate it every time
+            Stream deleteIconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(
+                Assembly.GetExecutingAssembly().GetName().ToString().Split(',')[0] + ".DirectAssets.delete_icon.png");
+            e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+            Image image = Image.FromStream(deleteIconStream);
+
+            // -4 for the button margins
+            int w = image.Width - 4;
+            int h = Math.Min(image.Height, table.Rows[e.RowIndex].Height) - 4;
+            int x = e.CellBounds.Left + ((e.CellBounds.Width - w) / 2);
+            int y = e.CellBounds.Top + ((e.CellBounds.Height - h) / 2);
+
+            e.Graphics.DrawImage(image, new Rectangle(x, y, w, h));
+            e.Handled = true;
         }
     }
 }
