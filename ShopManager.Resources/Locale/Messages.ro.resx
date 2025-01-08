@@ -189,4 +189,10 @@
   <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
     <value>Categorii multiple selectate</value>
   </data>
+  <data name="VALIDATION_SALE_PRODUCT_NAME_EMPTY" xml:space="preserve">
+    <value>Numele produsului nu poate fi gol!</value>
+  </data>
+  <data name="VALIDATION_SALE_QUANTITY_EMPTY" xml:space="preserve">
+    <value>Cantitatea nu poate fi goală sau negativă!</value>
+  </data>
 </root>

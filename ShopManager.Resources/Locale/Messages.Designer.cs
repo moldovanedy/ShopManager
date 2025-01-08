@@ -259,6 +259,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The name of the product cannot be empty!.
+        /// </summary>
+        public static string VALIDATION_SALE_PRODUCT_NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("VALIDATION_SALE_PRODUCT_NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The quantity can&apos;t be empty or negative!.
+        /// </summary>
+        public static string VALIDATION_SALE_QUANTITY_EMPTY {
+            get {
+                return ResourceManager.GetString("VALIDATION_SALE_QUANTITY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The given quantity is larger than the selected product&apos;s stock (Quantity). This will result in a negative stock, which is nonsensical. Make sure this is the right quantity. Do you still want to update the stock?.
         /// </summary>
         public static string WARN_SALE_OUT_OF_STOCK_TEXT {

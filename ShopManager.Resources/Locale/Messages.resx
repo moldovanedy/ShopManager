@@ -189,4 +189,10 @@
   <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
     <value>Multiple categories selected</value>
   </data>
+  <data name="VALIDATION_SALE_PRODUCT_NAME_EMPTY" xml:space="preserve">
+    <value>The name of the product cannot be empty!</value>
+  </data>
+  <data name="VALIDATION_SALE_QUANTITY_EMPTY" xml:space="preserve">
+    <value>The quantity can't be empty or negative!</value>
+  </data>
 </root>
