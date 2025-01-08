@@ -17,7 +17,6 @@ namespace ShopManager.Controllers
         private static readonly List<long> _rowToIDMapper = new List<long>() { 0 };
         private static bool _isDeletingMultipleRows = false;
         private static bool _hasAskedAboutStockUpdate = false;
-        private static bool _isUpdatingFromCode = false;
         private static DialogResult _stockUpdateAnswer = DialogResult.Yes;
 
         /// <summary>
@@ -91,11 +90,6 @@ namespace ShopManager.Controllers
 
         internal static void CellValueRequested(DataGridViewCellValueEventArgs e)
         {
-            if (_isUpdatingFromCode)
-            {
-                return;
-            }
-
             if (e.RowIndex == MainForm.Instance.GetSalesTableUI().Rows.Count - 1)
             {
                 return;
@@ -133,7 +127,6 @@ namespace ShopManager.Controllers
                 return a.ID - b.ID >= 0 ? 1 : -1;
             });
 
-            _isUpdatingFromCode = true;
             uiTable.Rows.Clear();
 
             for (int i = 0; i < sales.Count; i++)
@@ -154,7 +147,6 @@ namespace ShopManager.Controllers
                 uiTable.Rows.Add();
             }
 
-            _isUpdatingFromCode = false;
             uiTable.Refresh();
         }
 

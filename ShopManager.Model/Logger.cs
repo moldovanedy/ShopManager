@@ -16,44 +16,26 @@ namespace ShopManager.Controller
         {
 #if DEBUG
             Initialize();
-            WriteToFile($"DEBUG ({DateTime.Now}): {message} STACK {Environment.StackTrace}");
+            WriteToFile($"DEBUG ({DateTime.Now}): {message}");
 #endif
         }
 
         public static void LogInfo(string message)
         {
             Initialize();
-
-            string stackTrace = "";
-#if DEBUG
-            stackTrace = Environment.StackTrace;
-#endif
-
-            WriteToFile($"INFO ({DateTime.Now}): {message}{(stackTrace != "" ? (" STACK: " + stackTrace) : "")}");
+            WriteToFile($"INFO ({DateTime.Now}): {message}");
         }
 
         public static void LogWarning(string message)
         {
             Initialize();
-
-            string stackTrace = "";
-#if DEBUG
-            stackTrace = Environment.StackTrace;
-#endif
-
-            WriteToFile($"WARNING ({DateTime.Now}): {message}{(stackTrace != "" ? (" STACK: " + stackTrace) : "")}");
+            WriteToFile($"WARNING ({DateTime.Now}): {message}");
         }
 
         public static void LogError(string message)
         {
             Initialize();
-
-            string stackTrace = "";
-#if DEBUG
-            stackTrace = Environment.StackTrace;
-#endif
-
-            WriteToFile($"ERROR ({DateTime.Now}): {message}{(stackTrace != "" ? (" STACK: " + stackTrace) : "")}");
+            WriteToFile($"ERROR ({DateTime.Now}): {message}");
         }
 
         public static void Flush()

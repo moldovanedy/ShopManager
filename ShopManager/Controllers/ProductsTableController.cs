@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
@@ -88,26 +87,12 @@ namespace ShopManager.Controllers
             //it means "add"
             else
             {
-                Random random = new Random();
-                StringBuilder randomName = new StringBuilder();
-                string lookup = "abcdefghijklmnopqrstuvwxyz1234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
-
-                for (int i = 0; i < 15; i++)
-                {
-                    randomName.Append(lookup[random.Next(lookup.Length)]);
-                }
-
                 Product newProduct = new Product()
                 {
-                    Name = randomName.ToString(),
                     //this MUST exist, no check for error here
                     CategoryID = CategoriesCache.SearchSingleCategory("").Value.ID
                 };
                 actionResult = ProductCache.AddProduct(newProduct, true);
-                if (!actionResult.IsSuccess)
-                {
-                    return actionResult;
-                }
                 _rowToIDMapper[e.RowIndex] = newProduct.ID;
 
                 actionResult = ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);

@@ -43,7 +43,7 @@ namespace ShopManager.Controller.CacheManager
         /// <returns></returns>
         public static async Task<Result> FlushCacheToDBAsync()
         {
-            List<Product> productsToAddOrUpdate = new List<Product>();
+            List<Task<Result>> updateOperations = new List<Task<Result>>();
 
             foreach (long modID in _modifiedProductIds)
             {
@@ -51,22 +51,26 @@ namespace ShopManager.Controller.CacheManager
                 if (!_pageCache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as modifiable product.");
+
+                    await Task.WhenAll(updateOperations);
                     return Result.Failed(new Error());
                 }
 
-                productsToAddOrUpdate.Add(_pageCache[modID]);
+                updateOperations.Add(ProductsManager.AddOrUpdateProductAsync(_pageCache[modID]));
             }
 
-            Result operationResult;
             //wait all pending add or update
-            operationResult = await ProductsManager.BulkAddOrUpdateProductsAsync(productsToAddOrUpdate);
-            if (!operationResult.IsSuccess)
-            {
-                return operationResult;
-            }
+            await Task.WhenAll(updateOperations);
 
-            for (int i = 0; i < _modifiedProductIds.Count; i++)
+            bool allSuccessful = true;
+            for (int i = 0; i < updateOperations.Count; i++)
             {
+                if (!updateOperations[i].Result.IsSuccess)
+                {
+                    allSuccessful = false;
+                    break;
+                }
+
                 long updatedID = _pageCache[_modifiedProductIds[i]].ID;
                 if (_pageCache.ContainsKey(updatedID))
                 {
@@ -80,7 +84,13 @@ namespace ShopManager.Controller.CacheManager
             }
             _modifiedProductIds.Clear();
 
-            List<Product> productsToDelete = new List<Product>();
+            if (!allSuccessful)
+            {
+                return Result.Failed(new Error());
+            }
+
+
+            List<Task<Result>> deleteOperations = new List<Task<Result>>();
 
             foreach (long modID in _deletedProductsIds)
             {
@@ -88,26 +98,31 @@ namespace ShopManager.Controller.CacheManager
                 if (!_pageCache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as deletable product.");
+
+                    await Task.WhenAll(deleteOperations);
                     return Result.Failed(new Error());
                 }
 
-                productsToDelete.Add(_pageCache[modID]);
+                deleteOperations.Add(ProductsManager.DeleteProductAsync(_pageCache[modID]));
             }
 
             //wait all pending delete
-            operationResult = await ProductsManager.BulkDeleteProductsAsync(productsToDelete);
-            if (!operationResult.IsSuccess)
-            {
-                return operationResult;
-            }
+            await Task.WhenAll(deleteOperations);
 
-            for (int i = 0; i < _deletedProductsIds.Count; i++)
+            bool allDeletionsSuccessful = true;
+            for (int i = 0; i < deleteOperations.Count; i++)
             {
+                if (!deleteOperations[i].Result.IsSuccess)
+                {
+                    allDeletionsSuccessful = false;
+                    break;
+                }
+
                 _pageCache.Remove(_deletedProductsIds[i]);
             }
             _deletedProductsIds.Clear();
 
-            return Result.Successful();
+            return allDeletionsSuccessful ? Result.Successful() : Result.Failed(new Error());
         }
 
         public static uint GetCurrentPage()
