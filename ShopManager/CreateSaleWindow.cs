@@ -35,7 +35,7 @@ namespace ShopManager
             //TODO: only give the ones from the current page if there are more than 100 products
             //just give the user all the products at first
             HandleTextChanged(
-                ProductCache.GetAllProductsFromCurrentPage()
+                ProductCache.GetAllProducts()
                 .Select((prod) => prod.Name)
                 .ToList());
         }

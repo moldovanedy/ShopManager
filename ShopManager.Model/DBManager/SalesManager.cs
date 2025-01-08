@@ -11,7 +11,7 @@ namespace ShopManager.Controller.DBManager
 {
     public static class SalesManager
     {
-        public static async Task<List<Sale>> GetAllSalesAsync(int skip = 0, int limit = 100)
+        public static async Task<List<Sale>> GetAllSalesAsync()
         {
             List<Sale> sales = new List<Sale>();
 
@@ -19,20 +19,9 @@ namespace ShopManager.Controller.DBManager
             {
                 using (AppDBContext ctx = new AppDBContext())
                 {
-                    skip = Math.Max(0, Math.Min(100, skip));
-                    limit = Math.Max(0, Math.Min(100, limit));
-
-                    int noOfSales = ctx.Products.Count();
-                    if (noOfSales < (skip * 100))
-                    {
-                        skip = noOfSales - (noOfSales % 100);
-                    }
-
                     sales =
                             await ctx.Sales.AsNoTracking()
                                 .OrderBy(product => product.ID)
-                                //.Skip(() => skip)
-                                //.Take(() => limit)
                                 .ToListAsync();
                 }
             });

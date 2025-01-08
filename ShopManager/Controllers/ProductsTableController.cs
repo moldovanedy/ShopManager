@@ -32,7 +32,7 @@ namespace ShopManager.Controllers
         internal static Result RecordDeletionRequested(DataGridViewRowCancelEventArgs e)
         {
             //dependent sales
-            if (SalesCache.GetAllSalesFromCurrentPage()
+            if (SalesCache.GetAllSales()
                 .Where((sale) => sale.ProductID == _rowToIDMapper[e.Row.Index])
                 .Any())
             {
@@ -150,7 +150,7 @@ namespace ShopManager.Controllers
         internal static void RepopulateTable()
         {
             DataGridView uiTable = MainForm.Instance.GetProductsTableUI();
-            List<Product> products = ProductCache.GetAllProductsFromCurrentPage();
+            List<Product> products = ProductCache.GetAllProducts(MainForm.Instance.GetSearchBar().Text);
 
             //TODO: implement more sorting options (default is ID ascending)
             products.Sort((a, b) =>
