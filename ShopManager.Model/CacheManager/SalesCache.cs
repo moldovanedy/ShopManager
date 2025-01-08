@@ -56,6 +56,7 @@ namespace ShopManager.Controller.CacheManager
                 salesToAddOrUpdate.Add(_pageCache[modID]);
             }
 
+
             Result operationResult;
             //wait all pending add or update
             operationResult = await SalesManager.BulkAddOrUpdateSalesAsync(salesToAddOrUpdate);
