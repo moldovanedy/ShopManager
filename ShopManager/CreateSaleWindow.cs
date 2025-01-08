@@ -31,6 +31,13 @@ namespace ShopManager
 
             this.DebounceTimer.Interval = 500;
             this.DebounceTimer.Tick += OnDebounceTimerTick;
+
+            //TODO: only give the ones from the current page if there are more than 100 products
+            //just give the user all the products at first
+            HandleTextChanged(
+                ProductCache.GetAllProductsFromCurrentPage()
+                .Select((prod) => prod.Name)
+                .ToList());
         }
 
         ~CreateSaleWindow()
@@ -162,6 +169,25 @@ namespace ShopManager
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.ProductDropDown.Text))
+            {
+                MessageBox.Show(
+                    Messages.VALIDATION_SALE_PRODUCT_NAME_EMPTY,
+                    Messages.VALIDATION_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(this.QuantityTextBox.Text))
+            {
+                MessageBox.Show(
+                    Messages.VALIDATION_SALE_QUANTITY_EMPTY,
+                    Messages.VALIDATION_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             ValueResult<Product> prodResult = ProductCache.SearchSingleProduct(this.ProductDropDown.Text);
             if (!prodResult.IsSuccess)
             {
@@ -178,6 +204,16 @@ namespace ShopManager
             {
                 MessageBox.Show("Error on quantity");
                 goto Cleanup;
+            }
+
+            if (quantity <= 0)
+            {
+                MessageBox.Show(
+                    Messages.VALIDATION_SALE_QUANTITY_EMPTY,
+                    Messages.VALIDATION_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
             }
 
             //check before any modifications
