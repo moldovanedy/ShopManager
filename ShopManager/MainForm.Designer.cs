@@ -51,17 +51,6 @@
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NumberOfProductsLabel = new System.Windows.Forms.Label();
             this.ProductsTable = new System.Windows.Forms.DataGridView();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PricePerKg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPurchaseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductCategoryName = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ProductDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Spacer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.ProductsPage = new System.Windows.Forms.TabPage();
             this.ProductPaginationHandler = new System.Windows.Forms.ToolStrip();
@@ -87,6 +76,17 @@
             this.SaveButton = new System.Windows.Forms.ToolStripButton();
             this.DiscardChangesButton = new System.Windows.Forms.ToolStripButton();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PricePerKg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPurchaseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductCategoryName = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ProductDeleteRow = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Spacer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsTable)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -270,98 +270,6 @@
             this.ProductsTable.RowDirtyStateNeeded += new System.Windows.Forms.QuestionEventHandler(this.ProductsTable_RowDirtyStateNeeded);
             this.ProductsTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ProductsTable_UserAddedRow);
             this.ProductsTable.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.ProductsTable_UserDeletingRow);
-            // 
-            // ProductID
-            // 
-            this.ProductID.HeaderText = "ID";
-            this.ProductID.MinimumWidth = 20;
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
-            this.ProductID.Width = 52;
-            // 
-            // ProductDisplayName
-            // 
-            this.ProductDisplayName.HeaderText = "Name";
-            this.ProductDisplayName.MaxInputLength = 255;
-            this.ProductDisplayName.MinimumWidth = 20;
-            this.ProductDisplayName.Name = "ProductDisplayName";
-            this.ProductDisplayName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductDisplayName.Width = 80;
-            // 
-            // ProductDescription
-            // 
-            this.ProductDescription.HeaderText = "Description";
-            this.ProductDescription.MaxInputLength = 65535;
-            this.ProductDescription.MinimumWidth = 20;
-            this.ProductDescription.Name = "ProductDescription";
-            this.ProductDescription.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductDescription.Width = 130;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 45;
-            this.Price.Name = "Price";
-            this.Price.Width = 45;
-            // 
-            // PricePerKg
-            // 
-            this.PricePerKg.HeaderText = "Price per KG";
-            this.PricePerKg.MinimumWidth = 70;
-            this.PricePerKg.Name = "PricePerKg";
-            this.PricePerKg.Width = 70;
-            // 
-            // ProductPurchaseDate
-            // 
-            this.ProductPurchaseDate.HeaderText = "Purchase date";
-            this.ProductPurchaseDate.MinimumWidth = 30;
-            this.ProductPurchaseDate.Name = "ProductPurchaseDate";
-            this.ProductPurchaseDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductPurchaseDate.Width = 130;
-            // 
-            // ProductExpiryDate
-            // 
-            this.ProductExpiryDate.HeaderText = "Expiry date";
-            this.ProductExpiryDate.MinimumWidth = 30;
-            this.ProductExpiryDate.Name = "ProductExpiryDate";
-            this.ProductExpiryDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductExpiryDate.Width = 109;
-            // 
-            // ProductQuantity
-            // 
-            this.ProductQuantity.HeaderText = "Quantity";
-            this.ProductQuantity.MinimumWidth = 20;
-            this.ProductQuantity.Name = "ProductQuantity";
-            this.ProductQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductQuantity.Width = 90;
-            // 
-            // ProductCategoryName
-            // 
-            this.ProductCategoryName.HeaderText = "Category";
-            this.ProductCategoryName.MinimumWidth = 20;
-            this.ProductCategoryName.Name = "ProductCategoryName";
-            this.ProductCategoryName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductCategoryName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProductCategoryName.Width = 94;
-            // 
-            // ProductDeleteRow
-            // 
-            this.ProductDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ProductDeleteRow.HeaderText = "";
-            this.ProductDeleteRow.MinimumWidth = 25;
-            this.ProductDeleteRow.Name = "ProductDeleteRow";
-            this.ProductDeleteRow.ReadOnly = true;
-            this.ProductDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProductDeleteRow.Text = "";
-            this.ProductDeleteRow.ToolTipText = "Delete the product";
-            this.ProductDeleteRow.Width = 25;
-            // 
-            // Spacer
-            // 
-            this.Spacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Spacer.HeaderText = "";
-            this.Spacer.Name = "Spacer";
-            this.Spacer.ReadOnly = true;
             // 
             // TabControl
             // 
@@ -700,6 +608,98 @@
             this.StatusBar.Size = new System.Drawing.Size(884, 22);
             this.StatusBar.TabIndex = 7;
             this.StatusBar.Text = "Status";
+            // 
+            // ProductID
+            // 
+            this.ProductID.HeaderText = "ID";
+            this.ProductID.MinimumWidth = 20;
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            this.ProductID.Width = 52;
+            // 
+            // ProductDisplayName
+            // 
+            this.ProductDisplayName.HeaderText = "Name";
+            this.ProductDisplayName.MaxInputLength = 255;
+            this.ProductDisplayName.MinimumWidth = 20;
+            this.ProductDisplayName.Name = "ProductDisplayName";
+            this.ProductDisplayName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductDisplayName.Width = 80;
+            // 
+            // ProductDescription
+            // 
+            this.ProductDescription.HeaderText = "Description";
+            this.ProductDescription.MaxInputLength = 65535;
+            this.ProductDescription.MinimumWidth = 20;
+            this.ProductDescription.Name = "ProductDescription";
+            this.ProductDescription.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductDescription.Width = 130;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 45;
+            this.Price.Name = "Price";
+            this.Price.Width = 45;
+            // 
+            // PricePerKg
+            // 
+            this.PricePerKg.HeaderText = "Price per KG";
+            this.PricePerKg.MinimumWidth = 70;
+            this.PricePerKg.Name = "PricePerKg";
+            this.PricePerKg.Width = 70;
+            // 
+            // ProductPurchaseDate
+            // 
+            this.ProductPurchaseDate.HeaderText = "Purchase date";
+            this.ProductPurchaseDate.MinimumWidth = 30;
+            this.ProductPurchaseDate.Name = "ProductPurchaseDate";
+            this.ProductPurchaseDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductPurchaseDate.Width = 130;
+            // 
+            // ProductExpiryDate
+            // 
+            this.ProductExpiryDate.HeaderText = "Expiry date";
+            this.ProductExpiryDate.MinimumWidth = 30;
+            this.ProductExpiryDate.Name = "ProductExpiryDate";
+            this.ProductExpiryDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductExpiryDate.Width = 130;
+            // 
+            // ProductQuantity
+            // 
+            this.ProductQuantity.HeaderText = "Quantity";
+            this.ProductQuantity.MinimumWidth = 20;
+            this.ProductQuantity.Name = "ProductQuantity";
+            this.ProductQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductQuantity.Width = 90;
+            // 
+            // ProductCategoryName
+            // 
+            this.ProductCategoryName.HeaderText = "Category";
+            this.ProductCategoryName.MinimumWidth = 20;
+            this.ProductCategoryName.Name = "ProductCategoryName";
+            this.ProductCategoryName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductCategoryName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductCategoryName.Width = 94;
+            // 
+            // ProductDeleteRow
+            // 
+            this.ProductDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductDeleteRow.HeaderText = "";
+            this.ProductDeleteRow.MinimumWidth = 25;
+            this.ProductDeleteRow.Name = "ProductDeleteRow";
+            this.ProductDeleteRow.ReadOnly = true;
+            this.ProductDeleteRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProductDeleteRow.Text = "";
+            this.ProductDeleteRow.ToolTipText = "Delete the product";
+            this.ProductDeleteRow.Width = 25;
+            // 
+            // Spacer
+            // 
+            this.Spacer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Spacer.HeaderText = "";
+            this.Spacer.Name = "Spacer";
+            this.Spacer.ReadOnly = true;
             // 
             // MainForm
             // 

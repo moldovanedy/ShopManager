@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
+using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Model.DataModels;
 using ShopManager.Model.DBManager;
@@ -99,16 +101,32 @@ namespace ShopManager.Controller.DBManager
                 {
                     try
                     {
+                        long oldID = category.ID;
                         ProductCategory storedCategory = await ctx.Categories.FindAsync(category.ID);
                         if (storedCategory == null)
                         {
                             Result addResult = await AddCategoryAsync(category);
                             saveError = addResult.ResultingError;
+                        }
+                        else
+                        {
+                            ctx.Entry(storedCategory).CurrentValues.SetValues(category);
+                            await ctx.SaveChangesAsync();
+                        }
+
+                        if (category.ID == oldID)
+                        {
                             return;
                         }
 
-                        ctx.Entry(storedCategory).CurrentValues.SetValues(category);
-                        await ctx.SaveChangesAsync();
+                        //update the categories IDs
+                        ProductCache.GetAllProductsFromCurrentPage()
+                            .Where((prod) => prod.CategoryID == oldID)
+                            .ToList()
+                            .ForEach((prod) =>
+                                {
+                                    prod.CategoryID = category.ID;
+                                });
                     }
                     catch (Exception ex)
                     {
