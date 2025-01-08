@@ -171,4 +171,22 @@
   <data name="DEPENDENT_SALES_ERROR_TITLE" xml:space="preserve">
     <value>S-au găsit vânzări dependente!</value>
   </data>
+  <data name="CATEGORY_SAVE_NEEDED_TEXT" xml:space="preserve">
+    <value>Trebuie să salvezi modificările înainte de a adăuga o categorie cu același nume </value>
+  </data>
+  <data name="CATEGORY_SAVE_NEEDED_TITLE" xml:space="preserve">
+    <value>Este necesară salvarea</value>
+  </data>
+  <data name="VALIDATION_CATEGORY_NAME_EMPTY" xml:space="preserve">
+    <value>Numele categoriei nu poate fi gol!</value>
+  </data>
+  <data name="VALIDATION_ERROR_TITLE" xml:space="preserve">
+    <value>Eroare date intrare</value>
+  </data>
+  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT" xml:space="preserve">
+    <value>Nu poți modifica mai multe categorii simultan. Selectează o singură categorie.</value>
+  </data>
+  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
+    <value>Categorii multiple selectate</value>
+  </data>
 </root>

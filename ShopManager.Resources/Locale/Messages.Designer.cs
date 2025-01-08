@@ -79,6 +79,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need to save the changes before adding a category with the same name as one of the deleted categories..
+        /// </summary>
+        public static string CATEGORY_SAVE_NEEDED_TEXT {
+            get {
+                return ResourceManager.GetString("CATEGORY_SAVE_NEEDED_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save needed.
+        /// </summary>
+        public static string CATEGORY_SAVE_NEEDED_TITLE {
+            get {
+                return ResourceManager.GetString("CATEGORY_SAVE_NEEDED_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are products that belong in the category named &quot;{0}&quot;. You can not delete the category until there are no more products using this category..
         /// </summary>
         public static string DEPENDENT_PRODUCTS_ERROR_TEXT {
@@ -201,6 +219,42 @@ namespace ShopManager.Resources.Locale {
         public static string UPDATE_STOCK_QUESTION_TITLE {
             get {
                 return ResourceManager.GetString("UPDATE_STOCK_QUESTION_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category name cannot be empty!.
+        /// </summary>
+        public static string VALIDATION_CATEGORY_NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("VALIDATION_CATEGORY_NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input data error.
+        /// </summary>
+        public static string VALIDATION_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("VALIDATION_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t update multiple categories at once. Select only one..
+        /// </summary>
+        public static string VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT {
+            get {
+                return ResourceManager.GetString("VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple categories selected.
+        /// </summary>
+        public static string VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE {
+            get {
+                return ResourceManager.GetString("VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE", resourceCulture);
             }
         }
         

@@ -171,4 +171,22 @@
   <data name="DEPENDENT_SALES_ERROR_TITLE" xml:space="preserve">
     <value>Dependent sales found!</value>
   </data>
+  <data name="CATEGORY_SAVE_NEEDED_TEXT" xml:space="preserve">
+    <value>You need to save the changes before adding a category with the same name as one of the deleted categories.</value>
+  </data>
+  <data name="CATEGORY_SAVE_NEEDED_TITLE" xml:space="preserve">
+    <value>Save needed</value>
+  </data>
+  <data name="VALIDATION_CATEGORY_NAME_EMPTY" xml:space="preserve">
+    <value>The category name cannot be empty!</value>
+  </data>
+  <data name="VALIDATION_ERROR_TITLE" xml:space="preserve">
+    <value>Input data error</value>
+  </data>
+  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT" xml:space="preserve">
+    <value>You can't update multiple categories at once. Select only one.</value>
+  </data>
+  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
+    <value>Multiple categories selected</value>
+  </data>
 </root>

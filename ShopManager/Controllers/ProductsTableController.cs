@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
 using ShopManager.Controller.Validation;
@@ -74,9 +75,13 @@ namespace ShopManager.Controllers
             //it means "update"
             if (existingProduct.IsSuccess)
             {
-                ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
-                ModifyProductProperty(existingProduct.Value, e.ColumnIndex, correctValue);
+                actionResult = ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
+                if (!actionResult.IsSuccess)
+                {
+                    return actionResult;
+                }
 
+                ModifyProductProperty(existingProduct.Value, e.ColumnIndex, correctValue);
                 actionResult = ProductCache.UpdateProduct(existingProduct.Value, true);
             }
             //it means "add"
@@ -90,9 +95,13 @@ namespace ShopManager.Controllers
                 actionResult = ProductCache.AddProduct(newProduct, true);
                 _rowToIDMapper[e.RowIndex] = newProduct.ID;
 
-                ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
-                ModifyProductProperty(newProduct, e.ColumnIndex, correctValue);
+                actionResult = ValidateRawValue(e.Value.ToString(), e.ColumnIndex, out object correctValue);
+                if (!actionResult.IsSuccess)
+                {
+                    return actionResult;
+                }
 
+                ModifyProductProperty(newProduct, e.ColumnIndex, correctValue);
                 //this is to request the default data for this newly added product so they show up
                 MainForm.Instance.GetProductsTableUI().Invalidate();
             }
@@ -222,7 +231,12 @@ namespace ShopManager.Controllers
                     }
                     break;
                 default:
-                    //ERROR
+                    Logger.LogError("UNREACHABLE: columnIndex out of expected range");
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     break;
             }
 
