@@ -262,14 +262,24 @@ namespace ShopManager
             ValueResult<Sale> saleResult = SalesCache.GetSale(SaleIdToModify);
             if (!saleResult.IsSuccess)
             {
-                //ERROR
+                Logger.LogError(saleResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
             ValueResult<Product> productResult = ProductCache.GetProduct(saleResult.Value.ProductID);
             if (!productResult.IsSuccess)
             {
-                //ERROR
+                Logger.LogError(productResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 

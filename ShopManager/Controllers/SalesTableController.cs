@@ -44,8 +44,13 @@ namespace ShopManager.Controllers
                     ProductCache.SearchSingleProduct(e.Row.Cells[1].Value.ToString());
                 if (!prodResult.IsSuccess)
                 {
-                    MessageBox.Show("Error on stock update");
+                    //MessageBox.Show("Error on stock update");
                     Logger.LogError(prodResult.ResultingError.Description);
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 double quantity = (double)e.Row.Cells[3].Value;
@@ -54,8 +59,13 @@ namespace ShopManager.Controllers
                 Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
                 if (!updateQuantityResult.IsSuccess)
                 {
-                    MessageBox.Show("Error on stock update");
+                    //MessageBox.Show("Error on stock update");
                     Logger.LogError(updateQuantityResult.ResultingError.Description);
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
 
@@ -88,6 +98,12 @@ namespace ShopManager.Controllers
             ValueResult<Sale> valueResult = SalesCache.GetSale(_rowToIDMapper[e.RowIndex]);
             if (!valueResult.IsSuccess)
             {
+                Logger.LogError(valueResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 

@@ -119,7 +119,7 @@ namespace ShopManager.Controller.DBManager
                             return;
                         }
 
-                        //update the categories IDs
+                        //update the categories IDs (the changes to products will be saved elsewhere, not here)
                         ProductCache.GetAllProductsFromCurrentPage()
                             .Where((prod) => prod.CategoryID == oldID)
                             .ToList()

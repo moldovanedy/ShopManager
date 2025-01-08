@@ -218,11 +218,30 @@ namespace ShopManager
         {
             Result deleteResult = ProductsTableController.RecordDeletionRequested(e);
             TogglePendingSaveVisibility(PendingSavesExist || deleteResult.IsSuccess);
+
+            if (!deleteResult.IsSuccess)
+            {
+                Logger.LogError(deleteResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void ProductsTable_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
         {
-            ProductsTableController.CellValueSubmitted(e);
+            Result updateResult = ProductsTableController.CellValueSubmitted(e);
+            if (!updateResult.IsSuccess)
+            {
+                Logger.LogError(updateResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
             if (!ProductsTableController.IsAddingFromCode)
             {
@@ -294,6 +313,15 @@ namespace ShopManager
                 this.ProductsTable.Rows.RemoveAt(e.RowIndex);
                 TogglePendingSaveVisibility(true);
             }
+            else
+            {
+                Logger.LogError(deleteResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -306,7 +334,17 @@ namespace ShopManager
 
         private void SalesTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            SalesTableController.RecordDeletionRequested(e);
+            Result deleteResult = SalesTableController.RecordDeletionRequested(e);
+            if (!deleteResult.IsSuccess)
+            {
+                Logger.LogError(deleteResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
             TogglePendingSaveVisibility(true);
         }
 
@@ -381,7 +419,12 @@ namespace ShopManager
                     CategoriesCache.SearchSingleCategory(category.ToString());
                 if (!categoryResult.IsSuccess)
                 {
-                    //ERROR (continue after)
+                    Logger.LogError(categoryResult.ResultingError.Description);
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     continue;
                 }
 
@@ -400,7 +443,12 @@ namespace ShopManager
                 Result deleteResult = CategoriesCache.DeleteCategory(categoryResult.Value.ID);
                 if (!deleteResult.IsSuccess)
                 {
-                    //ERROR (continue after)
+                    Logger.LogError(deleteResult.ResultingError.Description);
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
                 hasModifiedCategories = true;
@@ -415,7 +463,11 @@ namespace ShopManager
         {
             if (string.IsNullOrEmpty(this.AddCategoryTextBox.Text))
             {
-                //ERROR
+                MessageBox.Show(
+                    Messages.VALIDATION_CATEGORY_NAME_EMPTY,
+                    Messages.VALIDATION_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -430,9 +482,13 @@ namespace ShopManager
 
                 if (!addResult.IsSuccess)
                 {
-                    //TODO: explain that if they tried to add a category that previously existed,
+                    //explain that if they tried to add a category that previously existed,
                     //they must save changes before trying to add a category with the same name
-                    //ERROR
+                    MessageBox.Show(
+                        Messages.CATEGORY_SAVE_NEEDED_TEXT,
+                        Messages.CATEGORY_SAVE_NEEDED_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             else if (this.CategoriesListBox.SelectedItems.Count == 1)
@@ -441,7 +497,12 @@ namespace ShopManager
                     CategoriesCache.SearchSingleCategory(this.CategoriesListBox.SelectedItems[0].ToString());
                 if (!previousValueResult.IsSuccess)
                 {
-                    //ERROR
+                    Logger.LogError(previousValueResult.ResultingError.Description);
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return;
                 }
 
@@ -455,12 +516,22 @@ namespace ShopManager
 
                 if (!updateResult.IsSuccess)
                 {
+                    Logger.LogError(updateResult.ResultingError.Description);
                     //ERROR
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             else
             {
-                //ERROR
+                MessageBox.Show(
+                    Messages.VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT,
+                    Messages.VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             this.CategoriesListBox.ClearSelected();
@@ -573,19 +644,37 @@ namespace ShopManager
             saveResult = await CategoriesCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                MessageBox.Show("Error on categories save");
+                //MessageBox.Show("Error on categories save");
+                Logger.LogError(saveResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             saveResult = await ProductCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                MessageBox.Show("Error on products save");
+                //MessageBox.Show("Error on products save");
+                Logger.LogError(saveResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             saveResult = await SalesCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                MessageBox.Show("Error on sales save");
+                //MessageBox.Show("Error on sales save");
+                Logger.LogError(saveResult.ResultingError.Description);
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             ProductsTableController.RepopulateTable();
