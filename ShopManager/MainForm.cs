@@ -26,6 +26,8 @@ namespace ShopManager
         private readonly Color NormalColor = Color.FromArgb(0xff, 0x42, 0x42, 0x42);
         private readonly Color LighterColor1 = Color.FromArgb(0xff, 0x51, 0x51, 0x51);
 
+        private bool _isSearchRelevant = false;
+
         public MainForm()
         {
             if (Instance == null)
@@ -71,8 +73,8 @@ namespace ShopManager
             await MasterDBManager.InitializeDBAsync();
 
             Task[] loadTasks = new Task[3];
-            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync(0);
-            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync();
+            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync();
             loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
             await Task.WhenAll(loadTasks);
 
@@ -112,6 +114,11 @@ namespace ShopManager
         internal DataGridView GetSalesTableUI()
         {
             return this.SalesTable;
+        }
+
+        internal ToolStripTextBox GetSearchBar()
+        {
+            return this.SearchBar;
         }
 
         internal void RefreshData()
@@ -428,7 +435,7 @@ namespace ShopManager
                     continue;
                 }
 
-                bool hasDependentProducts = ProductCache.GetAllProductsFromCurrentPage()
+                bool hasDependentProducts = ProductCache.GetAllProducts()
                     .Where((product) => product.CategoryID == categoryResult.Value.ID).Any();
                 if (hasDependentProducts)
                 {
@@ -598,6 +605,13 @@ namespace ShopManager
                     return;
                 }
 
+                //search
+                if (this.SearchBar.Text != "" &&
+                    !category.Name.ToLower().Contains(this.SearchBar.Text.ToLower()))
+                {
+                    return;
+                }
+
                 this.CategoriesListBox.Items.Add(category.Name);
             });
         }
@@ -628,8 +642,8 @@ namespace ShopManager
             }
 
             Task[] loadTasks = new Task[3];
-            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync(0);
-            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync(0);
+            loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync();
+            loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync();
             loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
             await Task.WhenAll(loadTasks);
 
@@ -680,6 +694,43 @@ namespace ShopManager
             ProductsTableController.RepopulateTable();
             SalesTableController.RepopulateTable();
             TogglePendingSaveVisibility(false);
+        }
+
+        private void SearchBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            _isSearchRelevant = this.SearchBar.Text.Length > 0;
+            RepaintSearchBar();
+
+            //to trigger a table refresh
+            TabControl_SelectedIndexChanged(null, null);
+        }
+
+        private void SearchBar_TextChanged(object sender, EventArgs e)
+        {
+            _isSearchRelevant = false;
+            RepaintSearchBar();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            _isSearchRelevant = this.SearchBar.Text.Length > 0;
+            RepaintSearchBar();
+
+            //to trigger a table refresh
+            TabControl_SelectedIndexChanged(null, null);
+        }
+
+        private void RepaintSearchBar()
+        {
+            this.SearchBar.BackColor =
+                _isSearchRelevant ?
+                Color.FromArgb(0x1a, 0x23, 0x7e) :
+                Color.FromArgb(0x21, 0x21, 0x21);
         }
         #endregion
 

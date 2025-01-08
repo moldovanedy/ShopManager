@@ -120,7 +120,7 @@ namespace ShopManager.Controller.DBManager
                         }
 
                         //update the categories IDs (the changes to products will be saved elsewhere, not here)
-                        ProductCache.GetAllProductsFromCurrentPage()
+                        ProductCache.GetAllProducts()
                             .Where((prod) => prod.CategoryID == oldID)
                             .ToList()
                             .ForEach((prod) =>

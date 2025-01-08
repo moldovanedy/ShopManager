@@ -125,7 +125,7 @@ namespace ShopManager.Controllers
         internal static void RepopulateTable()
         {
             DataGridView uiTable = MainForm.Instance.GetSalesTableUI();
-            List<Sale> sales = SalesCache.GetAllSalesFromCurrentPage();
+            List<Sale> sales = SalesCache.GetAllSales(MainForm.Instance.GetSearchBar().Text);
 
             //TODO: implement more sorting options (default is ID ascending)
             sales.Sort((a, b) =>

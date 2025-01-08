@@ -11,28 +11,17 @@ namespace ShopManager.Controller.DBManager
 {
     public static class ProductsManager
     {
-        public static async Task<List<Product>> GetAllProductsAsync(int skip = 0, int limit = 100)
+        public static async Task<List<Product>> GetAllProductsAsync()
         {
             List<Product> products = new List<Product>();
             await Task.Run(async () =>
             {
                 using (AppDBContext ctx = new AppDBContext())
                 {
-                    skip = Math.Max(0, Math.Min(100, skip));
-                    limit = Math.Max(0, Math.Min(100, limit));
-
-                    int noOfProducts = await ctx.Products.CountAsync();
-                    if (noOfProducts < (skip * 100))
-                    {
-                        skip = noOfProducts - (noOfProducts % 100);
-                    }
-
                     products =
                             await ctx
                                 .Products.AsNoTracking()
                                 .OrderBy(product => product.ID)
-                                //.Skip(() => skip)
-                                //.Take(() => limit)
                                 .ToListAsync();
                 }
             });

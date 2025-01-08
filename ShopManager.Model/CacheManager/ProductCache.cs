@@ -11,28 +11,25 @@ namespace ShopManager.Controller.CacheManager
 {
     public static class ProductCache
     {
-        private static uint _currentPage = 0;
-        private static readonly Dictionary<long, Product> _pageCache = new Dictionary<long, Product>();
+        private static readonly Dictionary<long, Product> _cache = new Dictionary<long, Product>();
         private static readonly List<long> _modifiedProductIds = new List<long>();
         private static readonly List<long> _deletedProductsIds = new List<long>();
 
         /// <summary>
-        /// Regenerates (or creates) the cache from the underlying DB at the given page (a page has max. 100 records).
+        /// Regenerates (or creates) the cache from the underlying DB.
         /// </summary>
-        /// <param name="page">The page to get. Giving a nonexistent page will clamp it to the existing limits.</param>
         /// <returns></returns>
-        public static async Task RegenerateCacheFromDBAsync(int page = 0)
+        public static async Task RegenerateCacheFromDBAsync()
         {
-            _pageCache.Clear();
-            _currentPage = (uint)page;
+            _cache.Clear();
             _modifiedProductIds.Clear();
             _deletedProductsIds.Clear();
 
-            List<Product> products = await ProductsManager.GetAllProductsAsync(page * 100, (page * 100) + 100);
+            List<Product> products = await ProductsManager.GetAllProductsAsync();
 
             foreach (Product product in products)
             {
-                _pageCache.Add(product.ID, product);
+                _cache.Add(product.ID, product);
             }
         }
 
@@ -48,13 +45,13 @@ namespace ShopManager.Controller.CacheManager
             foreach (long modID in _modifiedProductIds)
             {
                 //if one is invalid, wait for all pending updates, then return the error
-                if (!_pageCache.ContainsKey(modID))
+                if (!_cache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as modifiable product.");
                     return Result.Failed(new Error());
                 }
 
-                productsToAddOrUpdate.Add(_pageCache[modID]);
+                productsToAddOrUpdate.Add(_cache[modID]);
             }
 
             Result operationResult;
@@ -67,15 +64,15 @@ namespace ShopManager.Controller.CacheManager
 
             for (int i = 0; i < _modifiedProductIds.Count; i++)
             {
-                long updatedID = _pageCache[_modifiedProductIds[i]].ID;
-                if (_pageCache.ContainsKey(updatedID))
+                long updatedID = _cache[_modifiedProductIds[i]].ID;
+                if (_cache.ContainsKey(updatedID))
                 {
-                    _pageCache[updatedID] = _pageCache[_modifiedProductIds[i]];
+                    _cache[updatedID] = _cache[_modifiedProductIds[i]];
                 }
                 else
                 {
-                    _pageCache.Add(updatedID, _pageCache[_modifiedProductIds[i]]);
-                    _pageCache.Remove(_modifiedProductIds[i]);
+                    _cache.Add(updatedID, _cache[_modifiedProductIds[i]]);
+                    _cache.Remove(_modifiedProductIds[i]);
                 }
             }
             _modifiedProductIds.Clear();
@@ -85,13 +82,13 @@ namespace ShopManager.Controller.CacheManager
             foreach (long modID in _deletedProductsIds)
             {
                 //if one is invalid, wait for all pending updates, then return the error
-                if (!_pageCache.ContainsKey(modID))
+                if (!_cache.ContainsKey(modID))
                 {
                     Logger.LogError($"Cache did not contain {modID}, but was presented as deletable product.");
                     return Result.Failed(new Error());
                 }
 
-                productsToDelete.Add(_pageCache[modID]);
+                productsToDelete.Add(_cache[modID]);
             }
 
             //wait all pending delete
@@ -103,33 +100,36 @@ namespace ShopManager.Controller.CacheManager
 
             for (int i = 0; i < _deletedProductsIds.Count; i++)
             {
-                _pageCache.Remove(_deletedProductsIds[i]);
+                _cache.Remove(_deletedProductsIds[i]);
             }
             _deletedProductsIds.Clear();
 
             return Result.Successful();
         }
 
-        public static uint GetCurrentPage()
+        public static int GetNumberOfProducts()
         {
-            return _currentPage;
-        }
-
-        public static int GetNumberOfProductsOnCurrentPage()
-        {
-            return _pageCache.Count;
+            return _cache.Count;
         }
 
         /// <summary>
-        /// Will return the UNSORTED products from the current page.
+        /// Will return the UNSORTED products.
         /// </summary>
         /// <returns></returns>
-        public static List<Product> GetAllProductsFromCurrentPage()
+        public static List<Product> GetAllProducts(string searchString = "")
         {
             List<Product> products = new List<Product>();
-            foreach (KeyValuePair<long, Product> pair in _pageCache)
+            foreach (KeyValuePair<long, Product> pair in _cache)
             {
                 if (_deletedProductsIds.Contains(pair.Key))
+                {
+                    continue;
+                }
+
+                //search
+                if (
+                    searchString != "" &&
+                    !pair.Value.Name.ToLower().Contains(searchString.ToLower()))
                 {
                     continue;
                 }
@@ -148,7 +148,7 @@ namespace ShopManager.Controller.CacheManager
                 return ValueResult<Product>.Failed(new Error());
             }
 
-            if (_pageCache.TryGetValue(id, out Product product))
+            if (_cache.TryGetValue(id, out Product product))
             {
                 return ValueResult<Product>.Successful(product);
             }
@@ -172,7 +172,7 @@ namespace ShopManager.Controller.CacheManager
             }
 
             Product foundProduct = null;
-            foreach (KeyValuePair<long, Product> productPair in _pageCache)
+            foreach (KeyValuePair<long, Product> productPair in _cache)
             {
                 if (productPair.Value.Name.Equals(productName, StringComparison.InvariantCultureIgnoreCase) &&
                     !_deletedProductsIds.Contains(productPair.Key))
@@ -208,7 +208,7 @@ namespace ShopManager.Controller.CacheManager
             }
 
             List<Product> products =
-                _pageCache
+                _cache
                     .Where((prodPair) =>
                     {
                         return
@@ -245,12 +245,12 @@ namespace ShopManager.Controller.CacheManager
                 throw new ArgumentNullException(nameof(product));
             }
 
-            if (_pageCache.ContainsKey(product.ID))
+            if (_cache.ContainsKey(product.ID))
             {
                 return Result.Failed(new Error());
             }
 
-            if (_pageCache.Where(prod => prod.Value.Name == product.Name).Any())
+            if (_cache.Where(prod => prod.Value.Name == product.Name).Any())
             {
                 return Result.Failed(new Error());
             }
@@ -269,7 +269,7 @@ namespace ShopManager.Controller.CacheManager
                 }
             }
 
-            _pageCache.Add(product.ID, product);
+            _cache.Add(product.ID, product);
 
             if (!_modifiedProductIds.Contains(product.ID))
             {
@@ -280,7 +280,7 @@ namespace ShopManager.Controller.CacheManager
 
         public static Result DeleteProduct(long id)
         {
-            if (_pageCache.ContainsKey(id))
+            if (_cache.ContainsKey(id))
             {
                 if (!_deletedProductsIds.Contains(id))
                 {
@@ -295,7 +295,7 @@ namespace ShopManager.Controller.CacheManager
                         else
                         {
                             //the added product is in the cache, delete it
-                            _pageCache.Remove(id);
+                            _cache.Remove(id);
                         }
 
                         _modifiedProductIds.Remove(id);
@@ -320,13 +320,13 @@ namespace ShopManager.Controller.CacheManager
                 return Result.Failed(new Error());
             }
 
-            if (!_pageCache.ContainsKey(product.ID))
+            if (!_cache.ContainsKey(product.ID))
             {
                 return Result.Failed(new Error());
             }
 
             //if there is a product that has the same name, but a different ID it is a duplicate and it's not allowed
-            if (_pageCache
+            if (_cache
                 .Where(
                     prod =>
                         prod.Value.Name == product.Name &&
@@ -350,7 +350,7 @@ namespace ShopManager.Controller.CacheManager
                 }
             }
 
-            _pageCache[product.ID] = product;
+            _cache[product.ID] = product;
 
             if (!_modifiedProductIds.Contains(product.ID))
             {
