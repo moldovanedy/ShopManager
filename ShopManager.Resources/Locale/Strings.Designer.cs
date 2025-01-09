@@ -223,6 +223,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot password.
+        /// </summary>
+        public static string Forgot_password {
+            get {
+                return ResourceManager.GetString("Forgot password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help {
@@ -237,6 +246,24 @@ namespace ShopManager.Resources.Locale {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in to the shop manager.
+        /// </summary>
+        public static string Log_in_to_the_shop_manager {
+            get {
+                return ResourceManager.GetString("Log in to the shop manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
@@ -286,11 +313,29 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password:.
+        /// </summary>
+        public static string New_password_ {
+            get {
+                return ResourceManager.GetString("New password:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of products.
         /// </summary>
         public static string Number_of_products {
             get {
                 return ResourceManager.GetString("Number of products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string Password_ {
+            get {
+                return ResourceManager.GetString("Password:", resourceCulture);
             }
         }
         
@@ -367,6 +412,16 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you don&apos;t have an account, ask the shop administrator
+        ///to log in and add you to the application&apos;s database..
+        /// </summary>
+        public static string REGISTER_EXPLANATION {
+            get {
+                return ResourceManager.GetString("REGISTER_EXPLANATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales.
         /// </summary>
         public static string Sales {
@@ -399,6 +454,15 @@ namespace ShopManager.Resources.Locale {
         public static string Shop_manager {
             get {
                 return ResourceManager.GetString("Shop manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username:.
+        /// </summary>
+        public static string Username_ {
+            get {
+                return ResourceManager.GetString("Username:", resourceCulture);
             }
         }
         
