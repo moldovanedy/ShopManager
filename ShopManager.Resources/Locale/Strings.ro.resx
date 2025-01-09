@@ -171,11 +171,20 @@
   <data name="File" xml:space="preserve">
     <value>Fișier</value>
   </data>
+  <data name="Forgot password" xml:space="preserve">
+    <value>Am uitat parola</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Ajutor</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Limbă</value>
+  </data>
+  <data name="Log in to the shop manager" xml:space="preserve">
+    <value>Autentifică-te în managerul de magazin</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Autentificare</value>
   </data>
   <data name="Modify" xml:space="preserve">
     <value>Modifică</value>
@@ -192,8 +201,14 @@
   <data name="New name for the selected category" xml:space="preserve">
     <value>Noul nume pentru categoria selectată</value>
   </data>
+  <data name="New password:" xml:space="preserve">
+    <value>Noua parolă:</value>
+  </data>
   <data name="Number of products" xml:space="preserve">
     <value>Număr de produse</value>
+  </data>
+  <data name="Password:" xml:space="preserve">
+    <value>Parolă:</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Preț</value>
@@ -219,6 +234,10 @@
   <data name="Quantity" xml:space="preserve">
     <value>Cantitate</value>
   </data>
+  <data name="REGISTER_EXPLANATION" xml:space="preserve">
+    <value>Dacă nu ai un cont, roagă administratorul magazinului
+să se autentifice și să te adauge în baza de date a aplicației.</value>
+  </data>
   <data name="Sales" xml:space="preserve">
     <value>Vânzări</value>
   </data>
@@ -230,6 +249,9 @@
   </data>
   <data name="Shop manager" xml:space="preserve">
     <value>Manager magazin</value>
+  </data>
+  <data name="Username:" xml:space="preserve">
+    <value>Nume utilizator:</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versiunea</value>

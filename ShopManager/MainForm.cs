@@ -12,12 +12,12 @@ using ShopManager.Controller.ResultHandler;
 using ShopManager.Controllers;
 using ShopManager.Extensions;
 using ShopManager.Model.DataModels;
-using ShopManager.Model.DBManager;
+using ShopManager.Properties;
 using ShopManager.Resources.Locale;
 
 namespace ShopManager
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IUserForm
     {
         public static MainForm Instance { get; private set; }
 
@@ -41,7 +41,17 @@ namespace ShopManager
             }
 
             InitializeComponent();
-            RoLangMenuItem_Click(null, null);
+            Settings settings = Settings.Default;
+            switch (settings.Language)
+            {
+                case "ro":
+                    RoLangMenuItem_Click(null, null);
+                    break;
+                case "en":
+                default:
+                    EnLangMenuItem_Click(null, null);
+                    break;
+            }
 
             Translate();
             this.AppMenuBar.Renderer = new CustomMenuBarRenderer();
@@ -67,17 +77,74 @@ namespace ShopManager
             SetupMenu(this.HelpMenuItem);
         }
 
+        public void Translate()
+        {
+            TogglePendingSaveVisibility(false);
+
+            //top-level
+            this.NumberOfProductsLabel.Text = Strings.Number_of_products;
+            this.CreateSaleButton.Text = Strings.Create_sale;
+            this.TabControl.TabPages[0].Text = Strings.Products;
+            this.TabControl.TabPages[1].Text = Strings.Sales;
+            this.TabControl.TabPages[2].Text = Strings.Product_categories;
+
+            //menu bar
+            this.FileMenuItem.Text = Strings.File;
+            this.LanugageMenuItem.Text = Strings.Language;
+            this.ExitMenuItem.Text = Strings.Exit;
+
+            this.HelpMenuItem.Text = Strings.Help;
+            this.AboutMenuItem.Text = Strings.About;
+
+            //table headers
+            this.ProductsTable.Columns[1].HeaderText = Strings.Name;
+            this.ProductsTable.Columns[2].HeaderText = Strings.Description;
+            this.ProductsTable.Columns[3].HeaderText = Strings.Price;
+            this.ProductsTable.Columns[4].HeaderText = Strings.Price_per_KG;
+            this.ProductsTable.Columns[5].HeaderText = Strings.Purchase_date;
+            this.ProductsTable.Columns[6].HeaderText = Strings.Expiry_date;
+            this.ProductsTable.Columns[7].HeaderText = Strings.Quantity;
+            this.ProductsTable.Columns[8].HeaderText = Strings.Category;
+
+            this.SalesTable.Columns[1].HeaderText = Strings.Product;
+            this.SalesTable.Columns[2].HeaderText = Strings.Product_category;
+            this.SalesTable.Columns[3].HeaderText = Strings.Quantity;
+
+            //tools
+            this.SaveButton.Text = Strings.Save;
+            this.SaveButton.ToolTipText = Strings.Save_changes;
+            this.DiscardChangesButton.Text = Strings.Discard_changes;
+            this.DiscardChangesButton.ToolTipText = Strings.Discard_all_the_changes_made_from_the_last_save;
+
+            //categories
+            this.DeleteCategoriesButton.Text = Strings.Delete_selected;
+            this.DeselectButton.Text = Strings.Deselect;
+            //this is just to trigger the SelectedIndexChanged, that in turn will translate some controls
+            this.CategoriesListBox.Items.Add("A");
+            this.CategoriesListBox.SelectedIndex = 0;
+            this.CategoriesListBox.SelectedItems.Clear();
+            RepopulateCategoriesListBox();
+        }
+
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            await MasterDBManager.InitializeDBAsync();
+            //await MasterDBManager.InitializeDBAsync();
 
             Task[] loadTasks = new Task[3];
             loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync();
             loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync();
             loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
-            await Task.WhenAll(loadTasks);
 
+            BasicAccountControlWindow loginWindow = new BasicAccountControlWindow();
+            DialogResult dialogResult = loginWindow.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                Close();
+                return;
+            }
+
+            await Task.WhenAll(loadTasks);
             RefreshData();
         }
 
@@ -164,55 +231,6 @@ namespace ShopManager
                 menu.Text = Strings.ResourceManager.GetString(menu.Text) ?? menu.Text;
                 SetupMenu(menu);
             }
-        }
-
-        private void Translate()
-        {
-            TogglePendingSaveVisibility(false);
-
-            //top-level
-            this.NumberOfProductsLabel.Text = Strings.Number_of_products;
-            this.CreateSaleButton.Text = Strings.Create_sale;
-            this.TabControl.TabPages[0].Text = Strings.Products;
-            this.TabControl.TabPages[1].Text = Strings.Sales;
-            this.TabControl.TabPages[2].Text = Strings.Product_categories;
-
-            //menu bar
-            this.FileMenuItem.Text = Strings.File;
-            this.LanugageMenuItem.Text = Strings.Language;
-            this.ExitMenuItem.Text = Strings.Exit;
-
-            this.HelpMenuItem.Text = Strings.Help;
-            this.AboutMenuItem.Text = Strings.About;
-
-            //table headers
-            this.ProductsTable.Columns[1].HeaderText = Strings.Name;
-            this.ProductsTable.Columns[2].HeaderText = Strings.Description;
-            this.ProductsTable.Columns[3].HeaderText = Strings.Price;
-            this.ProductsTable.Columns[4].HeaderText = Strings.Price_per_KG;
-            this.ProductsTable.Columns[5].HeaderText = Strings.Purchase_date;
-            this.ProductsTable.Columns[6].HeaderText = Strings.Expiry_date;
-            this.ProductsTable.Columns[7].HeaderText = Strings.Quantity;
-            this.ProductsTable.Columns[8].HeaderText = Strings.Category;
-
-            this.SalesTable.Columns[1].HeaderText = Strings.Product;
-            this.SalesTable.Columns[2].HeaderText = Strings.Product_category;
-            this.SalesTable.Columns[3].HeaderText = Strings.Quantity;
-
-            //tools
-            this.SaveButton.Text = Strings.Save;
-            this.SaveButton.ToolTipText = Strings.Save_changes;
-            this.DiscardChangesButton.Text = Strings.Discard_changes;
-            this.DiscardChangesButton.ToolTipText = Strings.Discard_all_the_changes_made_from_the_last_save;
-
-            //categories
-            this.DeleteCategoriesButton.Text = Strings.Delete_selected;
-            this.DeselectButton.Text = Strings.Deselect;
-            //this is just to trigger the SelectedIndexChanged, that in turn will translate some controls
-            this.CategoriesListBox.Items.Add("A");
-            this.CategoriesListBox.SelectedIndex = 0;
-            this.CategoriesListBox.SelectedItems.Clear();
-            RepopulateCategoriesListBox();
         }
 
         #region Products table
@@ -743,7 +761,7 @@ namespace ShopManager
 
         private void RoLangMenuItem_Click(object sender, EventArgs e)
         {
-            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ro")
+            if (this.RoLangMenuItem.Checked)
             {
                 return;
             }
@@ -752,11 +770,15 @@ namespace ShopManager
             this.EnLangMenuItem.Checked = false;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ro");
             Translate();
+
+            Settings settings = Settings.Default;
+            settings.Language = "ro";
+            settings.Save();
         }
 
         private void EnLangMenuItem_Click(object sender, EventArgs e)
         {
-            if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "en")
+            if (this.EnLangMenuItem.Checked)
             {
                 return;
             }
@@ -765,6 +787,10 @@ namespace ShopManager
             this.EnLangMenuItem.Checked = true;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             Translate();
+
+            Settings settings = Settings.Default;
+            settings.Language = "en";
+            settings.Save();
         }
 
         private void AboutMenuItem_Click(object sender, EventArgs e)

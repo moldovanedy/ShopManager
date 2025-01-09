@@ -10,7 +10,7 @@ using ShopManager.Resources.Locale;
 
 namespace ShopManager
 {
-    public partial class CreateSaleWindow : Form
+    public partial class CreateSaleWindow : Form, IUserForm
     {
         /// <summary>
         /// Setting this to a value greater than 0 will turn this into a "modify" sale instead of "create" sale window.
@@ -45,7 +45,7 @@ namespace ShopManager
             this.DebounceTimer.Tick -= OnDebounceTimerTick;
         }
 
-        private void Translate()
+        public void Translate()
         {
             this.ProductLabel.Text = Strings.Product;
             this.QuantityLabel.Text = Strings.Quantity;
