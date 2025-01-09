@@ -279,6 +279,47 @@ namespace ShopManager
             ProductsTableController.CellValueRequested(e);
         }
 
+        private void ProductsTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //only the 5th and 6th columns are date pickers
+            if (e.ColumnIndex != 5 && e.ColumnIndex != 6)
+            {
+                return;
+            }
+
+            e.Cancel = true;
+            DateTimePicker pickerDialog = new DateTimePicker
+            {
+                DateTimeValue =
+                    (DateTime)
+                        (this.ProductsTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ??
+                        DateTime.MinValue)
+            };
+
+            DialogResult result = pickerDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+
+            TogglePendingSaveVisibility(true);
+
+            //if it is the final empty row, add a new one to force refresh and let further editing
+            if (e.RowIndex == this.ProductsTable.Rows.Count - 1)
+            {
+                this.ProductsTable.Rows.Add();
+                ProductsTable_UserAddedRow(this, null);
+            }
+
+            //set the date
+            ProductsTable_CellValuePushed(
+                this,
+                new DataGridViewCellValueEventArgs(e.ColumnIndex, e.RowIndex)
+                {
+                    Value = pickerDialog.DateTimeValue
+                });
+        }
+
         private void ProductsTable_RowDirtyStateNeeded(object sender, QuestionEventArgs e)
         {
             e.Response = this.ProductsTable.IsCurrentCellDirty;
@@ -401,7 +442,6 @@ namespace ShopManager
             }
         }
 
-
         private void SalesTable_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             //this also takes the column headers into account
@@ -412,7 +452,6 @@ namespace ShopManager
 
             RepaintDeleteButton(e, this.SalesTable);
         }
-
 
         //the delete row functionality
         private void SalesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
