@@ -79,6 +79,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t delete the initial admin account, &quot;{0}&quot;..
+        /// </summary>
+        public static string CANNOT_DELETE_ADMIN {
+            get {
+                return ResourceManager.GetString("CANNOT_DELETE_ADMIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need to save the changes before adding a category with the same name as one of the deleted categories..
         /// </summary>
         public static string CATEGORY_SAVE_NEEDED_TEXT {
@@ -259,6 +268,33 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is too long..
+        /// </summary>
+        public static string VALIDATION_PASSWORD_LONG {
+            get {
+                return ResourceManager.GetString("VALIDATION_PASSWORD_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is too short..
+        /// </summary>
+        public static string VALIDATION_PASSWORD_SHORT {
+            get {
+                return ResourceManager.GetString("VALIDATION_PASSWORD_SHORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid role. Select only one option, don&apos;t write anything else in the role field..
+        /// </summary>
+        public static string VALIDATION_ROLE_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_ROLE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name of the product cannot be empty!.
         /// </summary>
         public static string VALIDATION_SALE_PRODUCT_NAME_EMPTY {
@@ -273,6 +309,33 @@ namespace ShopManager.Resources.Locale {
         public static string VALIDATION_SALE_QUANTITY_EMPTY {
             get {
                 return ResourceManager.GetString("VALIDATION_SALE_QUANTITY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username already exists..
+        /// </summary>
+        public static string VALIDATION_USERNAME_EXISTS {
+            get {
+                return ResourceManager.GetString("VALIDATION_USERNAME_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is too long..
+        /// </summary>
+        public static string VALIDATION_USERNAME_LONG {
+            get {
+                return ResourceManager.GetString("VALIDATION_USERNAME_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is too short..
+        /// </summary>
+        public static string VALIDATION_USERNAME_SHORT {
+            get {
+                return ResourceManager.GetString("VALIDATION_USERNAME_SHORT", resourceCulture);
             }
         }
         

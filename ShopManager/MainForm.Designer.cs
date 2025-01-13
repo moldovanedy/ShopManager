@@ -87,6 +87,7 @@
             this.SearchButton = new System.Windows.Forms.ToolStripButton();
             this.SearchBar = new System.Windows.Forms.ToolStripTextBox();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.AccountButton = new System.Windows.Forms.Button();
             this.AppMenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsTable)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -103,14 +104,13 @@
             // 
             this.CreateSaleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateSaleButton.AutoSize = true;
-            this.CreateSaleButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CreateSaleButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
             this.CreateSaleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateSaleButton.ForeColor = System.Drawing.Color.White;
-            this.CreateSaleButton.Location = new System.Drawing.Point(772, 44);
+            this.CreateSaleButton.Location = new System.Drawing.Point(670, 45);
             this.CreateSaleButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.CreateSaleButton.Name = "CreateSaleButton";
-            this.CreateSaleButton.Size = new System.Drawing.Size(93, 28);
+            this.CreateSaleButton.Size = new System.Drawing.Size(93, 32);
             this.CreateSaleButton.TabIndex = 0;
             this.CreateSaleButton.Text = "Create sale";
             this.CreateSaleButton.UseVisualStyleBackColor = false;
@@ -631,7 +631,7 @@
             // ToolsContainer.ContentPanel
             // 
             this.ToolsContainer.ContentPanel.Controls.Add(this.Tools);
-            this.ToolsContainer.ContentPanel.Size = new System.Drawing.Size(884, 0);
+            this.ToolsContainer.ContentPanel.Size = new System.Drawing.Size(884, 5);
             this.ToolsContainer.Location = new System.Drawing.Point(0, 90);
             this.ToolsContainer.Name = "ToolsContainer";
             this.ToolsContainer.Size = new System.Drawing.Size(884, 30);
@@ -648,7 +648,7 @@
             this.SearchBar});
             this.Tools.Location = new System.Drawing.Point(0, 0);
             this.Tools.Name = "Tools";
-            this.Tools.Size = new System.Drawing.Size(884, 0);
+            this.Tools.Size = new System.Drawing.Size(884, 5);
             this.Tools.TabIndex = 0;
             this.Tools.Text = "toolStrip1";
             // 
@@ -660,7 +660,7 @@
             this.SaveButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveButton.Image")));
             this.SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(51, 0);
+            this.SaveButton.Size = new System.Drawing.Size(51, 2);
             this.SaveButton.Text = "Save";
             this.SaveButton.ToolTipText = "Save changes";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -670,7 +670,7 @@
             this.DiscardChangesButton.Image = ((System.Drawing.Image)(resources.GetObject("DiscardChangesButton.Image")));
             this.DiscardChangesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DiscardChangesButton.Name = "DiscardChangesButton";
-            this.DiscardChangesButton.Size = new System.Drawing.Size(113, 0);
+            this.DiscardChangesButton.Size = new System.Drawing.Size(113, 2);
             this.DiscardChangesButton.Text = "Discard changes";
             this.DiscardChangesButton.ToolTipText = "Discard all the changes made from the last save";
             this.DiscardChangesButton.Click += new System.EventHandler(this.DiscardChangesButton_Click);
@@ -682,7 +682,7 @@
             this.SearchButton.Image = ((System.Drawing.Image)(resources.GetObject("SearchButton.Image")));
             this.SearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(23, 0);
+            this.SearchButton.Size = new System.Drawing.Size(23, 2);
             this.SearchButton.Text = "toolStripButton1";
             this.SearchButton.ToolTipText = "Search";
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -694,7 +694,7 @@
             this.SearchBar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SearchBar.ForeColor = System.Drawing.Color.White;
             this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(350, 0);
+            this.SearchBar.Size = new System.Drawing.Size(350, 5);
             this.SearchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyDown);
             this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
             // 
@@ -706,12 +706,33 @@
             this.StatusBar.TabIndex = 7;
             this.StatusBar.Text = "Status";
             // 
+            // AccountButton
+            // 
+            this.AccountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AccountButton.AutoSize = true;
+            this.AccountButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(64)))), ((int)(((byte)(55)))));
+            this.AccountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountButton.ForeColor = System.Drawing.Color.White;
+            this.AccountButton.Image = ((System.Drawing.Image)(resources.GetObject("AccountButton.Image")));
+            this.AccountButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AccountButton.Location = new System.Drawing.Point(776, 45);
+            this.AccountButton.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.AccountButton.Name = "AccountButton";
+            this.AccountButton.Size = new System.Drawing.Size(104, 32);
+            this.AccountButton.TabIndex = 8;
+            this.AccountButton.Text = "Account";
+            this.AccountButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.AccountButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.AccountButton.UseVisualStyleBackColor = false;
+            this.AccountButton.Click += new System.EventHandler(this.AccountButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(884, 511);
+            this.Controls.Add(this.AccountButton);
             this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.ToolsContainer);
             this.Controls.Add(this.TabControl);
@@ -720,7 +741,7 @@
             this.Controls.Add(this.CreateSaleButton);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.AppMenuBar;
-            this.MinimumSize = new System.Drawing.Size(600, 450);
+            this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "MainForm";
             this.Text = "Shop Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -796,6 +817,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Spacer;
         private System.Windows.Forms.ToolStripButton SearchButton;
         private System.Windows.Forms.ToolStripTextBox SearchBar;
+        private System.Windows.Forms.Button AccountButton;
     }
 }
 

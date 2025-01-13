@@ -117,164 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Despre</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Adaugă</value>
-  </data>
-  <data name="Add a new category" xml:space="preserve">
-    <value>Adaugă o nouă categorie</value>
-  </data>
-  <data name="Add new user:" xml:space="preserve">
-    <value>Adaugă utilizator nou:</value>
-  </data>
-  <data name="Add product" xml:space="preserve">
-    <value>Adaugă produs</value>
-  </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <data name="Also update product stock" xml:space="preserve">
-    <value>Actualizează și cantitatea produselor (stoc)</value>
-  </data>
-  <data name="Any modification will be applied immediately!!!" xml:space="preserve">
-    <value>Orice modificare se va aplica imediat!!!</value>
-  </data>
-  <data name="Can only update a single category simultaneously!" xml:space="preserve">
-    <value>Se poate modifica o singură categorie simultan!</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Anulează</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Categorie</value>
-  </data>
-  <data name="Create a new sale" xml:space="preserve">
-    <value>Creează o nouă vânzare</value>
-  </data>
-  <data name="Create sale" xml:space="preserve">
-    <value>Creează o vânzare</value>
-  </data>
-  <data name="Delete selected" xml:space="preserve">
-    <value>Șterge cele selectate</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Descriere</value>
-  </data>
-  <data name="Deselect" xml:space="preserve">
-    <value>Deselectare</value>
-  </data>
-  <data name="Discard all the changes made from the last save" xml:space="preserve">
-    <value>Renunță la toate modificările făcute de la ultima salvare</value>
-  </data>
-  <data name="Discard changes" xml:space="preserve">
-    <value>Renunță la modificări</value>
-  </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Ieșire</value>
-  </data>
-  <data name="Expiry date" xml:space="preserve">
-    <value>Dată expirare</value>
-  </data>
-  <data name="File" xml:space="preserve">
-    <value>Fișier</value>
-  </data>
-  <data name="Forgot password" xml:space="preserve">
-    <value>Am uitat parola</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Ajutor</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Limbă</value>
-  </data>
-  <data name="Log in to the shop manager" xml:space="preserve">
-    <value>Autentifică-te în managerul de magazin</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Autentificare</value>
-  </data>
-  <data name="Manage users" xml:space="preserve">
-    <value>Gestionează utilizatorii</value>
-  </data>
-  <data name="Modify" xml:space="preserve">
-    <value>Modifică</value>
-  </data>
-  <data name="Modify an existing sale" xml:space="preserve">
-    <value>Modifică o vânzare existentă</value>
-  </data>
-  <data name="Modify sale" xml:space="preserve">
-    <value>Modifică o vânzare</value>
-  </data>
-  <data name="Modify user data:" xml:space="preserve">
-    <value>Modifică datele utilizatorului:</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nume</value>
-  </data>
-  <data name="New name for the selected category" xml:space="preserve">
-    <value>Noul nume pentru categoria selectată</value>
-  </data>
-  <data name="New password:" xml:space="preserve">
-    <value>Noua parolă:</value>
-  </data>
-  <data name="Number of products" xml:space="preserve">
-    <value>Număr de produse</value>
-  </data>
-  <data name="Password:" xml:space="preserve">
-    <value>Parolă:</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Preț</value>
-  </data>
-  <data name="Price per KG" xml:space="preserve">
-    <value>Preț per KG</value>
-  </data>
-  <data name="Product" xml:space="preserve">
-    <value>Produs</value>
-  </data>
-  <data name="Product categories" xml:space="preserve">
-    <value>Categorii de produse</value>
-  </data>
-  <data name="Product category" xml:space="preserve">
-    <value>Categorie produs</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produse</value>
-  </data>
-  <data name="Purchase date" xml:space="preserve">
-    <value>Dată cumpărare</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Cantitate</value>
-  </data>
-  <data name="REGISTER_EXPLANATION" xml:space="preserve">
-    <value>Dacă nu ai un cont, roagă administratorul magazinului
-să se autentifice și să te adauge în baza de date a aplicației.</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Rol</value>
-  </data>
-  <data name="Sales" xml:space="preserve">
-    <value>Vânzări</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Salvare</value>
-  </data>
-  <data name="Save changes" xml:space="preserve">
-    <value>Salvează modificările</value>
-  </data>
-  <data name="Shop manager" xml:space="preserve">
-    <value>Manager magazin</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>Utilizator</value>
-  </data>
-  <data name="Username:" xml:space="preserve">
-    <value>Nume utilizator:</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Versiunea</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        dGLtoul/mbSYzHl8nfQAAAAASUVORK5CYII=
+</value>
   </data>
 </root>
