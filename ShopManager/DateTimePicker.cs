@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using ShopManager.Resources.Locale;
 
 namespace ShopManager
 {
-    public partial class DateTimePicker : Form
+    public partial class DateTimePicker : Form, IUserForm
     {
         internal DateTime DateTimeValue { get; set; } = DateTime.MinValue;
 
@@ -11,6 +12,15 @@ namespace ShopManager
         {
             InitializeComponent();
             DialogResult = DialogResult.Cancel;
+            Translate();
+        }
+
+        public void Translate()
+        {
+            this.Text = Strings.Select_date_and_time;
+            this.DateLabel.Text = Strings.Date;
+            this.TimeLabel.Text = Strings.Time;
+            this.SetButton.Text = Strings.Set;
         }
 
         private void SetButton_Click(object sender, EventArgs e)
