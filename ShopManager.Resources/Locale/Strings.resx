@@ -141,6 +141,12 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="Admin password:" xml:space="preserve">
+    <value>Admin password:</value>
+  </data>
+  <data name="Admin username:" xml:space="preserve">
+    <value>Admin username:</value>
+  </data>
   <data name="ADMIN: Manage users" xml:space="preserve">
     <value>ADMIN: Manage users</value>
   </data>

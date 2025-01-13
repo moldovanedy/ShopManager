@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ShopManager.Controller;
 using ShopManager.Resources.Locale;
 
 namespace ShopManager.AccountManagement
@@ -10,6 +11,19 @@ namespace ShopManager.AccountManagement
         {
             InitializeComponent();
             Translate();
+
+            if (CredentialsMemoryStore.CurrentUser == null)
+            {
+                return;
+            }
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                this.AdminButton.Enabled = false;
+                this.AdminButton.Visible = false;
+            }
+
+            this.UsernameLabel.Text = CredentialsMemoryStore.CurrentUser.Username;
+            this.RoleLabel.Text = CredentialsMemoryStore.CurrentUser.Permissions == 0 ? Strings.User : Strings.Admin;
         }
 
         public void Translate()

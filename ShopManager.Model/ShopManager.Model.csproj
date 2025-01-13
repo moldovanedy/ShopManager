@@ -64,6 +64,7 @@
     <Compile Include="CacheManager\CategoriesCache.cs" />
     <Compile Include="CacheManager\SalesCache.cs" />
     <Compile Include="CacheManager\ProductCache.cs" />
+    <Compile Include="CredentialsMemoryStore.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="DBManager\AppDBContext.cs" />
     <Compile Include="DataModels\Product.cs" />

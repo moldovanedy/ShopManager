@@ -178,6 +178,33 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid admin username or password..
+        /// </summary>
+        public static string LOGIN_ADMIN_INVALID_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("LOGIN_ADMIN_INVALID_CREDENTIALS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid username or password..
+        /// </summary>
+        public static string LOGIN_INVALID_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALID_CREDENTIALS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid credentials.
+        /// </summary>
+        public static string LOGIN_INVALID_CREDENTIALS_TITLE {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALID_CREDENTIALS_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are unsaved changes. Do you want to save your changes?.
         /// </summary>
         public static string SAVE_CHANGES_QUESTION_TEXT {
