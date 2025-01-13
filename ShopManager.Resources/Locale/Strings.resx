@@ -171,6 +171,9 @@
   <data name="Create sale" xml:space="preserve">
     <value>Create sale</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Delete selected" xml:space="preserve">
     <value>Delete selected</value>
   </data>
@@ -283,8 +286,17 @@ to log in and add you to the application's database.</value>
   <data name="Save changes" xml:space="preserve">
     <value>Save changes</value>
   </data>
+  <data name="Select date and time" xml:space="preserve">
+    <value>Select date and time</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
   <data name="Shop manager" xml:space="preserve">
     <value>Shop manager</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>

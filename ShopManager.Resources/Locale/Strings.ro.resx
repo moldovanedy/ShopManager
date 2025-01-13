@@ -171,6 +171,9 @@
   <data name="Create sale" xml:space="preserve">
     <value>Creează o vânzare</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
   <data name="Delete selected" xml:space="preserve">
     <value>Șterge cele selectate</value>
   </data>
@@ -283,8 +286,17 @@ să se autentifice și să te adauge în baza de date a aplicației.</value>
   <data name="Save changes" xml:space="preserve">
     <value>Salvează modificările</value>
   </data>
+  <data name="Select date and time" xml:space="preserve">
+    <value>Selectează data și ora</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Setează</value>
+  </data>
   <data name="Shop manager" xml:space="preserve">
     <value>Manager magazin</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Ora</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Utilizator</value>
