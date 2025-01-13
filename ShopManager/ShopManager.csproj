@@ -87,6 +87,24 @@
     <Compile Include="AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AccountManagement\AccountDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AccountDashboardPage.Designer.cs">
+      <DependentUpon>AccountDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountManagement\AccountManagementWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AccountManagementWindow.Designer.cs">
+      <DependentUpon>AccountManagementWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountManagement\AdminControlPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AdminControlPage.Designer.cs">
+      <DependentUpon>AdminControlPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="BasicAccountControlWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +142,15 @@
     </Compile>
     <EmbeddedResource Include="AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AccountDashboardPage.resx">
+      <DependentUpon>AccountDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AccountManagementWindow.resx">
+      <DependentUpon>AccountManagementWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AdminControlPage.resx">
+      <DependentUpon>AdminControlPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BasicAccountControlWindow.resx">
       <DependentUpon>BasicAccountControlWindow.cs</DependentUpon>

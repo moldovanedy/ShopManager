@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ShopManager.AccountManagement;
 using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
@@ -84,6 +85,7 @@ namespace ShopManager
             //top-level
             this.NumberOfProductsLabel.Text = Strings.Number_of_products;
             this.CreateSaleButton.Text = Strings.Create_sale;
+            this.AccountButton.Text = Strings.Account;
             this.TabControl.TabPages[0].Text = Strings.Products;
             this.TabControl.TabPages[1].Text = Strings.Sales;
             this.TabControl.TabPages[2].Text = Strings.Product_categories;
@@ -131,10 +133,11 @@ namespace ShopManager
         {
             //await MasterDBManager.InitializeDBAsync();
 
-            Task[] loadTasks = new Task[3];
+            Task[] loadTasks = new Task[4];
             loadTasks[0] = ProductCache.RegenerateCacheFromDBAsync();
             loadTasks[1] = SalesCache.RegenerateCacheFromDBAsync();
             loadTasks[2] = CategoriesCache.RegenerateCacheFromDBAsync();
+            loadTasks[3] = UsersCache.RegenerateCacheFromDBAsync();
 
             BasicAccountControlWindow loginWindow = new BasicAccountControlWindow();
             DialogResult dialogResult = loginWindow.ShowDialog();
@@ -847,6 +850,12 @@ namespace ShopManager
             {
                 TogglePendingSaveVisibility(true);
             }
+        }
+
+        private void AccountButton_Click(object sender, EventArgs e)
+        {
+            AccountManagementWindow accountManagementWindow = new AccountManagementWindow();
+            accountManagementWindow.ShowDialog();
         }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)

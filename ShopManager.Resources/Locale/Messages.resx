@@ -195,4 +195,25 @@
   <data name="VALIDATION_SALE_QUANTITY_EMPTY" xml:space="preserve">
     <value>The quantity can't be empty or negative!</value>
   </data>
+  <data name="CANNOT_DELETE_ADMIN" xml:space="preserve">
+    <value>You can't delete the initial admin account, "{0}".</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_LONG" xml:space="preserve">
+    <value>Password is too long.</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_SHORT" xml:space="preserve">
+    <value>Password is too short.</value>
+  </data>
+  <data name="VALIDATION_ROLE_INVALID" xml:space="preserve">
+    <value>Invalid role. Select only one option, don't write anything else in the role field.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_EXISTS" xml:space="preserve">
+    <value>Username already exists.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_LONG" xml:space="preserve">
+    <value>Username is too long.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_SHORT" xml:space="preserve">
+    <value>Username is too short.</value>
+  </data>
 </root>

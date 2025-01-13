@@ -117,182 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
-  </data>
-  <data name="Account management" xml:space="preserve">
-    <value>Account management</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="Add a new category" xml:space="preserve">
-    <value>Add a new category</value>
-  </data>
-  <data name="Add new user:" xml:space="preserve">
-    <value>Add new user:</value>
-  </data>
-  <data name="Add product" xml:space="preserve">
-    <value>Add product</value>
-  </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <data name="ADMIN: Manage users" xml:space="preserve">
-    <value>ADMIN: Manage users</value>
-  </data>
-  <data name="Also update product stock" xml:space="preserve">
-    <value>Also update product stock (quantity)</value>
-  </data>
-  <data name="Any modification will be applied immediately!!!" xml:space="preserve">
-    <value>Any modification will be applied immediately!!!</value>
-  </data>
-  <data name="Can only update a single category simultaneously!" xml:space="preserve">
-    <value>Can only update a single category simultaneously!</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="Change password" xml:space="preserve">
-    <value>Change password</value>
-  </data>
-  <data name="Change username" xml:space="preserve">
-    <value>Change username</value>
-  </data>
-  <data name="Create a new sale" xml:space="preserve">
-    <value>Create a new sale</value>
-  </data>
-  <data name="Create sale" xml:space="preserve">
-    <value>Create sale</value>
-  </data>
-  <data name="Delete selected" xml:space="preserve">
-    <value>Delete selected</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Deselect" xml:space="preserve">
-    <value>Deselect</value>
-  </data>
-  <data name="Discard all the changes made from the last save" xml:space="preserve">
-    <value>Discard all the changes made from the last save</value>
-  </data>
-  <data name="Discard changes" xml:space="preserve">
-    <value>Discard changes</value>
-  </data>
-  <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="Expiry date" xml:space="preserve">
-    <value>Expiry date</value>
-  </data>
-  <data name="File" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Forgot password" xml:space="preserve">
-    <value>Forgot password</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="Log in to the shop manager" xml:space="preserve">
-    <value>Log in to the shop manager</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="Manage users" xml:space="preserve">
-    <value>Manage users</value>
-  </data>
-  <data name="Modify" xml:space="preserve">
-    <value>Modify</value>
-  </data>
-  <data name="Modify an existing sale" xml:space="preserve">
-    <value>Modify an existing sale</value>
-  </data>
-  <data name="Modify sale" xml:space="preserve">
-    <value>Modify sale</value>
-  </data>
-  <data name="Modify user data:" xml:space="preserve">
-    <value>Modify user data:</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="New name for the selected category" xml:space="preserve">
-    <value>New name for the selected category</value>
-  </data>
-  <data name="New password:" xml:space="preserve">
-    <value>New password:</value>
-  </data>
-  <data name="New username:" xml:space="preserve">
-    <value>New username:</value>
-  </data>
-  <data name="Number of products" xml:space="preserve">
-    <value>Number of products</value>
-  </data>
-  <data name="Password:" xml:space="preserve">
-    <value>Password:</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Price</value>
-  </data>
-  <data name="Price per KG" xml:space="preserve">
-    <value>Price per KG</value>
-  </data>
-  <data name="Product" xml:space="preserve">
-    <value>Product</value>
-  </data>
-  <data name="Product categories" xml:space="preserve">
-    <value>Product categories</value>
-  </data>
-  <data name="Product category" xml:space="preserve">
-    <value>Product category</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="Purchase date" xml:space="preserve">
-    <value>Purchase date</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="REGISTER_EXPLANATION" xml:space="preserve">
-    <value>If you don't have an account, ask the shop administrator
-to log in and add you to the application's database.</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Role</value>
-  </data>
-  <data name="Sales" xml:space="preserve">
-    <value>Sales</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Save changes" xml:space="preserve">
-    <value>Save changes</value>
-  </data>
-  <data name="Shop manager" xml:space="preserve">
-    <value>Shop manager</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="Username:" xml:space="preserve">
-    <value>Username:</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="AdminButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        RK5CYII=
+</value>
   </data>
 </root>

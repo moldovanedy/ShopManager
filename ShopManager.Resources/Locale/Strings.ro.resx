@@ -120,17 +120,35 @@
   <data name="About" xml:space="preserve">
     <value>Despre</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Cont</value>
+  </data>
+  <data name="Account management" xml:space="preserve">
+    <value>Gestionare cont</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Adaugă</value>
   </data>
   <data name="Add a new category" xml:space="preserve">
     <value>Adaugă o nouă categorie</value>
   </data>
+  <data name="Add new user:" xml:space="preserve">
+    <value>Adaugă utilizator nou:</value>
+  </data>
   <data name="Add product" xml:space="preserve">
     <value>Adaugă produs</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="ADMIN: Manage users" xml:space="preserve">
+    <value>ADMIN: Gestionează utilizatorii</value>
+  </data>
   <data name="Also update product stock" xml:space="preserve">
     <value>Actualizează și cantitatea produselor (stoc)</value>
+  </data>
+  <data name="Any modification will be applied immediately!!!" xml:space="preserve">
+    <value>Orice modificare se va aplica imediat!!!</value>
   </data>
   <data name="Can only update a single category simultaneously!" xml:space="preserve">
     <value>Se poate modifica o singură categorie simultan!</value>
@@ -140,6 +158,12 @@
   </data>
   <data name="Category" xml:space="preserve">
     <value>Categorie</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>Schimbă parola</value>
+  </data>
+  <data name="Change username" xml:space="preserve">
+    <value>Schimbă numele</value>
   </data>
   <data name="Create a new sale" xml:space="preserve">
     <value>Creează o nouă vânzare</value>
@@ -186,6 +210,9 @@
   <data name="Login" xml:space="preserve">
     <value>Autentificare</value>
   </data>
+  <data name="Manage users" xml:space="preserve">
+    <value>Gestionează utilizatorii</value>
+  </data>
   <data name="Modify" xml:space="preserve">
     <value>Modifică</value>
   </data>
@@ -195,6 +222,9 @@
   <data name="Modify sale" xml:space="preserve">
     <value>Modifică o vânzare</value>
   </data>
+  <data name="Modify user data:" xml:space="preserve">
+    <value>Modifică datele utilizatorului:</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nume</value>
   </data>
@@ -203,6 +233,9 @@
   </data>
   <data name="New password:" xml:space="preserve">
     <value>Noua parolă:</value>
+  </data>
+  <data name="New username:" xml:space="preserve">
+    <value>Noul nume de utilizator:</value>
   </data>
   <data name="Number of products" xml:space="preserve">
     <value>Număr de produse</value>
@@ -238,6 +271,9 @@
     <value>Dacă nu ai un cont, roagă administratorul magazinului
 să se autentifice și să te adauge în baza de date a aplicației.</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
   <data name="Sales" xml:space="preserve">
     <value>Vânzări</value>
   </data>
@@ -249,6 +285,9 @@ să se autentifice și să te adauge în baza de date a aplicației.</value>
   </data>
   <data name="Shop manager" xml:space="preserve">
     <value>Manager magazin</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Utilizator</value>
   </data>
   <data name="Username:" xml:space="preserve">
     <value>Nume utilizator:</value>

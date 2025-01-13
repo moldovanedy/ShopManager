@@ -70,6 +70,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account management.
+        /// </summary>
+        public static string Account_management {
+            get {
+                return ResourceManager.GetString("Account management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -88,6 +106,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new user:.
+        /// </summary>
+        public static string Add_new_user_ {
+            get {
+                return ResourceManager.GetString("Add new user:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add product.
         /// </summary>
         public static string Add_product {
@@ -97,11 +124,38 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADMIN: Manage users.
+        /// </summary>
+        public static string ADMIN__Manage_users {
+            get {
+                return ResourceManager.GetString("ADMIN: Manage users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Also update product stock (quantity).
         /// </summary>
         public static string Also_update_product_stock {
             get {
                 return ResourceManager.GetString("Also update product stock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any modification will be applied immediately!!!.
+        /// </summary>
+        public static string Any_modification_will_be_applied_immediately___ {
+            get {
+                return ResourceManager.GetString("Any modification will be applied immediately!!!", resourceCulture);
             }
         }
         
@@ -129,6 +183,24 @@ namespace ShopManager.Resources.Locale {
         public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string Change_password {
+            get {
+                return ResourceManager.GetString("Change password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change username.
+        /// </summary>
+        public static string Change_username {
+            get {
+                return ResourceManager.GetString("Change username", resourceCulture);
             }
         }
         
@@ -268,6 +340,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage users.
+        /// </summary>
+        public static string Manage_users {
+            get {
+                return ResourceManager.GetString("Manage users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify.
         /// </summary>
         public static string Modify {
@@ -295,6 +376,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify user data:.
+        /// </summary>
+        public static string Modify_user_data_ {
+            get {
+                return ResourceManager.GetString("Modify user data:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -318,6 +408,15 @@ namespace ShopManager.Resources.Locale {
         public static string New_password_ {
             get {
                 return ResourceManager.GetString("New password:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New username:.
+        /// </summary>
+        public static string New_username_ {
+            get {
+                return ResourceManager.GetString("New username:", resourceCulture);
             }
         }
         
@@ -422,6 +521,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales.
         /// </summary>
         public static string Sales {
@@ -454,6 +562,15 @@ namespace ShopManager.Resources.Locale {
         public static string Shop_manager {
             get {
                 return ResourceManager.GetString("Shop manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
             }
         }
         
