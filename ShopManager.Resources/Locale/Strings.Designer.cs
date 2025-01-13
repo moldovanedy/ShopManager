@@ -142,6 +142,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin password:.
+        /// </summary>
+        public static string Admin_password_ {
+            get {
+                return ResourceManager.GetString("Admin password:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin username:.
+        /// </summary>
+        public static string Admin_username_ {
+            get {
+                return ResourceManager.GetString("Admin username:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Also update product stock (quantity).
         /// </summary>
         public static string Also_update_product_stock {

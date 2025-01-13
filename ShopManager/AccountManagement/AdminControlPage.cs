@@ -276,6 +276,12 @@ namespace ShopManager.AccountManagement
                     MessageBoxIcon.Error);
             }
 
+            //update the cache
+            if (user.ID == CredentialsMemoryStore.CurrentUser.ID)
+            {
+                CredentialsMemoryStore.CurrentUser = user;
+            }
+
             Cleanup();
             RegenerateUserList();
         }

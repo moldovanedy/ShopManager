@@ -216,4 +216,13 @@
   <data name="VALIDATION_USERNAME_SHORT" xml:space="preserve">
     <value>Username is too short.</value>
   </data>
+  <data name="LOGIN_ADMIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Invalid admin username or password.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Invalid username or password.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
+    <value>Invalid credentials</value>
+  </data>
 </root>

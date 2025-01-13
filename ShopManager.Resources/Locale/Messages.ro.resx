@@ -216,4 +216,13 @@
   <data name="VALIDATION_USERNAME_SHORT" xml:space="preserve">
     <value>Numele de utilizator este prea scurt.</value>
   </data>
+  <data name="LOGIN_ADMIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Numele de utilizator sau parola administratorului incorecte.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Nume de utilizator sau parolă incorecte.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
+    <value>Credențiale invalide</value>
+  </data>
 </root>

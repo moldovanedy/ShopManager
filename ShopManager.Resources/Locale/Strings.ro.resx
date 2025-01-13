@@ -141,6 +141,12 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="Admin password:" xml:space="preserve">
+    <value>Parolă admin:</value>
+  </data>
+  <data name="Admin username:" xml:space="preserve">
+    <value>Nume utilizator admin:</value>
+  </data>
   <data name="ADMIN: Manage users" xml:space="preserve">
     <value>ADMIN: Gestionează utilizatorii</value>
   </data>

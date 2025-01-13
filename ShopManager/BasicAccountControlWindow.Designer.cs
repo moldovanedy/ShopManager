@@ -36,6 +36,10 @@
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
+            this.AdminPasswordTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.AdminPasswordLabel = new System.Windows.Forms.Label();
+            this.AdminUsernameTextBox = new System.Windows.Forms.TextBox();
+            this.AdminUsernameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ForgotPasswordLink
@@ -43,7 +47,7 @@
             this.ForgotPasswordLink.AutoSize = true;
             this.ForgotPasswordLink.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(182)))), ((int)(((byte)(206)))));
             this.ForgotPasswordLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(130)))), ((int)(((byte)(255)))));
-            this.ForgotPasswordLink.Location = new System.Drawing.Point(15, 215);
+            this.ForgotPasswordLink.Location = new System.Drawing.Point(15, 240);
             this.ForgotPasswordLink.Name = "ForgotPasswordLink";
             this.ForgotPasswordLink.Size = new System.Drawing.Size(113, 17);
             this.ForgotPasswordLink.TabIndex = 15;
@@ -55,7 +59,7 @@
             // RegisterExplanationLabel
             // 
             this.RegisterExplanationLabel.AutoSize = true;
-            this.RegisterExplanationLabel.Location = new System.Drawing.Point(10, 170);
+            this.RegisterExplanationLabel.Location = new System.Drawing.Point(10, 190);
             this.RegisterExplanationLabel.Name = "RegisterExplanationLabel";
             this.RegisterExplanationLabel.Size = new System.Drawing.Size(365, 34);
             this.RegisterExplanationLabel.TabIndex = 13;
@@ -128,12 +132,65 @@
             this.TitleLabel.Text = "Log in to the shop manager";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // AdminPasswordTextBox
+            // 
+            this.AdminPasswordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdminPasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.AdminPasswordTextBox.Enabled = false;
+            this.AdminPasswordTextBox.ForeColor = System.Drawing.Color.White;
+            this.AdminPasswordTextBox.Location = new System.Drawing.Point(250, 205);
+            this.AdminPasswordTextBox.Name = "AdminPasswordTextBox";
+            this.AdminPasswordTextBox.PasswordChar = '●';
+            this.AdminPasswordTextBox.ResetOnSpace = false;
+            this.AdminPasswordTextBox.Size = new System.Drawing.Size(225, 23);
+            this.AdminPasswordTextBox.TabIndex = 18;
+            this.AdminPasswordTextBox.Visible = false;
+            this.AdminPasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminPasswordTextBox_KeyDown);
+            // 
+            // AdminPasswordLabel
+            // 
+            this.AdminPasswordLabel.AutoSize = true;
+            this.AdminPasswordLabel.Enabled = false;
+            this.AdminPasswordLabel.Location = new System.Drawing.Point(10, 205);
+            this.AdminPasswordLabel.Name = "AdminPasswordLabel";
+            this.AdminPasswordLabel.Size = new System.Drawing.Size(115, 17);
+            this.AdminPasswordLabel.TabIndex = 17;
+            this.AdminPasswordLabel.Text = "Admin password:";
+            this.AdminPasswordLabel.Visible = false;
+            // 
+            // AdminUsernameTextBox
+            // 
+            this.AdminUsernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AdminUsernameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.AdminUsernameTextBox.Enabled = false;
+            this.AdminUsernameTextBox.ForeColor = System.Drawing.Color.White;
+            this.AdminUsernameTextBox.Location = new System.Drawing.Point(250, 160);
+            this.AdminUsernameTextBox.Name = "AdminUsernameTextBox";
+            this.AdminUsernameTextBox.Size = new System.Drawing.Size(225, 23);
+            this.AdminUsernameTextBox.TabIndex = 20;
+            this.AdminUsernameTextBox.Visible = false;
+            // 
+            // AdminUsernameLabel
+            // 
+            this.AdminUsernameLabel.AutoSize = true;
+            this.AdminUsernameLabel.Enabled = false;
+            this.AdminUsernameLabel.Location = new System.Drawing.Point(10, 160);
+            this.AdminUsernameLabel.Name = "AdminUsernameLabel";
+            this.AdminUsernameLabel.Size = new System.Drawing.Size(118, 17);
+            this.AdminUsernameLabel.TabIndex = 19;
+            this.AdminUsernameLabel.Text = "Admin username:";
+            this.AdminUsernameLabel.Visible = false;
+            // 
             // BasicAccountControlWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(484, 311);
+            this.Controls.Add(this.AdminUsernameTextBox);
+            this.Controls.Add(this.AdminUsernameLabel);
+            this.Controls.Add(this.AdminPasswordTextBox);
+            this.Controls.Add(this.AdminPasswordLabel);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.ForgotPasswordLink);
             this.Controls.Add(this.RegisterExplanationLabel);
@@ -167,5 +224,9 @@
         private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.MaskedTextBox AdminPasswordTextBox;
+        private System.Windows.Forms.Label AdminPasswordLabel;
+        private System.Windows.Forms.TextBox AdminUsernameTextBox;
+        private System.Windows.Forms.Label AdminUsernameLabel;
     }
 }
