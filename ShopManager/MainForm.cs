@@ -85,6 +85,7 @@ namespace ShopManager
             //top-level
             this.NumberOfProductsLabel.Text = Strings.Number_of_products;
             this.CreateSaleButton.Text = Strings.Create_sale;
+            this.AccountButton.Text = Strings.Account;
             this.TabControl.TabPages[0].Text = Strings.Products;
             this.TabControl.TabPages[1].Text = Strings.Sales;
             this.TabControl.TabPages[2].Text = Strings.Product_categories;

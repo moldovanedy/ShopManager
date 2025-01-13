@@ -139,7 +139,7 @@
             this.ChangeButton.Name = "ChangeButton";
             this.ChangeButton.Size = new System.Drawing.Size(76, 27);
             this.ChangeButton.TabIndex = 8;
-            this.ChangeButton.Text = "CHANGE";
+            this.ChangeButton.Text = "Modify";
             this.ChangeButton.UseVisualStyleBackColor = false;
             this.ChangeButton.Visible = false;
             this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
@@ -150,7 +150,7 @@
             this.AdminButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AdminButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
             this.AdminButton.Image = ((System.Drawing.Image)(resources.GetObject("AdminButton.Image")));
-            this.AdminButton.Location = new System.Drawing.Point(171, 80);
+            this.AdminButton.Location = new System.Drawing.Point(225, 80);
             this.AdminButton.Name = "AdminButton";
             this.AdminButton.Size = new System.Drawing.Size(183, 30);
             this.AdminButton.TabIndex = 9;
@@ -177,7 +177,7 @@
             this.Controls.Add(this.UsernameLabel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.ForeColor = System.Drawing.Color.White;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AccountDashboardPage";
             this.Size = new System.Drawing.Size(450, 450);
             this.ResumeLayout(false);

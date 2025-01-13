@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Windows.Forms;
+using ShopManager.Resources.Locale;
 
 namespace ShopManager.AccountManagement
 {
-    public partial class AccountDashboardPage : UserControl
+    public partial class AccountDashboardPage : UserControl, IUserForm
     {
         public AccountDashboardPage()
         {
             InitializeComponent();
+            Translate();
+        }
+
+        public void Translate()
+        {
+            this.ChangeUsernameButton.Text = Strings.Change_username;
+            this.ChangePasswordButton.Text = Strings.Change_password;
+            this.AdminButton.Text = Strings.ADMIN__Manage_users;
+            this.ChangeButton.Text = Strings.Modify;
         }
 
         private void AdminButton_Click(object sender, EventArgs e)
@@ -53,6 +63,8 @@ namespace ShopManager.AccountManagement
 
             this.ChangeButton.Enabled = enable;
             this.ChangeButton.Visible = enable;
+
+            this.ChangeFirstLabel.Text = Strings.New_username_;
         }
 
         private void ToggleSecondControls(bool enable)
@@ -65,6 +77,9 @@ namespace ShopManager.AccountManagement
 
             this.ChangeButton.Enabled = enable;
             this.ChangeButton.Visible = enable;
+
+            this.ChangeFirstLabel.Text = Strings.Password_;
+            this.ChangeSecondLabel.Text = Strings.New_password_;
         }
     }
 }

@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Account management" xml:space="preserve">
+    <value>Account management</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -135,6 +141,9 @@
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
   </data>
+  <data name="ADMIN: Manage users" xml:space="preserve">
+    <value>ADMIN: Manage users</value>
+  </data>
   <data name="Also update product stock" xml:space="preserve">
     <value>Also update product stock (quantity)</value>
   </data>
@@ -149,6 +158,12 @@
   </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Change username" xml:space="preserve">
+    <value>Change username</value>
   </data>
   <data name="Create a new sale" xml:space="preserve">
     <value>Create a new sale</value>
@@ -218,6 +233,9 @@
   </data>
   <data name="New password:" xml:space="preserve">
     <value>New password:</value>
+  </data>
+  <data name="New username:" xml:space="preserve">
+    <value>New username:</value>
   </data>
   <data name="Number of products" xml:space="preserve">
     <value>Number of products</value>
