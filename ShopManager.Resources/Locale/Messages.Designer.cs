@@ -205,6 +205,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong password..
+        /// </summary>
+        public static string LOGIN_INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are unsaved changes. Do you want to save your changes?.
         /// </summary>
         public static string SAVE_CHANGES_QUESTION_TEXT {

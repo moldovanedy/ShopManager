@@ -225,4 +225,7 @@
   <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
     <value>Credențiale invalide</value>
   </data>
+  <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
+    <value>Parolă greșită.</value>
+  </data>
 </root>
