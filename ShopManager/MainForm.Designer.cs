@@ -47,6 +47,8 @@
             this.EnLangMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportSalesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NumberOfProductsLabel = new System.Windows.Forms.Label();
@@ -88,6 +90,8 @@
             this.SearchBar = new System.Windows.Forms.ToolStripTextBox();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.AccountButton = new System.Windows.Forms.Button();
+            this.ExportProductsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportCategoriesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppMenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsTable)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -121,6 +125,7 @@
             // 
             this.AppMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
+            this.ExportMenuItem,
             this.HelpMenuItem});
             this.AppMenuBar.Location = new System.Drawing.Point(0, 0);
             this.AppMenuBar.Name = "AppMenuBar";
@@ -173,6 +178,23 @@
             this.ExitMenuItem.Size = new System.Drawing.Size(134, 22);
             this.ExitMenuItem.Text = "Exit";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
+            // 
+            // ExportMenuItem
+            // 
+            this.ExportMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExportSalesMenuItem,
+            this.ExportProductsMenuItem,
+            this.ExportCategoriesMenuItem});
+            this.ExportMenuItem.Name = "ExportMenuItem";
+            this.ExportMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.ExportMenuItem.Text = "Export";
+            // 
+            // ExportSalesMenuItem
+            // 
+            this.ExportSalesMenuItem.Name = "ExportSalesMenuItem";
+            this.ExportSalesMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExportSalesMenuItem.Text = "Sales";
+            this.ExportSalesMenuItem.Click += new System.EventHandler(this.ExportSalesMenuItem_Click);
             // 
             // HelpMenuItem
             // 
@@ -727,6 +749,20 @@
             this.AccountButton.UseVisualStyleBackColor = false;
             this.AccountButton.Click += new System.EventHandler(this.AccountButton_Click);
             // 
+            // ExportProductsMenuItem
+            // 
+            this.ExportProductsMenuItem.Name = "ExportProductsMenuItem";
+            this.ExportProductsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExportProductsMenuItem.Text = "Products";
+            this.ExportProductsMenuItem.Click += new System.EventHandler(this.ExportProductsMenuItem_Click);
+            // 
+            // ExportCategoriesMenuItem
+            // 
+            this.ExportCategoriesMenuItem.Name = "ExportCategoriesMenuItem";
+            this.ExportCategoriesMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExportCategoriesMenuItem.Text = "Categories";
+            this.ExportCategoriesMenuItem.Click += new System.EventHandler(this.ExportCategoriesMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,6 +855,10 @@
         private System.Windows.Forms.ToolStripButton SearchButton;
         private System.Windows.Forms.ToolStripTextBox SearchBar;
         private System.Windows.Forms.Button AccountButton;
+        private System.Windows.Forms.ToolStripMenuItem ExportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportSalesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportProductsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportCategoriesMenuItem;
     }
 }
 

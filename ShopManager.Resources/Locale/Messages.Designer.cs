@@ -160,6 +160,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export was succesful!.
+        /// </summary>
+        public static string EXPORT_SUCCESS {
+            get {
+                return ResourceManager.GetString("EXPORT_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fatal error. Any unsaved changes are lost..
         /// </summary>
         public static string FATAL_ERROR_TEXT {
@@ -228,6 +237,15 @@ namespace ShopManager.Resources.Locale {
         public static string SAVE_CHANGES_QUESTION_TITLE {
             get {
                 return ResourceManager.GetString("SAVE_CHANGES_QUESTION_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success!.
+        /// </summary>
+        public static string SUCCESS {
+            get {
+                return ResourceManager.GetString("SUCCESS", resourceCulture);
             }
         }
         

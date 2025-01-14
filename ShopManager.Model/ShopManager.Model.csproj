@@ -83,6 +83,8 @@
     <Compile Include="ResultHandler\ValueResult.cs" />
     <Compile Include="Validation\SaleValidations.cs" />
     <Compile Include="Validation\ProductValidations.cs" />
+    <Compile Include="XmlDataManager\XmlFilesManager.cs" />
+    <Compile Include="XmlDataManager\ItemsXmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

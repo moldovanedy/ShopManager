@@ -228,4 +228,10 @@
   <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
     <value>Parolă greșită.</value>
   </data>
+  <data name="EXPORT_SUCCESS" xml:space="preserve">
+    <value>Exportul s-a realizat cu succes.</value>
+  </data>
+  <data name="SUCCESS" xml:space="preserve">
+    <value>Succes!</value>
+  </data>
 </root>
