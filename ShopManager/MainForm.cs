@@ -771,7 +771,6 @@ namespace ShopManager
             saveResult = await CategoriesCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                //MessageBox.Show("Error on categories save");
                 Logger.LogError(saveResult.ResultingError.Description);
                 MessageBox.Show(
                     Messages.UNEXPECTED_ERROR_TEXT,
@@ -783,7 +782,6 @@ namespace ShopManager
             saveResult = await ProductCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                //MessageBox.Show("Error on products save");
                 Logger.LogError(saveResult.ResultingError.Description);
                 MessageBox.Show(
                     Messages.UNEXPECTED_ERROR_TEXT,
@@ -795,7 +793,6 @@ namespace ShopManager
             saveResult = await SalesCache.FlushCacheToDBAsync();
             if (!saveResult.IsSuccess)
             {
-                //MessageBox.Show("Error on sales save");
                 Logger.LogError(saveResult.ResultingError.Description);
                 MessageBox.Show(
                     Messages.UNEXPECTED_ERROR_TEXT,
