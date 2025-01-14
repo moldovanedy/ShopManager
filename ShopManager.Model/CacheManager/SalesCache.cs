@@ -10,24 +10,21 @@ namespace ShopManager.Controller.CacheManager
 {
     public static class SalesCache
     {
-        private static uint _currentPage = 0;
         private static readonly Dictionary<long, Sale> _pageCache = new Dictionary<long, Sale>();
         private static readonly List<long> _modifiedSalesIds = new List<long>();
         private static readonly List<long> _deletedSalesIds = new List<long>();
 
         /// <summary>
-        /// Regenerates (or creates) the cache from the underlying DB at the given page (a page has max. 100 records).
+        /// Regenerates (or creates) the cache from the underlying DB.
         /// </summary>
-        /// <param name="page">The page to get. Giving a nonexistent page will clamp it to the existing limits.</param>
         /// <returns></returns>
-        public static async Task RegenerateCacheFromDBAsync(int page = 0)
+        public static async Task RegenerateCacheFromDBAsync()
         {
             _pageCache.Clear();
-            _currentPage = (uint)page;
             _modifiedSalesIds.Clear();
             _deletedSalesIds.Clear();
 
-            List<Sale> sales = await SalesManager.GetAllSalesAsync(page * 100, (page * 100) + 100);
+            List<Sale> sales = await SalesManager.GetAllSalesAsync();
 
             foreach (Sale sale in sales)
             {
@@ -55,7 +52,6 @@ namespace ShopManager.Controller.CacheManager
 
                 salesToAddOrUpdate.Add(_pageCache[modID]);
             }
-
 
             Result operationResult;
             //wait all pending add or update
@@ -110,21 +106,16 @@ namespace ShopManager.Controller.CacheManager
             return Result.Successful();
         }
 
-        public static uint GetCurrentPage()
-        {
-            return _currentPage;
-        }
-
-        public static int GetNumberOfSalesOnCurrentPage()
+        public static int GetNumberOfSales()
         {
             return _pageCache.Count;
         }
 
         /// <summary>
-        /// Will return the UNSORTED sales from the current page.
+        /// Will return the UNSORTED sales.
         /// </summary>
         /// <returns></returns>
-        public static List<Sale> GetAllSalesFromCurrentPage()
+        public static List<Sale> GetAllSales(string searchString = "")
         {
             List<Sale> sales = new List<Sale>();
             foreach (KeyValuePair<long, Sale> pair in _pageCache)
@@ -132,6 +123,18 @@ namespace ShopManager.Controller.CacheManager
                 if (_deletedSalesIds.Contains(pair.Key))
                 {
                     continue;
+                }
+
+                //search
+                if (searchString != "")
+                {
+                    ValueResult<Product> productResult = ProductCache.GetProduct(pair.Value.ProductID);
+                    if (
+                        !productResult.IsSuccess ||
+                        !productResult.Value.Name.ToLower().Contains(searchString.ToLower()))
+                    {
+                        continue;
+                    }
                 }
 
                 pair.Value.ID = pair.Key;

@@ -1,41 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Threading.Tasks;
-using ShopManager.Controller.CacheManager;
+using ShopManager.Controller.DataModels;
 using ShopManager.Controller.ResultHandler;
-using ShopManager.Model.DataModels;
 using ShopManager.Model.DBManager;
 
 namespace ShopManager.Controller.DBManager
 {
-    public static class CategoriesManager
+    public static class UsersManager
     {
-        public static async Task<List<ProductCategory>> GetAllCategoriesAsync()
+        public static async Task<List<User>> GetAllUsersAsync()
         {
-            List<ProductCategory> categories = new List<ProductCategory>();
+            List<User> users = new List<User>();
             using (AppDBContext ctx = new AppDBContext())
             {
-                categories = await ctx.Categories.AsNoTracking().ToListAsync();
-                if (categories.Count == 0)
+                users = await ctx.Users.AsNoTracking().ToListAsync();
+                if (users.Count == 0)
                 {
-                    ProductCategory defaultCategory = new ProductCategory()
+                    User defaultUser = new User()
                     {
-                        Name = ""
+                        Username = "Admin",
+                        //hardcoded "root" password
+                        Password = "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2",
+                        Permissions = 0b00111111,
                     };
-                    ctx.Categories.Add(defaultCategory);
+                    ctx.Users.Add(defaultUser);
                     await ctx.SaveChangesAsync();
 
-                    categories.Add(defaultCategory);
+                    users.Add(defaultUser);
                 }
             }
-            return categories;
+            return users;
         }
 
-        public static async Task<ValueResult<ProductCategory>> AddCategoryAsync(ProductCategory category)
+        public static async Task<ValueResult<User>> AddUserAsync(User user)
         {
-            ProductCategory insertedCategory = null;
+            User insertedUser = null;
             Error saveError = null;
             await Task.Run(async () =>
             {
@@ -43,7 +44,7 @@ namespace ShopManager.Controller.DBManager
                 {
                     try
                     {
-                        insertedCategory = ctx.Categories.Add(category);
+                        insertedUser = ctx.Users.Add(user);
                         await ctx.SaveChangesAsync();
                     }
                     catch (Exception ex)
@@ -56,13 +57,13 @@ namespace ShopManager.Controller.DBManager
 
             if (saveError != null)
             {
-                return ValueResult<ProductCategory>.Failed(saveError);
+                return ValueResult<User>.Failed(saveError);
             }
 
-            return ValueResult<ProductCategory>.Successful(insertedCategory);
+            return ValueResult<User>.Successful(insertedUser);
         }
 
-        public static async Task<Result> DeleteCategoryAsync(ProductCategory category)
+        public static async Task<Result> DeleteUserAsync(User user)
         {
             Error saveError = null;
             await Task.Run(async () =>
@@ -71,9 +72,8 @@ namespace ShopManager.Controller.DBManager
                 {
                     try
                     {
-                        ctx.Categories.Attach(category);
-
-                        ctx.Categories.Remove(category);
+                        ctx.Users.Attach(user);
+                        ctx.Users.Remove(user);
                         await ctx.SaveChangesAsync();
                     }
                     catch (Exception ex)
@@ -92,7 +92,7 @@ namespace ShopManager.Controller.DBManager
             return Result.Successful();
         }
 
-        public static async Task<Result> AddOrUpdateCategoryAsync(ProductCategory category)
+        public static async Task<Result> AddOrUpdateUserAsync(User user)
         {
             Error saveError = null;
             await Task.Run(async () =>
@@ -101,32 +101,18 @@ namespace ShopManager.Controller.DBManager
                 {
                     try
                     {
-                        long oldID = category.ID;
-                        ProductCategory storedCategory = await ctx.Categories.FindAsync(category.ID);
-                        if (storedCategory == null)
+                        long oldID = user.ID;
+                        User storedUser = await ctx.Users.FindAsync(user.ID);
+                        if (storedUser == null)
                         {
-                            Result addResult = await AddCategoryAsync(category);
+                            Result addResult = await AddUserAsync(user);
                             saveError = addResult.ResultingError;
                         }
                         else
                         {
-                            ctx.Entry(storedCategory).CurrentValues.SetValues(category);
+                            ctx.Entry(storedUser).CurrentValues.SetValues(user);
                             await ctx.SaveChangesAsync();
                         }
-
-                        if (category.ID == oldID)
-                        {
-                            return;
-                        }
-
-                        //update the categories IDs (the changes to products will be saved elsewhere, not here)
-                        ProductCache.GetAllProducts()
-                            .Where((prod) => prod.CategoryID == oldID)
-                            .ToList()
-                            .ForEach((prod) =>
-                                {
-                                    prod.CategoryID = category.ID;
-                                });
                     }
                     catch (Exception ex)
                     {

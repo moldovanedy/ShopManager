@@ -5,18 +5,12 @@ using ShopManager.Resources.Locale;
 
 namespace ShopManager
 {
-    internal partial class AboutWindow : Form
+    internal partial class AboutWindow : Form, IUserForm
     {
         public AboutWindow()
         {
             InitializeComponent();
-
-            this.Text = $"{Strings.About} {Messages.ABOUT_APP_TITLE}";
-            this.labelProductName.Text = Messages.ABOUT_APP_TITLE;
-            this.labelVersion.Text = $"{Strings.Version} {AssemblyVersion}";
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = Messages.ABOUT_APP_DESCRIPTION;
+            Translate();
         }
 
         #region Assembly Attribute Accessors
@@ -98,6 +92,16 @@ namespace ShopManager
             }
         }
         #endregion
+
+        public void Translate()
+        {
+            this.Text = $"{Strings.About} {Messages.ABOUT_APP_TITLE}";
+            this.labelProductName.Text = Messages.ABOUT_APP_TITLE;
+            this.labelVersion.Text = $"{Strings.Version} {AssemblyVersion}";
+            this.labelCopyright.Text = AssemblyCopyright;
+            this.labelCompanyName.Text = AssemblyCompany;
+            this.textBoxDescription.Text = Messages.ABOUT_APP_DESCRIPTION;
+        }
 
         private void OkButton_Click(object sender, EventArgs e)
         {

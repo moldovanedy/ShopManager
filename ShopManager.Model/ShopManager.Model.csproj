@@ -60,14 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheManager\UsersCache.cs" />
     <Compile Include="CacheManager\CategoriesCache.cs" />
     <Compile Include="CacheManager\SalesCache.cs" />
     <Compile Include="CacheManager\ProductCache.cs" />
+    <Compile Include="CredentialsMemoryStore.cs" />
+    <Compile Include="DataModels\User.cs" />
     <Compile Include="DBManager\AppDBContext.cs" />
     <Compile Include="DataModels\Product.cs" />
     <Compile Include="DataModels\ProductCategory.cs" />
     <Compile Include="DataModels\Sale.cs" />
-    <Compile Include="DBManager\MasterDBManager.cs" />
+    <Compile Include="DBManager\UsersManager.cs" />
     <Compile Include="DBManager\CategoriesManager.cs" />
     <Compile Include="DBManager\SalesManager.cs" />
     <Compile Include="DBManager\ProductsManager.cs" />
@@ -80,6 +83,8 @@
     <Compile Include="ResultHandler\ValueResult.cs" />
     <Compile Include="Validation\SaleValidations.cs" />
     <Compile Include="Validation\ProductValidations.cs" />
+    <Compile Include="XmlDataManager\XmlFilesManager.cs" />
+    <Compile Include="XmlDataManager\ItemsXmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

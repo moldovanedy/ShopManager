@@ -120,17 +120,41 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Account management" xml:space="preserve">
+    <value>Account management</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="Add a new category" xml:space="preserve">
     <value>Add a new category</value>
   </data>
+  <data name="Add new user:" xml:space="preserve">
+    <value>Add new user:</value>
+  </data>
   <data name="Add product" xml:space="preserve">
     <value>Add product</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Admin password:" xml:space="preserve">
+    <value>Admin password:</value>
+  </data>
+  <data name="Admin username:" xml:space="preserve">
+    <value>Admin username:</value>
+  </data>
+  <data name="ADMIN: Manage users" xml:space="preserve">
+    <value>ADMIN: Manage users</value>
+  </data>
   <data name="Also update product stock" xml:space="preserve">
     <value>Also update product stock (quantity)</value>
+  </data>
+  <data name="Any modification will be applied immediately!!!" xml:space="preserve">
+    <value>Any modification will be applied immediately!!!</value>
   </data>
   <data name="Can only update a single category simultaneously!" xml:space="preserve">
     <value>Can only update a single category simultaneously!</value>
@@ -141,11 +165,20 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="Change password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Change username" xml:space="preserve">
+    <value>Change username</value>
+  </data>
   <data name="Create a new sale" xml:space="preserve">
     <value>Create a new sale</value>
   </data>
   <data name="Create sale" xml:space="preserve">
     <value>Create sale</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="Delete selected" xml:space="preserve">
     <value>Delete selected</value>
@@ -168,14 +201,29 @@
   <data name="Expiry date" xml:space="preserve">
     <value>Expiry date</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
+  </data>
+  <data name="Forgot password" xml:space="preserve">
+    <value>Forgot password</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="Log in to the shop manager" xml:space="preserve">
+    <value>Log in to the shop manager</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Manage users" xml:space="preserve">
+    <value>Manage users</value>
   </data>
   <data name="Modify" xml:space="preserve">
     <value>Modify</value>
@@ -186,14 +234,26 @@
   <data name="Modify sale" xml:space="preserve">
     <value>Modify sale</value>
   </data>
+  <data name="Modify user data:" xml:space="preserve">
+    <value>Modify user data:</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="New name for the selected category" xml:space="preserve">
     <value>New name for the selected category</value>
   </data>
+  <data name="New password:" xml:space="preserve">
+    <value>New password:</value>
+  </data>
+  <data name="New username:" xml:space="preserve">
+    <value>New username:</value>
+  </data>
   <data name="Number of products" xml:space="preserve">
     <value>Number of products</value>
+  </data>
+  <data name="Password:" xml:space="preserve">
+    <value>Password:</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
@@ -219,6 +279,13 @@
   <data name="Quantity" xml:space="preserve">
     <value>Quantity</value>
   </data>
+  <data name="REGISTER_EXPLANATION" xml:space="preserve">
+    <value>If you don't have an account, ask the shop administrator
+to log in and add you to the application's database.</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="Sales" xml:space="preserve">
     <value>Sales</value>
   </data>
@@ -228,10 +295,28 @@
   <data name="Save changes" xml:space="preserve">
     <value>Save changes</value>
   </data>
+  <data name="Select date and time" xml:space="preserve">
+    <value>Select date and time</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
   <data name="Shop manager" xml:space="preserve">
     <value>Shop manager</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Username:" xml:space="preserve">
+    <value>Username:</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="XML File" xml:space="preserve">
+    <value>XML File</value>
   </data>
 </root>

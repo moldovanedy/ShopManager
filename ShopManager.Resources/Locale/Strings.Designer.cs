@@ -70,6 +70,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account management.
+        /// </summary>
+        public static string Account_management {
+            get {
+                return ResourceManager.GetString("Account management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -88,6 +106,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new user:.
+        /// </summary>
+        public static string Add_new_user_ {
+            get {
+                return ResourceManager.GetString("Add new user:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add product.
         /// </summary>
         public static string Add_product {
@@ -97,11 +124,56 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADMIN: Manage users.
+        /// </summary>
+        public static string ADMIN__Manage_users {
+            get {
+                return ResourceManager.GetString("ADMIN: Manage users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin password:.
+        /// </summary>
+        public static string Admin_password_ {
+            get {
+                return ResourceManager.GetString("Admin password:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin username:.
+        /// </summary>
+        public static string Admin_username_ {
+            get {
+                return ResourceManager.GetString("Admin username:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Also update product stock (quantity).
         /// </summary>
         public static string Also_update_product_stock {
             get {
                 return ResourceManager.GetString("Also update product stock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any modification will be applied immediately!!!.
+        /// </summary>
+        public static string Any_modification_will_be_applied_immediately___ {
+            get {
+                return ResourceManager.GetString("Any modification will be applied immediately!!!", resourceCulture);
             }
         }
         
@@ -133,6 +205,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string Change_password {
+            get {
+                return ResourceManager.GetString("Change password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change username.
+        /// </summary>
+        public static string Change_username {
+            get {
+                return ResourceManager.GetString("Change username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new sale.
         /// </summary>
         public static string Create_a_new_sale {
@@ -147,6 +237,15 @@ namespace ShopManager.Resources.Locale {
         public static string Create_sale {
             get {
                 return ResourceManager.GetString("Create sale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -214,11 +313,29 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot password.
+        /// </summary>
+        public static string Forgot_password {
+            get {
+                return ResourceManager.GetString("Forgot password", resourceCulture);
             }
         }
         
@@ -237,6 +354,33 @@ namespace ShopManager.Resources.Locale {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in to the shop manager.
+        /// </summary>
+        public static string Log_in_to_the_shop_manager {
+            get {
+                return ResourceManager.GetString("Log in to the shop manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage users.
+        /// </summary>
+        public static string Manage_users {
+            get {
+                return ResourceManager.GetString("Manage users", resourceCulture);
             }
         }
         
@@ -268,6 +412,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify user data:.
+        /// </summary>
+        public static string Modify_user_data_ {
+            get {
+                return ResourceManager.GetString("Modify user data:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -286,11 +439,38 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password:.
+        /// </summary>
+        public static string New_password_ {
+            get {
+                return ResourceManager.GetString("New password:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New username:.
+        /// </summary>
+        public static string New_username_ {
+            get {
+                return ResourceManager.GetString("New username:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of products.
         /// </summary>
         public static string Number_of_products {
             get {
                 return ResourceManager.GetString("Number of products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string Password_ {
+            get {
+                return ResourceManager.GetString("Password:", resourceCulture);
             }
         }
         
@@ -367,6 +547,25 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you don&apos;t have an account, ask the shop administrator
+        ///to log in and add you to the application&apos;s database..
+        /// </summary>
+        public static string REGISTER_EXPLANATION {
+            get {
+                return ResourceManager.GetString("REGISTER_EXPLANATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales.
         /// </summary>
         public static string Sales {
@@ -394,6 +593,24 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select date and time.
+        /// </summary>
+        public static string Select_date_and_time {
+            get {
+                return ResourceManager.GetString("Select date and time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set.
+        /// </summary>
+        public static string Set {
+            get {
+                return ResourceManager.GetString("Set", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shop manager.
         /// </summary>
         public static string Shop_manager {
@@ -403,11 +620,47 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username:.
+        /// </summary>
+        public static string Username_ {
+            get {
+                return ResourceManager.GetString("Username:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML File.
+        /// </summary>
+        public static string XML_File {
+            get {
+                return ResourceManager.GetString("XML File", resourceCulture);
             }
         }
     }

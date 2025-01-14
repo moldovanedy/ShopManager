@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>F:\UMFST\Anul2\NET_WinForms\ShopManager\ShopManager\dist\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,9 +26,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Shop Manager</ProductName>
+    <PublisherName>Moldovan Eduard</PublisherName>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -50,6 +55,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1B3DAD14C30FC135E1E9640BAB4DA1A93368F036</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ShopManager_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
@@ -59,6 +76,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -86,6 +104,30 @@
     <Compile Include="AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AccountManagement\AccountDashboardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AccountDashboardPage.Designer.cs">
+      <DependentUpon>AccountDashboardPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountManagement\AccountManagementWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AccountManagementWindow.Designer.cs">
+      <DependentUpon>AccountManagementWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountManagement\AdminControlPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AccountManagement\AdminControlPage.Designer.cs">
+      <DependentUpon>AdminControlPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasicAccountControlWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicAccountControlWindow.Designer.cs">
+      <DependentUpon>BasicAccountControlWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ProductsTableController.cs" />
     <Compile Include="Controllers\SalesTableController.cs" />
     <Compile Include="CreateSaleWindow.cs">
@@ -94,7 +136,14 @@
     <Compile Include="CreateSaleWindow.Designer.cs">
       <DependentUpon>CreateSaleWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DateTimePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DateTimePicker.Designer.cs">
+      <DependentUpon>DateTimePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\CustomMenuBarRenderer.cs" />
+    <Compile Include="IUserForm.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,8 +160,23 @@
     <EmbeddedResource Include="AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AccountDashboardPage.resx">
+      <DependentUpon>AccountDashboardPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AccountManagementWindow.resx">
+      <DependentUpon>AccountManagementWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountManagement\AdminControlPage.resx">
+      <DependentUpon>AdminControlPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicAccountControlWindow.resx">
+      <DependentUpon>BasicAccountControlWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateSaleWindow.resx">
       <DependentUpon>CreateSaleWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DateTimePicker.resx">
+      <DependentUpon>DateTimePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -127,7 +191,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -135,6 +199,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ShopManager_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopManager.Model\ShopManager.Model.csproj">

@@ -45,7 +45,6 @@ namespace ShopManager.Controllers
                     ProductCache.SearchSingleProduct(e.Row.Cells[1].Value.ToString());
                 if (!prodResult.IsSuccess)
                 {
-                    //MessageBox.Show("Error on stock update");
                     Logger.LogError(prodResult.ResultingError.Description);
                     MessageBox.Show(
                         Messages.UNEXPECTED_ERROR_TEXT,
@@ -60,7 +59,6 @@ namespace ShopManager.Controllers
                 Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
                 if (!updateQuantityResult.IsSuccess)
                 {
-                    //MessageBox.Show("Error on stock update");
                     Logger.LogError(updateQuantityResult.ResultingError.Description);
                     MessageBox.Show(
                         Messages.UNEXPECTED_ERROR_TEXT,
@@ -125,7 +123,7 @@ namespace ShopManager.Controllers
         internal static void RepopulateTable()
         {
             DataGridView uiTable = MainForm.Instance.GetSalesTableUI();
-            List<Sale> sales = SalesCache.GetAllSalesFromCurrentPage();
+            List<Sale> sales = SalesCache.GetAllSales(MainForm.Instance.GetSearchBar().Text);
 
             //TODO: implement more sorting options (default is ID ascending)
             sales.Sort((a, b) =>

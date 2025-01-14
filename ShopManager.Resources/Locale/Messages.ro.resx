@@ -189,4 +189,52 @@
   <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
     <value>Categorii multiple selectate</value>
   </data>
+  <data name="VALIDATION_SALE_PRODUCT_NAME_EMPTY" xml:space="preserve">
+    <value>Numele produsului nu poate fi gol!</value>
+  </data>
+  <data name="VALIDATION_SALE_QUANTITY_EMPTY" xml:space="preserve">
+    <value>Cantitatea nu poate fi goală sau negativă!</value>
+  </data>
+  <data name="CANNOT_DELETE_ADMIN" xml:space="preserve">
+    <value>Nu poți șterge contul de administrator inițial, "{0}".</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_LONG" xml:space="preserve">
+    <value>Parola este prea lungă.</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_SHORT" xml:space="preserve">
+    <value>Parola este prea scurtă.</value>
+  </data>
+  <data name="VALIDATION_ROLE_INVALID" xml:space="preserve">
+    <value>Rol invalid. Selectează o singură opțiune, nu scrie altceva în câmpul Rol.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_EXISTS" xml:space="preserve">
+    <value>Numele de utilizator există deja.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_LONG" xml:space="preserve">
+    <value>Numele de utilizator este prea lung.</value>
+  </data>
+  <data name="VALIDATION_USERNAME_SHORT" xml:space="preserve">
+    <value>Numele de utilizator este prea scurt.</value>
+  </data>
+  <data name="LOGIN_ADMIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Numele de utilizator sau parola administratorului incorecte.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Nume de utilizator sau parolă incorecte.</value>
+  </data>
+  <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
+    <value>Credențiale invalide</value>
+  </data>
+  <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
+    <value>Parolă greșită.</value>
+  </data>
+  <data name="EXPORT_SUCCESS" xml:space="preserve">
+    <value>Exportul s-a realizat cu succes.</value>
+  </data>
+  <data name="SUCCESS" xml:space="preserve">
+    <value>Succes!</value>
+  </data>
+  <data name="VALIDATION_QUANTITY_INVALID" xml:space="preserve">
+    <value>Cantitatea dată este invalidă.</value>
+  </data>
 </root>

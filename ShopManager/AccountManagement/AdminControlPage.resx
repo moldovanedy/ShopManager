@@ -117,124 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FATAL_ERROR_TITLE" xml:space="preserve">
-    <value>Fatal error!</value>
-  </data>
-  <data name="FATAL_ERROR_TEXT" xml:space="preserve">
-    <value>Fatal error. Any unsaved changes are lost.</value>
-  </data>
-  <data name="SAVE_CHANGES_QUESTION_TEXT" xml:space="preserve">
-    <value>There are unsaved changes. Do you want to save your changes?</value>
-  </data>
-  <data name="SAVE_CHANGES_QUESTION_TITLE" xml:space="preserve">
-    <value>Save changes?</value>
-  </data>
-  <data name="UNEXPECTED_ERROR_TITLE" xml:space="preserve">
-    <value>Unexpected error</value>
-  </data>
-  <data name="UNEXPECTED_ERROR_TEXT" xml:space="preserve">
-    <value>An unexpected error occurred.</value>
-  </data>
-  <data name="ABOUT_APP_DESCRIPTION" xml:space="preserve">
-    <value>A simple manager for a physical shop/store. Handles product information and sales history.</value>
-  </data>
-  <data name="ABOUT_APP_TITLE" xml:space="preserve">
-    <value>Shop manager</value>
-  </data>
-  <data name="DISCARD_CHANGES_TEXT" xml:space="preserve">
-    <value>Disacrd all unsaved changes? Any unsaved changes will be lost if you discard the changes.</value>
-  </data>
-  <data name="DISCARD_CHANGES_TITLE" xml:space="preserve">
-    <value>Discard all unsaved changes?</value>
-  </data>
-  <data name="UPDATE_STOCK_QUESTION_TEXT" xml:space="preserve">
-    <value>Would you like to update the product stock (Quantity) as well to reflect the sales changes?</value>
-  </data>
-  <data name="UPDATE_STOCK_QUESTION_TITLE" xml:space="preserve">
-    <value>Update stock as well?</value>
-  </data>
-  <data name="WARN_SALE_OUT_OF_STOCK_TEXT" xml:space="preserve">
-    <value>The given quantity is larger than the selected product's stock (Quantity). This will result in a negative stock, which is nonsensical. Make sure this is the right quantity. Do you still want to update the stock?</value>
-  </data>
-  <data name="WARN_SALE_OUT_OF_STOCK_TITLE" xml:space="preserve">
-    <value>Quantity larger than stock!</value>
-  </data>
-  <data name="DEPENDENT_PRODUCTS_ERROR_TEXT" xml:space="preserve">
-    <value>There are products that belong in the category named "{0}". You can not delete the category until there are no more products using this category.</value>
-  </data>
-  <data name="DEPENDENT_PRODUCTS_ERROR_TITLE" xml:space="preserve">
-    <value>Dependent products found!</value>
-  </data>
-  <data name="DEPENDENT_SALES_ERROR_TEXT" xml:space="preserve">
-    <value>There are sales that are bound to the product named "{0}". You can not delete the product until there are no more sales bound to this product.</value>
-  </data>
-  <data name="DEPENDENT_SALES_ERROR_TITLE" xml:space="preserve">
-    <value>Dependent sales found!</value>
-  </data>
-  <data name="CATEGORY_SAVE_NEEDED_TEXT" xml:space="preserve">
-    <value>You need to save the changes before adding a category with the same name as one of the deleted categories.</value>
-  </data>
-  <data name="CATEGORY_SAVE_NEEDED_TITLE" xml:space="preserve">
-    <value>Save needed</value>
-  </data>
-  <data name="VALIDATION_CATEGORY_NAME_EMPTY" xml:space="preserve">
-    <value>The category name cannot be empty!</value>
-  </data>
-  <data name="VALIDATION_ERROR_TITLE" xml:space="preserve">
-    <value>Input data error</value>
-  </data>
-  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TEXT" xml:space="preserve">
-    <value>You can't update multiple categories at once. Select only one.</value>
-  </data>
-  <data name="VALIDATION_MULTIPLE_CATEGORIES_SELECTED_TITLE" xml:space="preserve">
-    <value>Multiple categories selected</value>
-  </data>
-  <data name="VALIDATION_SALE_PRODUCT_NAME_EMPTY" xml:space="preserve">
-    <value>The name of the product cannot be empty!</value>
-  </data>
-  <data name="VALIDATION_SALE_QUANTITY_EMPTY" xml:space="preserve">
-    <value>The quantity can't be empty or negative!</value>
-  </data>
-  <data name="CANNOT_DELETE_ADMIN" xml:space="preserve">
-    <value>You can't delete the initial admin account, "{0}".</value>
-  </data>
-  <data name="VALIDATION_PASSWORD_LONG" xml:space="preserve">
-    <value>Password is too long.</value>
-  </data>
-  <data name="VALIDATION_PASSWORD_SHORT" xml:space="preserve">
-    <value>Password is too short.</value>
-  </data>
-  <data name="VALIDATION_ROLE_INVALID" xml:space="preserve">
-    <value>Invalid role. Select only one option, don't write anything else in the role field.</value>
-  </data>
-  <data name="VALIDATION_USERNAME_EXISTS" xml:space="preserve">
-    <value>Username already exists.</value>
-  </data>
-  <data name="VALIDATION_USERNAME_LONG" xml:space="preserve">
-    <value>Username is too long.</value>
-  </data>
-  <data name="VALIDATION_USERNAME_SHORT" xml:space="preserve">
-    <value>Username is too short.</value>
-  </data>
-  <data name="LOGIN_ADMIN_INVALID_CREDENTIALS" xml:space="preserve">
-    <value>Invalid admin username or password.</value>
-  </data>
-  <data name="LOGIN_INVALID_CREDENTIALS" xml:space="preserve">
-    <value>Invalid username or password.</value>
-  </data>
-  <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
-    <value>Invalid credentials</value>
-  </data>
-  <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
-    <value>Wrong password.</value>
-  </data>
-  <data name="EXPORT_SUCCESS" xml:space="preserve">
-    <value>Export was succesful!</value>
-  </data>
-  <data name="SUCCESS" xml:space="preserve">
-    <value>Success!</value>
-  </data>
-  <data name="VALIDATION_QUANTITY_INVALID" xml:space="preserve">
-    <value>The given quantity is invalid.</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BackButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        dGLtoul/mbSYzHl8nfQAAAAASUVORK5CYII=
+</value>
   </data>
 </root>
