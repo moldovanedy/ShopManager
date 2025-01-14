@@ -225,4 +225,7 @@
   <data name="LOGIN_INVALID_CREDENTIALS_TITLE" xml:space="preserve">
     <value>Invalid credentials</value>
   </data>
+  <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
+    <value>Wrong password.</value>
+  </data>
 </root>

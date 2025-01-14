@@ -37,7 +37,7 @@
             this.ChangeFirstTextBox = new System.Windows.Forms.TextBox();
             this.ChangeSecondLabel = new System.Windows.Forms.Label();
             this.ChangeSecondTextBox = new System.Windows.Forms.TextBox();
-            this.ChangeButton = new System.Windows.Forms.Button();
+            this.ModifyButton = new System.Windows.Forms.Button();
             this.AdminButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -130,19 +130,19 @@
             this.ChangeSecondTextBox.TabIndex = 7;
             this.ChangeSecondTextBox.Visible = false;
             // 
-            // ChangeButton
+            // ModifyButton
             // 
-            this.ChangeButton.AutoSize = true;
-            this.ChangeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.ChangeButton.Enabled = false;
-            this.ChangeButton.Location = new System.Drawing.Point(18, 305);
-            this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(76, 27);
-            this.ChangeButton.TabIndex = 8;
-            this.ChangeButton.Text = "Modify";
-            this.ChangeButton.UseVisualStyleBackColor = false;
-            this.ChangeButton.Visible = false;
-            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
+            this.ModifyButton.AutoSize = true;
+            this.ModifyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
+            this.ModifyButton.Enabled = false;
+            this.ModifyButton.Location = new System.Drawing.Point(18, 305);
+            this.ModifyButton.Name = "ModifyButton";
+            this.ModifyButton.Size = new System.Drawing.Size(76, 27);
+            this.ModifyButton.TabIndex = 8;
+            this.ModifyButton.Text = "Modify";
+            this.ModifyButton.UseVisualStyleBackColor = false;
+            this.ModifyButton.Visible = false;
+            this.ModifyButton.Click += new System.EventHandler(this.ModifyButton_Click);
             // 
             // AdminButton
             // 
@@ -166,7 +166,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.Controls.Add(this.AdminButton);
-            this.Controls.Add(this.ChangeButton);
+            this.Controls.Add(this.ModifyButton);
             this.Controls.Add(this.ChangeSecondTextBox);
             this.Controls.Add(this.ChangeSecondLabel);
             this.Controls.Add(this.ChangeFirstTextBox);
@@ -195,7 +195,7 @@
         private System.Windows.Forms.TextBox ChangeFirstTextBox;
         private System.Windows.Forms.Label ChangeSecondLabel;
         private System.Windows.Forms.TextBox ChangeSecondTextBox;
-        private System.Windows.Forms.Button ChangeButton;
+        private System.Windows.Forms.Button ModifyButton;
         private System.Windows.Forms.Button AdminButton;
     }
 }
