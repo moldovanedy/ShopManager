@@ -201,6 +201,9 @@
   <data name="Expiry date" xml:space="preserve">
     <value>Dată expirare</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportă</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>Fișier</value>
   </data>
@@ -312,5 +315,8 @@ să se autentifice și să te adauge în baza de date a aplicației.</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versiunea</value>
+  </data>
+  <data name="XML File" xml:space="preserve">
+    <value>Fișier XML</value>
   </data>
 </root>

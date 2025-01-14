@@ -228,4 +228,10 @@
   <data name="LOGIN_INVALID_PASSWORD" xml:space="preserve">
     <value>Wrong password.</value>
   </data>
+  <data name="EXPORT_SUCCESS" xml:space="preserve">
+    <value>Export was succesful!</value>
+  </data>
+  <data name="SUCCESS" xml:space="preserve">
+    <value>Success!</value>
+  </data>
 </root>

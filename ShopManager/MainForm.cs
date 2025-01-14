@@ -6,10 +6,12 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using ShopManager.AccountManagement;
 using ShopManager.Controller;
 using ShopManager.Controller.CacheManager;
 using ShopManager.Controller.ResultHandler;
+using ShopManager.Controller.XmlDataManager;
 using ShopManager.Controllers;
 using ShopManager.Extensions;
 using ShopManager.Model.DataModels;
@@ -76,6 +78,7 @@ namespace ShopManager
 
             SetupMenu(this.FileMenuItem);
             SetupMenu(this.HelpMenuItem);
+            SetupMenu(this.ExportMenuItem);
         }
 
         public void Translate()
@@ -94,6 +97,10 @@ namespace ShopManager
             this.FileMenuItem.Text = Strings.File;
             this.LanugageMenuItem.Text = Strings.Language;
             this.ExitMenuItem.Text = Strings.Exit;
+
+            this.ExportMenuItem.Text = Strings.Export;
+            this.ExportSalesMenuItem.Text = Strings.Sales;
+            this.ExportProductsMenuItem.Text = Strings.Products;
 
             this.HelpMenuItem.Text = Strings.Help;
             this.AboutMenuItem.Text = Strings.About;
@@ -839,6 +846,114 @@ namespace ShopManager
         {
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.Show();
+        }
+
+        private void ExportSalesMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = "sales.xml",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Filter = $"{Strings.XML_File} (*.xml)|*.xml"
+            };
+
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            XmlDocument xmlDocument = ItemsXmlSerializer.SerializeSalesCache();
+            if (xmlDocument == null)
+            {
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            ExportAndShow(xmlDocument, saveFileDialog.FileName);
+        }
+
+        private void ExportProductsMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = "products.xml",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Filter = $"{Strings.XML_File} (*.xml)|*.xml"
+            };
+
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            XmlDocument xmlDocument = ItemsXmlSerializer.SerializeProductsCache();
+            if (xmlDocument == null)
+            {
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            ExportAndShow(xmlDocument, saveFileDialog.FileName);
+        }
+
+        private void ExportCategoriesMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = "categories.xml",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Filter = $"{Strings.XML_File} (*.xml)|*.xml"
+            };
+
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            XmlDocument xmlDocument = ItemsXmlSerializer.SerializeCategoriesCache();
+            if (xmlDocument == null)
+            {
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            ExportAndShow(xmlDocument, saveFileDialog.FileName);
+        }
+
+        private void ExportAndShow(XmlDocument xmlDocument, string filePath)
+        {
+            bool success = XmlFilesManager.WriteXml(xmlDocument, filePath);
+            if (success)
+            {
+                MessageBox.Show(
+                    Messages.EXPORT_SUCCESS,
+                    Messages.SUCCESS,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
         #endregion
 

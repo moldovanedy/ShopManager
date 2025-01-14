@@ -201,6 +201,9 @@
   <data name="Expiry date" xml:space="preserve">
     <value>Expiry date</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
@@ -312,5 +315,8 @@ to log in and add you to the application's database.</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="XML File" xml:space="preserve">
+    <value>XML File</value>
   </data>
 </root>
