@@ -234,4 +234,7 @@
   <data name="SUCCESS" xml:space="preserve">
     <value>Success!</value>
   </data>
+  <data name="VALIDATION_QUANTITY_INVALID" xml:space="preserve">
+    <value>The given quantity is invalid.</value>
+  </data>
 </root>

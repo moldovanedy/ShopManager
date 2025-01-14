@@ -340,6 +340,15 @@ namespace ShopManager.Resources.Locale {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The given quantity is invalid..
+        /// </summary>
+        public static string VALIDATION_QUANTITY_INVALID {
+            get {
+                return ResourceManager.GetString("VALIDATION_QUANTITY_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid role. Select only one option, don&apos;t write anything else in the role field..
         /// </summary>
         public static string VALIDATION_ROLE_INVALID {

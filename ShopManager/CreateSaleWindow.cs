@@ -191,7 +191,11 @@ namespace ShopManager
             ValueResult<Product> prodResult = ProductCache.SearchSingleProduct(this.ProductDropDown.Text);
             if (!prodResult.IsSuccess)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show(
+                    Messages.UNEXPECTED_ERROR_TEXT,
+                    Messages.UNEXPECTED_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 Logger.LogError(prodResult.ResultingError.Description);
                 goto Cleanup;
             }
@@ -202,8 +206,12 @@ namespace ShopManager
 
             if (!double.TryParse(quantityString, out double quantity))
             {
-                MessageBox.Show("Error on quantity");
-                goto Cleanup;
+                MessageBox.Show(
+                    Messages.VALIDATION_QUANTITY_INVALID,
+                    Messages.VALIDATION_ERROR_TITLE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
             }
 
             if (quantity <= 0)
@@ -239,7 +247,11 @@ namespace ShopManager
 
                 if (!addResult.IsSuccess)
                 {
-                    MessageBox.Show("Error on store");
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     Logger.LogError(addResult.ResultingError.Description);
                     goto Cleanup;
                 }
@@ -251,7 +263,11 @@ namespace ShopManager
 
                 if (!updateResult.IsSuccess)
                 {
-                    MessageBox.Show("Error on update store");
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     Logger.LogError(updateResult.ResultingError.Description);
                     goto Cleanup;
                 }
@@ -264,7 +280,11 @@ namespace ShopManager
                 {
                     if (!previousSaleResult.IsSuccess)
                     {
-                        MessageBox.Show("Couldn't update the stock.");
+                        MessageBox.Show(
+                            Messages.UNEXPECTED_ERROR_TEXT,
+                            Messages.UNEXPECTED_ERROR_TITLE,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         Logger.LogError(previousSaleResult.ResultingError.Description);
                         goto Cleanup;
                     }
@@ -276,7 +296,11 @@ namespace ShopManager
                 Result updateQuantityResult = ProductCache.UpdateProduct(prodResult.Value);
                 if (!updateQuantityResult.IsSuccess)
                 {
-                    MessageBox.Show("Error on update quantity");
+                    MessageBox.Show(
+                        Messages.UNEXPECTED_ERROR_TEXT,
+                        Messages.UNEXPECTED_ERROR_TITLE,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     Logger.LogError(updateQuantityResult.ResultingError.Description);
                 }
             }
