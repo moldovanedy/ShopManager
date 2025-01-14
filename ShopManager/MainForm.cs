@@ -155,6 +155,22 @@ namespace ShopManager
             }
 
             await Task.WhenAll(loadTasks);
+
+            //block write access to products for non-admins
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    this.ProductsTable.Columns[i].ReadOnly = true;
+                }
+            }
+
+            //disable categories editing for non-admins
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                this.AddCategoryTextBox.Enabled = false;
+                this.AddOrUpdateCategoryButton.Enabled = false;
+            }
             RefreshData();
         }
 
@@ -251,6 +267,18 @@ namespace ShopManager
 
         private void ProductsTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             Result deleteResult = ProductsTableController.RecordDeletionRequested(e);
             TogglePendingSaveVisibility(PendingSavesExist || deleteResult.IsSuccess);
 
@@ -373,6 +401,7 @@ namespace ShopManager
         private void ProductsTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (
+                CredentialsMemoryStore.CurrentUser.Permissions == 0 ||
                 !(this.ProductsTable.Columns[e.ColumnIndex] is DataGridViewButtonColumn) ||
                 e.RowIndex < 0 ||
                 e.RowIndex >= this.ProductsTable.Rows.Count - 1)
@@ -410,6 +439,12 @@ namespace ShopManager
 
         private void SalesTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             Result deleteResult = SalesTableController.RecordDeletionRequested(e);
             if (!deleteResult.IsSuccess)
             {
@@ -437,6 +472,11 @@ namespace ShopManager
         private void SalesTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             e.Cancel = true;
+            if (CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                return;
+            }
+
             CreateSaleWindow wnd = new CreateSaleWindow();
 
             //if it's NOT the last row
@@ -467,6 +507,7 @@ namespace ShopManager
         private void SalesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (
+                CredentialsMemoryStore.CurrentUser.Permissions == 0 ||
                 !(this.SalesTable.Columns[e.ColumnIndex] is DataGridViewButtonColumn) ||
                 e.RowIndex < 0 ||
                 e.RowIndex >= this.SalesTable.Rows.Count - 1)
@@ -616,6 +657,11 @@ namespace ShopManager
 
         private void CategoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (CredentialsMemoryStore.CurrentUser == null || CredentialsMemoryStore.CurrentUser.Permissions == 0)
+            {
+                return;
+            }
+
             if (this.CategoriesListBox.SelectedItems.Count == 0)
             {
                 this.AddOrUpdateCategoryLabel.Text = Strings.Add_a_new_category;
