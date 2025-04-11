@@ -5,11 +5,10 @@ This is a coding exercise for a desktop WinForms project. Uses WinForms for the 
 ## Features
 
 - Localization: Romanian (ro) and English (en)
-
-## TODO
-
 - CRUD for products and product categories
 - CRUD for sales
+- User administration by an admin
+- Login and forgot password
 - Settings
 
 ## Assets
